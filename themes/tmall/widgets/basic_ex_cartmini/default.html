@@ -1,0 +1,112 @@
+<div id="shop_cart_mini_<{$widgets_id}>" class="shop-cart-mini">
+	<dl>
+		<dt >
+			<ul class="cfix">
+				<li>
+					<a href="<{link app=b2c ctl=site_cart act=index}>"  class="title-str"><span><{$setting.title_str}></span></a>
+				</li>
+				<{if $setting.show_cart_count ==1}>
+				<li>
+					<span>,</span><em class="s-cart-count" data-cookiemap="S[CART_COUNT]">0</em>种
+				</li>
+				<{/if}>
+				<{if $setting.show_cart_num ==1}>
+				<li class="cart-number"><em class="s-cart-number" data-cookiemap="S[CART_NUMBER]">0</em>
+				</li>
+				<{/if}>
+				<{if $setting.show_cart_total ==1}>
+				<li>
+					<span>,共计</span><em class="s-cart-total-price" data-cookiemap="S[CART_TOTAL_PRICE]">0</em>
+				</li>
+				<{/if}>
+			</ul>
+			<s></s>
+		</dt>
+		<dd>
+			<div class="cart-mini-container">
+			</div>
+		</dd>
+	</dl>
+</div>
+<script type="text/javascript">
+	addEvent('domready',function(){
+		var widget = $('shop_cart_mini_<{$widgets_id}>');
+		var numEls = widget.getElements('dt em');
+		var cartMiniContainer = widget.getElement('div.cart-mini-container').set('load',{
+			onRequest:function(){
+
+			},
+			onSuccess:function(){
+				cartMiniContainer.store('cache_status',numEls.get('text').join(''));
+
+				if(!cartMiniContainer.getElement('.minicart-single')){
+					cartMiniContainer.addClass('cart-empty');
+				}else{
+					cartMiniContainer.removeClass('cart-empty');
+
+					cartMiniContainer.getElements('.delcart').addEvent('click',function(e){
+						e.stop();
+						var _item = this.getParent('div[urlremove]');
+						//_item.highlight();
+						new Request({
+							url:_item.get('urlremove'),
+							data:_item.toQueryString()+'&response_type=true',
+							onSuccess:function(){
+								cartMiniContainer.load("<{link app=b2c ctl=site_cart act=view}>");
+							}
+						}).post();
+
+
+					});
+				}
+			}
+		});
+		(function(){
+			numEls.each(function(em){
+				em.set('text',Cookie.read(em.get('data-cookiemap'))||0);
+			});
+			arguments.callee.delay(1500);
+		})();
+		var _t1= 0,_t2=0;
+		widget.addEvents({
+			mouseenter:function(nodelay){
+				clearTimeout(_t2);
+				_t1 = (function(){
+					this.getElement('dl').addClass('enter');
+					if(cartMiniContainer.retrieve('cache_status') == numEls.get('text').join(''))return;
+					cartMiniContainer.empty().adopt(new Element('div.loading-box',{text:'正在加载...'}));
+					cartMiniContainer.load("<{link app=b2c ctl=site_cart act=view}>");
+				}).delay(200,this);
+			},
+			mouseleave:function(){
+				clearTimeout(_t1);
+				_t2 = (function(){
+					this.getElement('dl').removeClass('enter');
+				}).delay(500,this);
+
+			}
+		});
+	});
+</script>
+
+<style type="text/css">
+
+	.cfix:after{
+	    content: ".";
+	    display: block;
+	    height: 0;
+	    clear: both;
+	    visibility: hidden;
+	}
+	.cfix {display: inline-block;}
+	* html .cfix{height: 1%;}
+	.cfix{display: block;}
+	.shop-cart-mini dl{position: relative;}
+	.shop-cart-mini dt ul{}
+	.shop-cart-mini dt li{float: left;line-height: 20px;}
+	.shop-cart-mini dd{display:none;}
+	.shop-cart-mini dd{position: absolute;right:0;width:<{$setting.mini_container_width}>px;}
+	.shop-cart-mini .enter dd{display: block;}
+	.shop-cart-mini  .nodisplay,.shop-cart-mini .cart-empty .CartInfoItems{display: none;}
+	.shop-cart-mini .cart-empty .nodisplay{display: block;}
+</style>

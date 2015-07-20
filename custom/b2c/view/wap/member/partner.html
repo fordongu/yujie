@@ -1,0 +1,40 @@
+<link rel="stylesheet" type="text/css" href="/custom/b2c/view/wap/member/public/member.css">
+<div class="full-screen">
+    <header>
+        <div class="a-bar">
+            <a href="javascript:history.back()" class="a-back" style='display:block;'>
+                <i class="arr left"></i>
+                返回
+            </a>
+            <div class="a-name">
+                我的合伙人
+            </div>
+        </div>
+    </header>
+    <div class='center'>
+        <ul class='partner_ul c-fix'>
+            <{foreach from=$partner.list item=val key=key}>
+                <li>
+                    <div class='partner_img'>
+                        <{if $val.image!=''}>
+                            <a href="<{link app=b2c ctl='wap_member' full='1' act='partner_list' arg=$val.member_id}>"><img src="<{$val.image}>"></a>
+                        <{else}>
+                            <a href="<{link app=b2c ctl='wap_member' full='1' act='partner_list' arg=$val.member_id}>"><{img src="sprites/default-avatar.png" alt=""}></a>
+                        <{/if}>
+                    </div>
+                    <div class='partner_name'><{$val.nickname}></div>
+                </li>
+            <{foreachelse}>
+                <li>暂无合伙人</li>
+            <{/foreach}>
+            
+        </ul>
+    </div>
+    
+</div>
+
+<script>
+    var e = $.fn.cookie('S[CART_NUMBER]')?$.fn.cookie('S[CART_NUMBER]'):'';
+    if(e) $("#cartNum").text(e);
+</script>
+

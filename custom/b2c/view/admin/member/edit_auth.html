@@ -1,0 +1,49 @@
+<form id="route_static_edit<{$close_win}>" action='index.php?app=b2c&ctl=admin_member_auth&act=save' method='POST' class="tableform">
+<input type="hidden" name="auth_id" value="<{$auth.auth_id}>" />
+<div class="division">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+  <th><{t}>会员ID：<{/t}></th>
+  <td><{$auth.member_id}></td>
+</tr>
+<tr>
+  <th><{t}>真实名字：<{/t}></th>
+  <td><{$auth.real_name}></td>
+</tr>
+<tr>
+  <th><{t}>身份证号码：<{/t}></th>
+  <td><{$auth.identity_num}></td>
+</tr>
+<tr>
+  <th><{t}>身份证图片：<{/t}></th>
+  <{foreach from=$upimage item=value key=key}>
+  <td><img src="<{$value}>" style="max-width:400px;max-height:400px;"/></td>
+  <{/foreach}>
+</tr>
+<tr>
+  <th><{t}>审核结果:<{/t}></th>
+  <td>
+	<select name="is_checked">
+		<option value="0" <{if $auth.is_checked == 0}>checked<{/if}> >未审核</option>
+		<option value="1" <{if $auth.is_checked == 1}>checked<{/if}> >审核失败</option>
+		<option value="2" <{if $auth.is_checked == 2}>checked<{/if}> >审核成功</option>
+	</select>
+  </td>
+</tr>
+</table>
+</div>
+<div class="table-action">
+<{button type='submit' label=$___a='保存'|t:'site' }>
+</div>
+
+</form>
+<script>
+$('route_static_edit<{$close_win}>').store('target',{
+	onComplete:function(){
+		if($('route_static_edit<{$close_win}>').getParent('.dialog')){
+			$('route_static_edit<{$close_win}>').getParent('.dialog').retrieve('instance').close();
+		}
+		window.finderGroup['<{$env.get.finder_id}>'].refresh();
+	}
+});
+</script>

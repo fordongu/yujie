@@ -1,0 +1,289 @@
+<div class="tableform" id="goods_shopmax_config">
+	<div class="division">
+		  <label>
+	                    	挂件标题：
+	                    	<input type="text"   name="widget_title"  value="<{$setting.widget_title}>" />
+		 </label>
+		<label>
+	                    	 展示“更多...”超链接:
+	                    	<input type="checkbox"   name="show_more_link" value="1"   <{if $setting.show_more_link}>checked<{/if}> />
+		</label>
+		 <label>&nbsp;&nbsp;</label>
+		 <label>
+		                    	挂件自定义className：
+		                    	<input type="text"   name="widget_custom_class"  value="<{$setting.widget_custom_class}>" /> <em class="note"><{t app='content'}>设计师专用，非设计师请不要修改本项参数。<{/t}></em>
+		</label>
+	</div>
+	<div class="division" >
+		<div class="goods-selector-handle division" style="background:#f7f7f7;padding:10px;">
+
+				<label>
+					<input type="radio"  name="selector" value="filter"  <{if $setting.selector=="filter"}>checked<{/if}> />&nbsp;范围选择商品
+				</label>
+					&nbsp;
+				<label>
+					<input type="radio"  name="selector" value="select"  <{if $setting.selector=="select"}>checked<{/if}> />&nbsp;精确选择商品
+				</label>
+
+		</div>
+		<div class="division goods-selector" style="background:#f7f7f7">
+			<div data-extend = "filter" <{if $setting.selector=="select"}>style="display:none"<{/if}>>
+				<{input type="goodsfilter"  name="goods_filter"  value=$setting.goods_filter}>
+
+			<div class="division" >
+					排序规则：
+					<select  name="goods_order_by">
+						<{foreach from=$data.goods_order_by item=item}>
+							<option value="<{$item.condition}>"  <{if $setting.goods_order_by == $item.condition}>selected<{/if}>><{$item.label}></option>
+						<{/foreach}>
+					</select>
+			</div>
+
+			</div>
+			<div data-extend = "select"  <{if $setting.selector=="filter"}>style="display:none;"<{/if}>>
+
+					<{input type="goods_select"
+			  object="goods@b2c"
+			  filter=$goodslink_filter
+			  multiple="true"
+			  return_url="{$related_return_url}"
+			  rowselect="true"
+			  textcol="name"
+			  name="goods_select"
+			  linkid=$setting.goods_select
+			  value=$setting.goods
+			  view="b2c:admin/goods/detail/rel_items.html"
+			  }>
+			</div>
+
+
+		</div>
+	</div>
+    <div class="division" >
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+	    <tr>
+	            <th>展示设置:</th>
+	                <td>
+	                	<div class="division clearfix">
+	                		  <label>
+			                    	展示简介:
+			                    	<input type="checkbox"   name="show_goods_intro" value="1"  <{if $setting.show_goods_intro}>checked<{/if}> />
+				 </label>
+				 <label>&nbsp;&nbsp;</label>
+				 <label>
+			                    	展示所属分类:
+			                    	<input type="checkbox"   name="show_goods_cat" value="1"   <{if $setting.show_goods_cat}>checked<{/if}> />
+				 </label>
+				<label>&nbsp;&nbsp;</label>
+				 <label>
+			                    	展示综合评分:
+			                    	<input type="checkbox"   name="show_goods_point" value="1"   <{if $setting.show_goods_point}>checked<{/if}> />
+				 </label>
+				 <label>&nbsp;&nbsp;</label>
+				 <label>
+			                    	展示规格列表:
+			                    	<input type="checkbox"   name="show_goods_spec" value="1"   <{if $setting.show_goods_spec}>checked<{/if}> />
+				 </label>
+				<label>&nbsp;&nbsp;</label>
+				<label>
+			                    	 展示市场价:
+			                    	<input type="checkbox"   name="show_mktprice" value="1"  <{if $setting.show_mktprice}>checked<{/if}> />
+				 </label>
+				<label>&nbsp;&nbsp;</label>
+				<label>
+			                    	 展示销售价:
+			                    	<input type="checkbox"   name="show_price" value="1"   <{if $setting.show_price}>checked<{/if}>  />
+				 </label>
+				 <label>&nbsp;&nbsp;</label>
+				<label>
+			                    	 展示会员价:
+			                    	<input type="checkbox"   name="show_mprice" value="1"   <{if $setting.show_mprice}>checked<{/if}> />
+				 </label>
+				<label>&nbsp;&nbsp;</label>
+				<label>
+			                    	 展示折扣:
+			                    	<input type="checkbox"   name="show_discount" value="1"   <{if $setting.show_discount}>checked<{/if}> />
+				 </label>
+                  <label>
+			                    	 图片居左:
+			                    	<input type="checkbox"   name="pic_left" value="1"   <{if $setting.pic_left}>checked<{/if}> />
+				 </label>
+                   <label>
+			                    	 显示购买按钮:
+			                    	<input type="checkbox"   name="show_buybutton" value="1"   <{if $setting.show_buybutton}>checked<{/if}> />
+				 </label>
+                 <label>
+			                    	 滚动展示:
+			                    	<input type="checkbox"   name="goodscroll" value="1"   <{if $setting.goodscroll}>checked<{/if}> />
+				 </label>
+	                	</div>
+	                	 <div class="span-auto division">
+		                    <label>
+		                    	<p>商品容器宽度：<{help}>即单个商品区域父容器宽度<{/help}></p>
+		                    	<input type="text"  name="panel_width"  value="<{$setting.panel_width}>" />px
+		                    </label>
+		                 </div>
+		                  <div class="span-auto division">
+		                    <label>
+		                    	<p>最多展示数量：</p>
+		                    	<input type="text"  name="limit"  value="<{$setting.limit}>" />个商品
+		                    </label>
+		                 </div>
+		                  <div class="span-auto division">
+		                    <label>
+		                    	<p>每行最多展示数量：</p>
+		                    	<input type="text"  name="lline_limit"  value="<{$setting.lline_limit}>" />个商品
+		                    </label>
+		                 </div>
+	                </td>
+	    </tr>
+	    <tr>
+	    	<th>单个商品区域：</th>
+	    	<td>
+			 <div class="span-auto division">
+		                    <label>
+		                    	<p>每个商品的上下间距：</p>
+		                    	<input type="text"  name="item_margin_tb"  value="<{$setting.item_margin_tb}>" />px
+		                    </label>
+		                 </div>
+		                 <div class="span-auto division">
+		                    <label>
+		                    	<p>每个商品的左右间距：</p>
+		                    	<input type="text"  name="item_margin_lr"  value="<{$setting.item_margin_lr}>" />px
+		                    </label>
+		                 </div>
+		                 <div class="span-auto division">
+
+		                    	<p>行首尾都靠边：<{help}>每行第一个商品和最后一个商品都靠边<br/>即：每行的第一个商品margin-left:none;最后一个商品margin-right:none;<{/help}></p>
+		                    	<input type="radio"  name="item_margin_line_fix" value=1   <{if $setting.item_margin_line_fix==1}>checked<{/if}> />是
+		                    	<input type="radio"  name="item_margin_line_fix"  value=0 <{if $setting.item_margin_line_fix!=1}>checked<{/if}> />否
+
+		                 </div>
+			    <div class="span-auto division">
+		                    <label>
+		                    	<p>每个商品区域边框宽度：</p>
+		                    	<input type="text"  name="item_border_width" value="<{$setting.item_border_width}>" />px
+		                    </label>
+		                 </div>
+               <div class="span-auto division">
+		                    <label>
+		                    	<p>每个商品名称显示行数：</p>
+		                    	<input type="text"  name="item_title_lines" value="<{$setting.item_title_lines}>" />留空为全部显示
+		                    </label>
+		                 </div>
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<th>商品图片设置：</th>
+	    	<td>
+			<div class="span-auto division">
+		                    <label>
+		                    	<p>商品图片尺寸：<{help}>每个商品的商品原图被上传后，会被系统分别生成三种尺寸图片。<br/>如果你使用精确选择商品，并自定义了挂件内商品的图片，系统将忽略此处.<{/help}></p>
+		                    	<select name="gpic_size">
+		                    		<option value="goodsPicS" <{if $setting.gpic_size == 'goodsPicS'}>selected<{/if}>>小尺寸</option>
+		                    		<option value="goodsPicM" <{if $setting.gpic_size == 'goodsPicM'}>selected<{/if}>>中尺寸</option>
+		                    		<option value="goodsPicL" <{if $setting.gpic_size == 'goodsPicL'}>selected<{/if}>>大尺寸</option>
+		                    	</select>
+		                    </label>
+		                 </div>
+		              <div class="span-auto division">
+		                    <label>
+		                    	<p>商品图片边框宽度：</p>
+		                    	<input type="text"  name="item_pic_border_width" value="<{$setting.item_pic_border_width}>" />px
+		                    </label>
+		              </div>
+		                <div class="span-auto division">
+		                    <label>
+		                    	<p>商品图片最大宽高：</p>
+		                    	<input type="text"  name="item_pic_maxheight" value="<{$setting.item_pic_maxheight}>" />px
+		                    </label>
+		              </div>
+		             <!--  <div class="span-auto division">
+		                    <label>
+		                    	<p>商品图片等比例缩放：</p>
+		                    	<input type="radio"  name="item_pic_auto_size" value=1 <{if $setting.item_pic_auto_size==1}>checked<{/if}>/>是
+		                    	<input type="radio"  name="item_pic_auto_size" varlue=0 <{if $setting.item_pic_auto_size!=1}>checked<{/if}>/>否
+		                    </label>
+		              </div> -->
+	    	</td>
+	    </tr>
+	    <tr>
+	            <th>文案设置:</th>
+	                <td>
+		                 <div class="span-auto division">
+		                    <label>
+		                    	<p>市场价：</p>
+		                    	<input type="text"  name="market_price_title"  value="<{$setting.market_price_title}>" />
+		                    </label>
+		                 </div>
+		                 <div class="span-auto division">
+		                    <label>
+		                    	<p>销售价：</p>
+		                    	<input type="text"  name="price_title"  value="<{$setting.price_title}>" />
+		                    </label>
+		                 </div>
+		                  <div class="span-auto division">
+		                    <label>
+		                    	<p>会员价：</p>
+		                    	<input type="text"  name="member_price_title"  value="<{$setting.member_price_title}>" />
+		                    </label>
+		                 </div>
+		                 <div class="span-auto division">
+		                    <label>
+		                    	<p>折扣：</p>
+		                    	<input type="text"  name="discount_title"  value="<{$setting.discount_title}>" />
+		                    </label>
+		                 </div>
+	                </td>
+	    </tr>
+    </table>
+	</div>
+    </div>
+
+<script type="text/javascript">
+
+    	$$('#goods_shopmax_config .goods-selector-handle input[type=radio]').addEvent('change',function(){
+    				var radio  = this;
+    				if(!radio.checked)return;
+    				$$('#goods_shopmax_config .goods-selector [data-extend]').each(function(item){
+
+    					if(item.get('data-extend')!=radio.value){
+    						item.hide();
+    					}else{
+    						item.show();
+    					}
+
+    				});
+
+    		});
+
+    	$$('#goods_shopmax_config input[type=text]').each(function(ipt){
+    		ipt.addClass('x-input');
+    		if(['widget_title','widget_custom_class'].contains(ipt.name))return;
+    		ipt.setStyles({
+	    		width:50,
+	    		textAlign:'right'
+    		});
+    	});
+
+
+    	$('goods_shopmax_config').getParent('form').addEvent('submit',function(){
+
+
+    		this.getElements('input[type=checkbox]').each(function(item){
+
+			if(!item.checked){
+				item.set({
+					value:0,
+					checked:true,
+					styles:'visibility:hidden'
+				});
+
+			}
+
+		});
+
+
+    	});
+</script>
+

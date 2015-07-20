@@ -1,0 +1,67 @@
+<link rel="stylesheet" type="text/css" href="/custom/b2c/view/wap/member/public/member.css">
+<div class="full-screen">
+    <header>
+        <div class="a-bar">
+            <a href="<{link app=b2c ctl=wap_member act=withdrawal}>" class="a-back" style='display:block;'>
+                <i class="arr left"></i>
+                返回
+            </a>
+            <div class="a-name">
+                银行卡
+            </div>
+        </div>
+    </header>
+    <div class="section" style="border:none;">
+        <form action="<{link app=b2c ctl=wap_member act=submitBank}>" method="post" id="post_withdrawal" class="post_withdrawal action-code-form">
+       
+        <table>
+          <col style="width:20%">
+          <col style="width:80%">
+          <tbody>
+            <tr>
+              <td><{t}>银行<{/t}>：</td>
+              <td>
+                <select name="bank_name">
+                    <{foreach from=$bank_list item="bank"}>
+                        <option value="<{$bank}>"><{$bank}></option>
+                    <{/foreach}>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><{t}>持卡人<{/t}>：</td>
+              <td><input style='border:1px solid #cccccc;width:100%' type="text" name="real_name" id="" class="x-input" size="10" vtype="required" data-caution="请输入持卡人姓名"></td>
+            </tr>
+            <tr>
+              <td><{t}>卡号<{/t}>：</td>
+              <td><input style='border:1px solid #cccccc;width:100%' type="text" name="bank_num" id="" class="x-input" size="50" vtype="required" data-caution="请输入提现银行账号"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style='margin-top:20px;'>
+          <{button type="submit" class="btn-caution" label="提交"}>
+        </div>
+      </form>
+    </div>
+    <div>
+      <table>
+        <col style="width:90%">
+        <col style="width:10%">
+        <tbody>
+          <{foreach from=$banks item=vo}>
+            <tr>
+              <td><{$vo.bank_name}><{$vo.bank_num}></td>
+              <td><a href="<{link app=b2c ctl=wap_member act=detelebank arg=$vo.member_bank_id}>">删除</a></td>
+            </tr>
+          <{foreachelse}>
+          <{/foreach}>
+        </tbody>
+      </table>
+    </div>
+    
+</div>
+
+<script>
+    var e = $.fn.cookie('S[CART_NUMBER]')?$.fn.cookie('S[CART_NUMBER]'):'';
+    if(e) $("#cartNum").text(e);
+</script>

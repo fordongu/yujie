@@ -1,0 +1,130 @@
+<link rel="stylesheet" href="<{$smarty.const.WWW_URL}>wap_themes/default/images/styles.css" />
+<style type="text/css">
+	.home-nav-down td{text-align: center;margin: 0px auto;}
+   
+</style>
+<div class="full-screen" style=" position:fixed;right:0;bottom:0;width:100%;height:10%;">
+    <div class="home-nav-down">
+        <table width="100%">
+            <tr>
+                <td><a href="<{$smarty.const.WWW_URL}>index.php/wap/">首页<{$member_id}></a></td>
+                <td><a href="<{$smarty.const.WWW_URL}>index.php/wap/gallery.html" class="item bg1">全部商品</a></td>
+                <td><a href="<{$smarty.const.WWW_URL}>index.php/wap/cart.html" class="item bg2">购物车</a></td>
+                <!-- <td><a href="<{link app=b2c ctl=wap_member act=favorite}>" class="item bg3">收藏</a></td>
+                <td><a href="<{link app=b2c ctl=wap_member act=orders}>" class="item bg4">订单</a></td> -->
+                <td><a href="<{$smarty.const.WWW_URL}>index.php/wap/member.html" class="item bg5">会员中心</a></td>
+                <td><a href="javascript:;" class="item bg5 baidu_share">分享</a></td>
+            </tr>
+        </table>
+    </div>
+     <!-- <div class="home-to-top">
+        <a href="#" class="to-top">返回顶部</a>
+        <div id="footerlogin">
+        	<a href="<{$smarty.const.WWW_URL}>index.php/wap/passport.html" class="lnk">登陆</a> | 
+        	<a href="<{$smarty.const.WWW_URL}>index.php/wap/passport-signup.html" class="lnk">注册</a>
+        </div>
+        <div id="footerlogout" style="display:none">
+        您好，<span id="footerloginuname"></span>！| <a href="<{$smarty.const.WWW_URL}>index.php/wap/passport-logout.html" class="lnk">退出</a>
+        </div>
+    </div>
+    <div class="footer">
+        触屏版 | <a href="<{$env.pc_url}>?ignore_ua_check=1" class="lnk">电脑版</a>
+        <{wapfooter}>
+    </div> -->
+</div>
+<!-- 遮罩层 -->
+<div id="fade" class="black_overlay" onclick="guanbi()" ></div>
+
+<!-- 百度分享start -->
+    <style type="text/css">
+        #baidu_share{
+            background-color: rgb(242, 238, 234);
+            border: medium none;
+            display: none;
+            height: 65%;
+            left: 12%;
+            overflow: auto;
+            position: absolute;
+            top: 25%;
+            width: 80%;
+            z-index: 1002;
+        }
+
+    </style>
+    <div id="fade" class="black_overlay" onclick="guanbi()"></div>
+    <div id="baidu_share"  style="display:none;">
+        <div class="gb_baidushare" style="width:60px;height:40px;text-align:center;line-height:40px;border:1px solid;" onclick="guanbi()">
+            关闭
+        </div>
+        <div class="bdsharebuttonbox" style="margin:100px auto;text-align:center;width:500px;">
+            <a href="#" class="bds_more" data-cmd="more"></a>
+            <a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a>
+            <a title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"></a>
+            <a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a>
+            <a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a>
+            <a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a>
+            <a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a>
+            <a title="分享到腾讯朋友" href="#" class="bds_tqf" data-cmd="tqf"></a>
+            <a title="分享到Facebook" href="#" class="bds_fbook" data-cmd="fbook"></a>
+            <a title="分享到我的搜狐" href="#" class="bds_isohu" data-cmd="isohu"></a>
+            <a title="分享到一键分享" href="#" class="bds_mshare" data-cmd="mshare"></a>
+        </div>
+    </div>
+    <script>
+        var invite_id = '<{$member.member_id}>';
+        var local_url = location.href;
+
+        if(local_url.indexOf("?") != -1){
+            local_url = local_url+'&invite_id='+invite_id;
+        }else{
+            local_url = local_url+'?invite_id='+invite_id;
+        }
+
+        window._bd_share_config={
+            "common":{
+                "bdSnsKey":{},
+                "bdText":local_url,
+                "bdMini":"2",
+                "bdMiniList":["mshare","qzone","tsina","weixin","tqq","sqq","isohu","ty","fbook"],
+                "bdPic":"",
+                "bdStyle":"0",
+                "bdSize":"32"
+            },
+            "share":{},
+            "image":{
+                "viewList":["weixin","sqq","qzone","tsina","tqq","renren","tqf","fbook","isohu","mshare"],
+                "viewText":"分享到：",
+                "viewSize":"32"
+            },
+            "selectShare":{
+                "bdContainerClass":null,
+                "bdSelectMiniList":["weixin","sqq","qzone","tsina","tqq","renren","tqf","fbook","isohu","mshare"]
+            }
+        };
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+<!-- 百度分享end -->
+<script>
+    function guanbi(){
+          document.getElementById('light').style.display='none';
+          document.getElementById('fade').style.display='none';
+          document.getElementById('baidu_share').style.display='none'
+
+    }
+
+    $(function(){
+        $('.baidu_share').click(function(event) {
+            if(invite_id == ''){
+                alert('对不起,只有登录才能分享,请登录!!!');
+                
+            }else{
+                document.getElementById('fade').style.display='block';
+                document.getElementById('fade').style.height='1000%';
+                document.getElementById('baidu_share').style.display='block'
+            }
+
+            return false;
+        });
+    });
+
+</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <meta http-equiv="x-ua-compatible" content="ie=7" />
+
+    <head>
+        <meta charset="UTF-8">
+        <{header}>
+            <link href="images/max.css" rel="stylesheet" type="text/css" />
+			<link href="images/article.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body class="max-article-page">
+        <{require file="block/header_single.html" }><{require file="block/maxpath.html" }>
+            <div class="maxwIn">
+                <div class="maxwRight">
+
+                        <div class="maxPageWrap">
+                            <{widgets id="Mainb" }>
+                                <{main}>
+                        </div>
+                </div>
+                <div class="maxwLeft">
+                    <{require file="block/art_left.html" }>
+                        <{widgets id="left_main" }>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <{require file="block/footer.html" }>

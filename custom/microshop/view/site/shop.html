@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<meta charset='UTF-8' />
+
+<meta name='generator' content='ecos.b2c' />
+
+<title></title>
+<script type="text/javascript" src="<{$smarty.const.WWW_URL}>wap_themes/default/js/jquery-1.8.0.min.js"></script>
+ <{css src="public.css" app="microshop"}>
+
+    <{if $headers}>
+
+        <{foreach from=$headers item=arr}>
+
+        <{$arr}>
+
+        <{/foreach}>
+
+        <{/if}>
+
+<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'/>
+
+<style type="text/css">
+
+a {
+
+  color:black;
+
+  text-decoration:none;
+
+}
+
+.black_overlay{display: none;position: absolute;top: 0%;left: 0%;width: 100%;height: 100%;background-color:#000;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=50);}
+
+.white_content{display: none;position: absolute;top: 25%;left: 8%;width: 80%;height: 65%;background-color: /*rgb(236, 233, 233)*/rgb(242, 238, 234);z-index:1002;overflow: auto;border:1px solid gray;border: none;}
+.dz_list li div {
+text-align: center;
+}
+.dz .dz_list #list_0{width:98%;}
+.dz .dz_list #list_0 img{}
+/*设置店铺*/
+.header_right{text-decoration:none;height:14px;width:100px;color:red;position:absolute;top:1px;right:10px;}
+/*添加专辑*/
+.add_zj{height: 35px;
+    line-height: 35px;
+    margin-left: 100px;
+    text-align: center;
+    width: 100px;
+    background: #FF7F00;
+  }
+
+  /*专辑列表*/
+  .dz_list .zhuanji-list{
+    width: 100px;height: 100px;line-height: 100px;text-align: center;margin: 0px auto;
+  }
+</style>
+</head>
+<body>
+
+       <header>
+	         <{if $login_member_id > 0}>
+            <a style="text-decoration:none;height:14px;width:100px;color:red;position:absolute;top:1px;left:10px;" href="./wap/member.html"> < 返回会员中心</a>
+	         <{/if}>
+           <{if $info['shop_name']==""}>
+              <div class="heder_center">我的店铺</div>
+           
+           <{else}>
+             <div class="heder_center"><{$info['shop_name']}></div>
+           <{/if}>
+          <{if ($login_member_id == $info['member_id']) and ($info['is_open'] eq 'on')}>
+            <div class="header_right">
+              <a href="<{link app=microshop ctl=site_index act=setShop arg=$info['shop_id']}>" style="color:white;font-size:20px;">店铺设置</a>
+            </div>
+          <{/if}>
+       </header>
+       <{if $info['is_open'] eq 'on'}>
+         <div class="bcg" >
+            <div style="background: url(<{$info['cover']}>) no-repeat  top;width:100%; height:150px;background-size: 100%;"></div>
+    		    <div class="info">
+      			   <div class="br">
+      					<div class="left"> 
+                  <{if $member.avatar!=''}>
+                    <img src="<{$member.avatar|storager:'s'}>">
+                  <{else}>
+                    <img src="<{$smarty.const.WWW_URL}>public/app/b2c/statics/sprites/default-avatar.png">
+                  <{/if}>
+                </div>
+      					<div class="right">
+      						<div>
+      							 <label class="font16 fontw"><{$info['shop_name']}></label>
+      						</div>
+      						<div>
+      							 <{img width="16" app="microshop" src="images/img010.png" /}>&nbsp;
+                     <{if $info['wx_name']==""}>
+                     <lable>你还没绑定微信号</lable>
+                     <{else}>
+      							 <label><{$info['wx_name']}></label>
+                     <{/if}>
+      						</div>
+      						<div>
+      							 <{img width="16" app="microshop" src="images/mobil.png" /}>
+                      <{if $member['mobile']==""}>
+                        <lable>你还没添加号码</lable>
+                      <{else}>
+      							     <label><{$member['mobile']}></label>
+                     <{/if}>
+      						</div>
+      					</div>
+      				</div>
+    		    </div>
+      		   <div class="intrs">
+      						  <{$info['desc']}>
+      		   </div>
+         </div>
+      <{/if}>
+       <{if ($login_member_id == $info['member_id']) and ($info['is_open'] eq 'on')}>
+         <!-- 添加专辑start -->
+         <div class="add_zj" onclick="tianjia()">添加专辑</div>
+         <div id="light" class="white_content">
+
+          <form  method="post">
+
+         
+
+         <p style=" border-top: 3px solid rgb(76, 158, 217);"><h1 style="text-align: center; font-size:14px;color: rgb(211, 212, 212);">请输入专辑名称</h1>
+
+         <input type="text" name="special_name" style="width: 95%; height: 24px; border: medium none;display: block; margin: 0px auto;"></p>
+
+          <div style="width: 80%; margin-left: 14%;">
+
+             <input type="hidden" name="member_id" value="<{$info['member_id']}>">
+
+             <input type="hidden" name="shop_id" value="<{$info['shop_id']}>">
+
+             
+             <input type="button" id="add_sub" value="添加" style="width:45%;height:30px;border-raduis-9px;background-color:rgb(226,226,226);text-align:center;border: none;"/>
+
+             <input type="button"  onclick="guanbi()" value="取消" style="width:45%;height:30px;border-raduis-9px;background-color:rgb(226,226,226);text-align:center;border: none;"/>
+
+          </div>
+
+         </form>
+
+        </div>
+
+         <!-- 添加专辑end -->
+      <{/if}>
+       <div class="dz">
+         <div class="dz_list">
+              <ul>
+
+        				<{if !empty($spec_list.list)}>
+        					<{foreach from=$spec_list.list item=arr key=k}>
+        						<li>
+                      <a href="microshop-get_goods_list-<{$arr['special_id']}>.html" class="del-product">
+          							<div  class="zhuanji-list">
+          									<span class="yihengxian"><{$arr.special_name}></span>
+          							</div>
+                      </a>
+        						</li>				
+        					<{/foreach}>
+        				<{/if}>
+					
+              </ul>
+    				
+          </div>
+
+       </div>
+
+      <div class="div_line"></div>
+   
+      <{include file='site/footer.html' app=microshop}>
+
+</body>
+
+
+</html>
+
+<script>
+
+  function tianjia(){
+
+      document.getElementById('light').style.display='block';
+      document.getElementById('fade').style.display='block'
+
+  }
+
+  
+  $(function(){
+      $('#add_sub').click(function(event) {
+          var special_name = $('[name="special_name"]').val();
+          if(special_name == ''){
+            alert('专辑名称不能为空!')
+          }
+
+          $.post('microshop-add.html',{'special_name':special_name,'shop_id':<{$info['shop_id']}>}, function(data) {
+              if(data.stauts == 1){
+                  guanbi();
+                  location.href = 'microshop-'+<{$info['shop_id']}>+'.html';
+              }else{
+                alert(data.msg);
+              }
+          },'json');
+      });
+
+  });
+  
+</script>
+
+
+

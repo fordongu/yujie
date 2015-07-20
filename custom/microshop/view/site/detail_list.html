@@ -1,0 +1,23 @@
+<{if $shouzhi}>
+              <{foreach from=$shouzhi item=arr}>
+                 <div class="item_f">
+                     <label class=" fontW">
+                          <span class="l">
+                               <div class="font16"><{$arr['message']}></div>
+                               <div class="c8080">余额 <{$arr['member_advance']}></div>
+                          </span> 
+                          <span class="r">
+                               <div class="c8080 "><{$arr['mtime']|cdate}></div>
+                            <{if $arr['import_money']>0&&$arr['explode_money']==0}>
+                               <div class="color_green fontw">+<{$arr['money']}></div>
+                               <{else}>
+                               <div class="color_red fontw">-<{$arr['money']}></div>
+                               <{/if}>
+  						  </span>
+                     </label>
+                 </div>
+           
+             <{/foreach}>
+             <{else}>
+              <div class="item_f" style="text-align: center;color:red;"> 暂无记录</div>
+ <{/if}>

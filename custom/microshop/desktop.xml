@@ -1,0 +1,26 @@
+<desktop>
+    <permissions>
+        <permission id="microshoplist" display='true' workground='b2c.workground.microshop'>微店列表</permission>
+         <permission id="microshoplv" display='true' workground='b2c.workground.microshop'>微店等级设置</permission>
+        <permission id="microshopdel" display='true' workground='b2c.workground.microshop'>删除微店</permission>
+        <permission id="microshopspecial" display='true' workground='b2c.workground.microshop'>专辑列表</permission>
+        <permission id="microshopproducts" display='true' workground='b2c.workground.microshop'>商品列表</permission>
+        <permission id="microshop_promotion_into_list" display='true' workground='b2c.workground.microshop'>微店列表</permission>
+        <permission id="microshopsetting" display='true' workground='b2c.workground.microshop'>微店设置</permission>
+    </permissions>
+
+    <workground name="微店" id="b2c.workground.microshop" order="110">
+        <menugroup name="列表">
+            <menu controller='admin_list' action='index' permission='microshoplist' display='true' order='10'>微店列表</menu>
+            <menu controller='admin_special' action='index' permission='microshopspecial' display='true' order='20'>专辑列表</menu>
+            <menu controller='admin_products' action='index' permission='microshopproducts' display='true' order='30'>商品列表</menu>
+            <menu controller='admin_shop_lv' action='index' permission='microshoplv' display='true' order='20'>微店等级设置</menu>
+            <menu controller='admin_setting' action='index' permission='microshopsetting' display='false' order='20'>微店设置</menu>
+        </menugroup>
+         <menugroup name="分销">
+            <menu controller='admin_promotioninto' action='index' permission='microshop_promotion_into_list' display='true' order='10'>分成列表</menu>
+            <menu controller='admin_promotioninto' action='logs' permission='microshop_promotion_into_list' display='true' order='20'>分销提成记录</menu>
+			<menu controller='admin_promotioninto' action='thaw' permission='microshop_promotion_into_list' display='true' order='20'>解冻记录</menu>
+        </menugroup>
+    </workground>
+</desktop>

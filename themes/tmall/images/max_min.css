@@ -1,0 +1,8 @@
+body{min-width:990px}
+.maxHead,.maxTop,.maxMenubox,.maxAllwrap,.maxprow,.maxwIn,.maxProwChannel{width:990px}
+.maxMenu{width:555px;}
+.maxPath{width:783px;}
+.maxwRight{width:785px;}
+.maxwR-banner,.maxwR-index{width:750px; overflow:hidden;}
+.maxProwChannel .maxTitle .maxTKey{width:890px}
+.max-default-page .maxPath,.max-passport-page .maxPath,.max-member-page .maxPath,.max-gift-page .maxPath,.max-page-page .maxPath{width:985px;}

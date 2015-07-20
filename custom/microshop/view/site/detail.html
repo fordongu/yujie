@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title><{$title}></title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+
+<meta name="format-detection" content="telephone=no" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<meta name="HandheldFriendly" content="true">
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<link rel="stylesheet" type="text/css" href="/public/custom/css/reset.css">
+
+<link rel="stylesheet" type="text/css" href="/public/custom/css/layout.css">
+
+</head>
+
+
+
+<body>
+
+	<header>
+
+		<div class='main_head'>
+             
+			<h2><{$info['shop_name']}>店铺</h2>
+
+		</div>
+
+		<div class='main_img'><img src="<{$info['cover']}>" alt=""></div>
+
+		<div class='main_msg'>
+
+			<div class='main_msgpic'><img src="<{$info['avatar']}>" alt="还没有上传头像呢"></div>
+
+			<div class='main_wechat'>
+
+				<p class='main_name'><{$info['shop_name']}><i></i><i></i></p>
+
+				<p class='main_wc'><i></i><{$info['wx_name']}><span class='main_copy'>长按复制微信<span></p>
+
+				<p class='main_phone'><i></i><{$yh[0]['mobile']}></p>
+
+			</div>
+
+		</div>
+
+	</header>
+
+	<section>
+
+		<p class='main_introduce'><{$info['desc']}></p>
+
+		<div class="main_product">
+
+			<h3>商品展示</h3>
+
+			<div class='main_boxlist'>
+
+				<{foreach from=$spec_list['list'] item=arr}>
+
+					<div class="main_probox">
+
+						<p><{$arr['special_name']}></p>
+
+						<a href='<{link app=microshop ctl=site_index act=special arg=$arr['special_id']}>' alert="专辑地址失效">
+
+							<{if empty($arr['products'])}>
+
+								<img src="" alt="该专辑暂无封面图" />
+
+							<{else}>
+
+								<{foreach from=$arr['products'] item=row key=key}>
+
+									<{if $key == 0 }>
+
+										<img src="<{$row['detail']['images']['thisuasm_url']}>" alt="该专辑暂无封面图" />								
+
+									<{/if}>									
+
+								<{/foreach}>
+
+							<{/if}>
+
+						</a>						
+
+					</div>
+
+				<{/foreach}>	
+
+			    <{if $login_member_id == $info['member_id']}>	
+				<div class="main_lastbox"><p>新分类<i></i></p><a href='#' onclick="tianjia()"><img src="/public/custom/images/mainlast.jpg"></a></div>
+				<{/if}>
+
+			</div>
+
+		</div>
+
+		<div class='misfoot'></div>
+
+	</section>
+
+	<footer class='main_foot'>
+
+		<ul class="foot_nav">
+
+			<li class='foot_nav_sy'><a href='wap'><i></i>店铺</a></li>
+
+			<li class='foot_nav_gwc'><a href='wap/cart.html'><i></i>生意</a></li>
+
+			<li class='foot_nav_th'><a href='wap'><i></i>财富</a></li>
+
+		</ul>
+
+	</footer>
+
+
+	   <div id="light" class="white_content" style="display:none;">
+
+        <form action="microshop-add.html" method="post">
+
+       <p style="margin-left: 5px; font-size: 18px; line-height: 15px; color: rgb(76, 158, 217);">请选择商品来源</p>
+
+       <p style=" border-top: 3px solid rgb(76, 158, 217);"><h1 style="text-align: center; color: rgb(211, 212, 212);">请输入商品名称</h1>
+
+       <input type="text" name="special_name" style="width: 80%; height: 36px;"></p>
+
+        <p>
+
+           <input type="hidden" name="member_id" value="<{$info['member_id']}>">
+
+           <input type="hidden" name="shop_id" value="<{$info['shop_id']}>">
+
+           
+
+
+
+           <input type="submit"  onclick="guanbi()" value="添加" />
+
+           <input type="button"  onclick="guanbi()" value="取消" />
+
+        </p>
+
+       </form>
+
+      </div>
+
+<div id="fade" class="black_overlay"></div>
+
+<style type="text/css">
+
+.black_overlay{display: none;position: absolute;top: 0%;left: 0%;width: 100%;height: 100%;background-color:#FFFFFF;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=80);}
+
+.white_content{display: none;position: absolute;top: 25%;left: 8%;width: 80%;height: 45%;background-color: rgb(236, 233, 233);z-index:1002;overflow: auto;}
+
+</style>
+
+<script type="text/javascript">
+
+	function tianjia(){
+
+		document.getElementById('light').style.display='block';
+
+		document.getElementById('fade').style.display='block'
+
+	}
+
+	function guanbi(){
+
+		document.getElementById('light').style.display='none';
+
+		document.getElementById('fade').style.display='none'
+
+	}
+
+</script>
+
+
+
+</body>
+
+</html>
+

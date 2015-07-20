@@ -1,0 +1,130 @@
+@charset "utf-8";
+#goodsDetailMain{width: 963px;float:right;border: 1px solid #ddd;margin-top: 23px;}
+
+.goods-rightbox{width:57%}
+.goods-info-wrap{ padding:0}
+.goods-info-wrap .goodsname{ font-size:16px; margin:0 0 10px 0; padding:0; border-bottom:1px dotted #ccc; line-height:40px;font-family:microsoft yahei }
+.goods-info-wrap .goodsname a{ padding-left:10px; border-left:1px solid #ddd; line-height:16px; margin-top:20px;}
+.goods-detail-pic-thumbnail{}
+.basic-info{ padding:0}
+.goods-brief em{
+    font-weight: bold;
+}
+/*.basic-info .goods-info-list li .discount em{ color:#c06}*/
+.basic-info .goods-info-list li .goodsprice{font-size: 22px;color: #d3023d;font-weight:bold;font-family: microsoft yahei;}
+.goods-brief { color: #d21e45; font-size:14px; font-weight: bold; font-family: microsoft yahei;}
+.goods-brief span{color: #d21e45;}
+.picscroll { text-align:center}
+.picscroll .scrollarrow{background:url(maxmain.gif) no-repeat left -203px;width:17px;height:64px;margin-top:1px;}
+.picscroll .scrollarrow.to-left{}
+.picscroll .scrollarrow.to-right{background-position:-17px -203px;}
+.picscroll .pics {text-align:center;height:75px;}
+.picscroll .pics li{width:78px; padding:0;}
+.picscroll .pics li a{ width:62px}
+.picscroll .pics a img{ width:60px!important; height:60px!important; padding:0; margin:0;display:block;border-color:#e9e9e9;}
+.picscroll .uparrow{display:none;}
+.goods-detail-pic-thumbnail .current a, .goods-detail-pic-thumbnail .current a:hover,.goods-detail-pic-thumbnail a:hover img{border-color:#e4393c;}
+.btn-buy,.btn-buy:hover{width: 149px; height: 41px;background-image:url(btn-bj.gif);}
+.basic-info .goods-info-list li{color:#333;}
+
+.goods-detail-tab{border-bottom: 1px solid #ddd;border-left: 1px solid #ddd;background:#f5f5f5;height: 33px;clear:both;margin-bottom:10px;z-index:9999;width: 963px;position:relative;left: -1px;top:0;margin-top: 0;padding-left: 0;}
+.goods-detail-tab li {background:none;padding:0;line-height:29px;border-right: 1px solid #ddd;margin:0;font-size:14px;font-family:microsoft yahei;overflow:hidden;font-weight:bold;}
+.goods-detail-tab li a{background:none;padding:0 35px;text-align:center;color:#333;}
+.goods-detail-tab .active{background-color:#fff;border-bottom:1px solid #fff;margin: -1px 0 0 0;line-height:40px;font-weight:bold;padding:0;color: #c9033b;  background: #fff;  height: 32px;  border-top: 2px solid #c9033b;}
+.goods-detail-tab .active a{line-height: 31px;margin:0;padding:0 35px;}
+
+.goodsDetailContent img{ max-width:1000px;_width:expression((this.getSize().x > 1000) ? "1000px" : this.getSize().x + "px" ); }
+.goodsDetailContent #goods-intro{ padding-top:0;}
+.goodsDetailContent #goods-intro img{ margin:0 auto }
+.goodsDetailContent .pdtdetail{margin:0 0 15px 0;}
+.goodsDetailContent .pdtdetail[tab='商品详情']{}
+.goodsDetailContent .pdtdetail[tab='商品详情'] .indent{margin:-1px 0 0 0;clear:both;}
+.goodsDetailContent .pdtdetail .indent{ overflow:hidden}
+
+.maxBotArticle .maxLside,.maxBotArticle .maxCside,.maxBotArticle .maxRside{width:308px;}
+.maxBotArticle li.first p.maxArtInfo {width:165px}
+.maxBotArticle li {width:308px}
+
+.referbox{margin: 0px 0 10px 0;padding: 10px;overflow: hidden;clear:both;border-top: 1px solid #ddd;}
+.referbox h4{ margin:-10px -10px 0px -10px}
+.dis-cons-title,.review-title{background: #f5f5f5; height: 33px; overflow:hidden;  padding:0 0 0 10px; margin:0px 0 1px 0;line-height:30px; font-size:14px; font-weight:bold; line-height: 33px;text-align:left;border-bottom: 1px solid #ddd;}
+.review-box {border:1px solid #ddd; }
+
+.evalubox { border:0; padding:10px 0; border:1px solid #e4e4e4; }
+.review-box .division{ border:0}
+.sale-info{ border:1px solid #F1E1C0; margin-bottom:10px; padding: 5px 18px 0px 15px; background:#FFFFED}
+.sale-info i{}
+.promotion-list li.sale-info{ padding: 5px 18px 0px 15px;}
+.promotion-info ul{padding: 0 10px 0 27px;}
+.mprice .mprice-tab {width:490px; border:0px solid #F1E1C0;border-collapse: separate; background:#f5f5f5}
+.mprice .mprice-tab td,.mprice .mprice-tab th{ border:0; background:none}
+.mprice .mprice-tab .font-black{}
+.goods-point a,.goods-point .font-black {}
+
+.goods-info-wrap .star-off .btn-a span{ color:#333;text-shadow: 1px 1px 0 #fff;}
+.app-area .dis-cons-title{ border-bottom: 1px solid #E4E4e4; margin-bottom:10px;}
+.goods-buy-area{ background:#F7F7F7; padding:10px; margin:0px 0 10px 0; border:1px solid #ddd}
+.goods-buy-area .buyinfo label,.goods-spec .spec-item .spec-label{ width:62px;}
+.buyinfo label{ width:59px;}
+.goods-buy-area .btnBar{ padding-left:68px}
+.goods-buy-area .btnBar .star-off,.goods-buy-area .btnBar .star-on{ margin-top:3px}
+.goods-buy-area .btnBar .button li{ float:left}
+
+.goods-buy-area .btnBar li.maxGoTaobao { height:31px;}
+
+#spec_area{clear:both;border-top:1px dotted #ccc;padding-top:10px;margin-top:10px;}
+
+.btnBar .addcollect{ padding:0}
+.maxBuyInfo{ color:#999; line-height:18px; text-indent:0 }
+.maxBuyInfo li{ clear:both; padding:5px 0}
+.maxBuyInfo li div{ display:inline-block}
+.maxBuyInfo .maxBuyBz{background:url(maxBuyBz.gif) no-repeat right 0px;width:272px; height:27px; overflow:hidden; padding-left:70px}
+
+.goods-adjunct .primary-td,.goods-adjunct .info-area,.goods-adjunct .adjunct-items li.active{ background:#FFF0F4}
+.goods-adjunct .adjunct-area .tab-triggers { margin-bottom:5px}
+.goods-adjunct .adjunct-group { width:600px!important;}
+.goodsDetailContent .items-gallery{ margin-top:10px;margin-bottom:10px;}
+.goodsDetailContent .items-gallery .goodpic img{width:120px;}
+#gallery-grid-list .items-gallery .button .vdetail{}
+
+
+.goods-adjunct,.promotion-info,.goods-detail-infos .FormWrap{ margin:0; border:0}
+
+.app-area{border:1px solid #ddd;}
+.evalubox{ border:0;}
+.pdtdetail[data-sync-type=goodsDiscuss] .goods-discus-title.bulelink,.pdtdetail[data-sync-type=goodsConsult] .goods-discus-title.bulelink{ background:#f5f5f5; margin:0 -10px; border-top:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4; padding-left:30px; height:27px; line-height:27px;}
+.consult .consult-list{ margin:0 -10px;}
+.discuss-pagernum{ border:0; padding-left:20px;float:right; clear:both}
+.discuss-pagernum a{ color:#666; padding:0 5px;}
+.discuss-pagernum a:hover{}
+
+.referbox dl{ background:#fcfcfc; padding:0 10px; margin:10px 10px; border:1px solid #e3e3e3;-webkit-border-radius: 4px;   
+-moz-border-radius: 4px;   
+border-radius: 4px;}
+.referbox dt{ background:none; border-bottom:1px solid #eee}
+.referbox dt .flt span{ }
+.referbox dd{ font-weight:bold}
+.discuss-pagernum a.current{background: #FCE3F0;}
+.discuss-pagernum a{border: 1px solid #ccc; padding:0 3px; line-height:18px}
+.discuss-pagernum a.discussfront,.discuss-pagernum a.discussfirst,.discuss-pagernum a.discussnext,.discuss-pagernum a.discusslast{ border:0}
+
+.font-blue,.font-blue a{ color:#666;}
+.bulelink a{}
+.addcomment{ clear:both}
+.maxScrollMap{ clear:both; height:1px; overflow:hidden}
+.pdtdetail .indent{margin-top:0px;}
+.maxFootbody{padding-top:0px;}
+/*2.0*/
+
+.product-tagsw{position:relative;z-index:9999;top:0;width:970px;background-color:#fff;height:33px;clear:both;padding-top:3px;margin-bottom:10px;}
+.product-tags{height:33px;overflow:visible;border: 1px solid #ddd;background:#f5f5f5;padding-left:0px;margin:20px 0px 0 0px;background:#f7f7f7;margin-bottom:10px;width: 968px;float: right;clear: none;float: right;  z-index: 999;              }
+.product-tags h2{background:none;padding:0;line-height:33px;margin:0;font-size:14px;font-family:microsoft yahei;overflow:hidden;border:none;border-right:1px solid #ddd;font-weight:bold;}
+#product_section{float:right;width: 970px;background: #fff;border-top: 0;}
+.product-tags h2 a{background:none;padding:0 35px;border:none;text-align:center;color:#333;}
+.product-tags .active{background-color:#fff;border-top:2px solid #c9033b;border-bottom:none;margin:-1px 0 0 0;line-height:33px;font-weight:bold;padding:0;}
+.product-tags .active a{line-height:33px;margin:0;padding:0 35px;}
+.product-section .detail-content{border:1px solid #ddd;}
+.product-attributes{border:1px solid #ddd;background-color:#f5f5f5;}
+.mod{border:1px solid #ddd;}
+.mod-title{background-color:#f5f5f5; }
+.product-adjunct .mod-title h2, .product-related .mod-title h2, .product-section .mod-title h2{font-weight:bold;}

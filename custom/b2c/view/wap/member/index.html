@@ -1,0 +1,120 @@
+<link rel="stylesheet" type="text/css" href="/custom/b2c/view/wap/member/public/member.css">
+<div class="full-screen">
+    <header>
+    <div class="a-bar">
+        <div class="a-name">
+            会员中心
+            <span style="float: right;"> <a href="<{link app=b2c ctl='wap_member' full='1' act='setting'}>" class="btn" style="padding-right: 5px; color:#fff;  height:25px; text-align: center; padding-left: 5px; background: #B14C49; margin-right: 10px; font-size: 12px; line-height: 25px;">设置</a></span>
+        </div>
+    </div>
+    </header>
+    <div class="section" style="border:none;">
+        <div class="mem-info c-fix">
+            <div class="mem-avatar">
+                <{if $image_id!=''}>
+                    <img src="<{$image_id|storager}>">
+                <{else}>
+                    <{img src="sprites/default-avatar.png" alt=""}>
+                <{/if}>
+            </div>
+            <div class="mem-base c-fix">
+                <div class="fix-f">
+                    <div class="d-line c-fix">
+                        <div class="mem-name">
+                            <{$member.uname}>
+                        </div>
+                        
+                    </div>
+                    <div class="mem-level">
+                        <span class="icon orange">
+                             <{$member.levelname}>
+                        </span>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- <div class="gb mem-deposit" style="background:none; border: 1px solid #b2b2b2; height: 35px; border-left:none; border-right: none;">
+                <div class="d-line ">
+                    <div class="col">
+                        <a href="<{link app=b2c ctl='wap_member' full='1' act='orders'}>?pay_status_mebers=1" class="defe1">待付款</a>
+                        <a href="<{link app=b2c ctl='wap_member' full='1' act='orders'}>?ship_status_mebers=1" class="defe2">待发货</a>
+                        <a href="<{link app=b2c ctl='wap_member' full='1' act='orders'}>?ship_status_mebers=2" class="defe3">待收货</a>
+                        <a href="<{link app=b2c ctl='wap_member' full='1' act='nodiscuss'}>" class="defe4">待评论</a>
+                        <a href="<{link app=b2c ctl='wap_member' full='1' act='orders'}>?pay_status_mebers=5" class="defe5">退款/售后</a>
+                    </div>
+                 
+                </div>
+            </div> -->
+            <div class="mem-menulist">  
+                <ul>
+                    <li class=""><a href="<{link app=b2c ctl='wap_member' full='1' act='advance'}>">我的余额<span style="float:right;margin-right:25px;"><{$member.advance|cur_odr}></span></a></li>
+                    <li class=""><a href="<{link app=b2c ctl='wap_member' full='1' act='withdrawal'}>">提现</a></li>
+
+                    <li class=""><a href="<{link app=b2c ctl='wap_member' full='1' act='orders' arg='nopayed'}>">全部订单<!--  --></a></li> 
+
+                    <li class=""><a href="<{link app=b2c ctl='wap_member' full='1' act='coupon'}>">我的优惠券</a></li>
+                    <{if $shop!=null}>
+                        <{if $shop.is_open=='on'}>
+                            <li class=""><a href="/index.php/microshop-<{$shop.shop_id}>.html">我的微店</a></li>
+                        <{/if}>
+                    <{/if}>
+                    <li class=""><a href="<{link app=b2c ctl='wap_member' full='1' act='partner'}>">我的合伙人</a></li>
+                    <li class="" ><a href="<{link app=b2c ctl='wap_member' full='1' act='share'}>">分享</a></li>
+                    <!-- <li class=""><a href="/index.php/wap/member-message.html">意见反馈</a></li> -->
+                </ul>
+            </div>
+            <!-- <div class="dededeff">
+                <div class="dedede dff_11">
+                    <a href="<{link app=b2c ctl='wap_member' full='1' act='orders'}>" class="btn">
+                        我的订单
+                    </a>
+                </div>
+                <div class="dedede dff_22">
+                    <a href="<{link app=b2c ctl='wap_member' full='1' act='deposit'}>" class="btn">
+                        我的余额
+                    </a>
+                </div>
+                <div class="dedede dff_33">
+                    <a href="<{link app=b2c ctl='wap_member' full='1' act='favorite'}>" class="btn">
+                        我的收藏
+                    </a>
+                </div>
+                <div class="dedede dff_44">
+                    <a href="<{link app=b2c ctl='wap_member' full='1' act='point_history'}>" class="btn">
+                        我的积分
+                    </a>
+                </div>
+                
+                <div class="dedede dff_55">
+                    <a href="<{link app=b2c ctl='wap_member' full='1' act='coupon'}>" class="btn">
+                        优惠券
+                    </a>
+                </div>
+                <div class="dedede dff_66">
+                    <a href="<{link app=b2c ctl='wap_member' full='1' act='receiver'}>" class="btn">
+                        收货地址
+                    </a>
+                </div>
+                <div class="dedede dff_77">
+                    <a href="#" class="btn">
+                        门店服务
+                    </a>
+                </div>
+               <div class="dedede dff_88">
+                    <a href="<{link app=b2c ctl='wap_member' full='1' act='security'}>" class="btn">
+                        修改密码
+                    </a>
+                </div>
+                    
+            </div> -->
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    var e = $.fn.cookie('S[CART_NUMBER]')?$.fn.cookie('S[CART_NUMBER]'):'';
+    if(e) $("#cartNum").text(e);
+</script>
+

@@ -1,0 +1,21 @@
+
+<div class="tableform" id="goods_shopmax_config">
+  <div class="division">
+		  <label>
+	                    	挂件标题：
+	                    	<input type="text"   name="widget_title"  value="<{$setting.widget_title}>" />
+		 </label>
+
+		 <label>&nbsp;&nbsp;</label>
+		 <label>
+		                    	挂件自定义className：
+		                    	<input type="text"   name="widget_custom_class"  value="<{$setting.widget_custom_class}>" /> <em class="note"><{t app='content'}>设计师专用，非设计师请不要修改本项参数。<{/t}></em>
+		</label>
+	</div><div class="division">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th><{t app='b2c'}>最多显示数量:<{/t}></th>
+    <td><input name="max" value="<{$setting.max|default:3}>" /></td>
+  </tr>
+</table></div>
+</div>

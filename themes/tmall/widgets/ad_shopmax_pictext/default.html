@@ -1,0 +1,50 @@
+<{if $setting.fronttips}> <div class="maxTitle">
+    <h3><{$setting.fronttips}></h3>
+   </div><{/if}>
+<div class="ad-shopmax-group clearfix <{$setting.boxclass}>" id="ad_shopmax_group_<{$widgets_id}>">
+ 
+    <div id="flashad<{$widgets_id}>" class="flashad">
+	<div class="comw">
+	<div class="switchable-content">
+  <{foreach from=$setting.ad item=ad name=adgroup}> <{if $env.foreach.adgroup.iteration%3==1 }><ul class="clearfix"><{/if}><li class="<{if $ad.height3=='_height3'}>flash_item<{/if}> item-<{$env.foreach.adgroup.iteration}><{if $env.foreach.adgroup.first}> first<{/if}><{if $env.foreach.adgroup.last}> last<{/if}><{if $setting.line_limit&&$env.foreach.adgroup.iteration%$setting.line_limit ==1}> line-first<{/if}><{if $setting.line_limit&&$env.foreach.adgroup.iteration%$setting.line_limit ==0}> line-last<{/if}>" data-adid = "<{$ad.id}>"><{if $ad.target_url}><a href="<{$ad.target_url}>"><img src="<{$ad.pic}>" alt="<{$ad.note}>"<{if $ad.width}> width="<{$ad.width}>"<{/if}> <{if $ad.height}>  height="<{$ad.height}>"<{/if}>/><{if $ad.note}><span><{$ad.note}></span><{/if}></a><{else}><img src="<{$ad.pic}>" alt="<{$ad.note}>"<{if $ad.width}> width="<{$ad.width}>"<{/if}> <{if $ad.height}>  height="<{$ad.height}>"<{/if}>/><{/if}>
+   </li><{if $env.foreach.adgroup.iteration%3==0 }></ul><{/if}> <{/foreach}>   </div>  </div><ol class="switchable-triggerBox">
+
+
+   
+   </ol></div></div>
+   
+
+
+   
+
+
+
+<script>
+
+
+ 
+
+function abc(x) {return new Element('li',{text:x+1,styles: {display: 'block'}});}
+var mathlen=Math.ceil($('ad_shopmax_group_<{$widgets_id}>').getElements('ul li').length/3)
+
+for(i=0;i<mathlen;i++){
+abc(i).inject($('ad_shopmax_group_<{$widgets_id}>').getElement('ol'));
+   }
+
+               
+	
+   new Switchable('flashad<{$widgets_id}>',{
+        effect:'scrollx',
+        autoplay:true,
+		haslrbtn:false,
+		interval:5000
+    });
+
+
+
+
+ 
+
+
+
+</script>

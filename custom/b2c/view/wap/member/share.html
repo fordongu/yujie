@@ -1,0 +1,51 @@
+<link rel="stylesheet" type="text/css" href="/custom/b2c/view/wap/member/public/member.css">
+
+<div class="full-screen">
+    <header>
+        <div class="a-bar">
+            <a href="javascript:history.back()" class="a-back" style='display:block;'>
+                <i class="arr left"></i>
+                返回
+            </a>
+            <div class="a-name">
+                分享
+            </div>
+        </div>
+    </header>
+
+    <div class="section c-fix" style="border:none;padding:0px;">
+      <div class='qr_code'><a name='code' href="<{link app=b2c ctl=wap_member act=share_code}>"></a></div>
+       <div class="bdsharebuttonbox" data-tag="share_1">
+          <a name='code' data-cmd="more"></a>
+        </div>
+        <div class='commodity_sharing'><a name='code' href="<{link app=b2c ctl=wap_gallery act=index}>"></a></div>
+        <script>
+        <{assign var='url' value=WWW_URL}>
+        var url="<{$url}>";
+        var i="<{$member_id}>";
+          window._bd_share_config = {
+            common : {
+              bdText : url+'index.php/wap/passport-signup-'+i+'.html', 
+              bdDesc : url+'index.php/wap/passport-signup-'+i+'.html', 
+              bdUrl : url+'index.php/wap/passport-signup-'+i+'.html',   
+              bdPic : url+'index.php/wap/passport-signup-'+i+'.html'
+            },
+            share : [{
+              
+            }]
+          }
+          
+          with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+        <script type="text/javascript">
+           document.getElementsByName('code')[0].style.height=document.getElementsByName('code')[0].offsetWidth+'px';
+           document.getElementsByName('code')[0].style.backgroundSize=document.getElementsByName('code')[0].offsetWidth+'px auto';
+           document.getElementsByName('code')[1].style.height=document.getElementsByName('code')[1].offsetWidth+'px';
+           document.getElementsByName('code')[1].style.backgroundSize=document.getElementsByName('code')[1].offsetWidth+'px auto';
+           document.getElementsByName('code')[2].style.height=document.getElementsByName('code')[2].offsetWidth+'px';
+           document.getElementsByName('code')[2].style.backgroundSize=document.getElementsByName('code')[2].offsetWidth+'px auto';
+        </script>
+    </div>
+    
+</div>
+

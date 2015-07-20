@@ -1,0 +1,51 @@
+<div class="tabs-wrap">
+  <ul>
+    <li class="tab current"><span><{t}>微信开放平台设置<{/t}></span></li>
+  </ul>
+</div>
+  <form method="post" action="index.php?app=weixin&ctl=admin_sso&act=save_open" id="whitelist">
+    <div style="text-align:right;padding:3px 30px"></div>
+    <table class="tableform" style="width:99%;">
+    <tbody>
+      <tr>
+        <th><{t}>app应用名称：<{/t}></th>
+        <td>
+          <{input type="text" name='appname' value=$setting.appname  width='400px'}>
+        </td>
+      </tr>
+	   <tr>
+        <th><{t}>开放平台app应用AppID：<{/t}></th>
+        <td>
+          <{input type="text" name='appid' value=$setting.appid  width='600px'}>
+        </td>
+      </tr>
+	   <tr>
+        <th><{t}>商户号(PartnerID)：<{/t}></th>
+        <td>
+          <{input type="text"  name='partnerid' value=$setting.partnerid  width='600px'}>
+        </td>
+      </tr>
+	   <tr>
+        <th><{t}>开放平台app应用AppSecret：<{/t}></th>
+        <td>
+          <{input type="text"  name='appsecret' value=$setting.appsecret  width='600px'}>
+        </td>
+      </tr>
+	   <tr>
+        <th><{t}>初始密钥(PartnerKey)：<{/t}></th>
+        <td>
+          <{input type="text" name='partnerKey' value=$setting.partnerKey  width='600px'}>
+        </td>
+      </tr>
+	   <tr>
+        <th><{t}>签名串(PaySignKey)：<{/t}></th>
+        <td>
+          <{input type="text" name='paysignkey' value=$setting.paysignkey  width='600px'}>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="table-action">
+    <{button type="submit"  label=$___desktop="保存"|t:'site'}>
+  </div>
+</form>

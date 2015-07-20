@@ -1,0 +1,35 @@
+<div class="tableform widgetconfig" id="goodscat_max_rela_config">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <th>展示设置:</th>
+      <td><label>
+          <input type="checkbox" disabled=true name="show_cat_lv1" value="1"  checked  />
+          展示一级分类 </label>
+        <label> <input type="checkbox" name="show_cat_lv2" value="1" <{if $setting.show_cat_lv2}> checked <{/if}> /> 
+          展示二级分类 </label>
+        <label> <input type="checkbox" name="show_cat_lv3" value="1" <{if $setting.show_cat_lv3}> checked <{/if}> /> 
+          展示三级分类 </label>
+        <label>
+        <input type="checkbox" name="target_blank" value="1" <{if $setting.target_blank}> checked <{/if}> />分类链接在新窗口打开
+        </label></td>
+    </tr>
+    <tr>
+  </table>
+</div>
+<script type="text/javascript">
+	$('goodscat_max_rela_config').getParent('form').addEvent('submit',function(){
+		this.getElements('input[type=checkbox]').each(function(item){
+			if(!item.checked)item.value = "";item.checked = true;
+		});
+	}); 
+	$$('input[name=show_cat_lv2]').addEvent('change',function(){
+		var extendCheckbox = $$('input[name=show_cat_lv3],input[name=redundancy_catlv2]');
+		if(this.checked){
+			extendCheckbox.removeProperty('disabled');			
+		}else{
+			extendCheckbox.set({'disabled':true,'checked':false});			
+		}
+	}).fireEvent('change');
+            
+ 
+</script> 

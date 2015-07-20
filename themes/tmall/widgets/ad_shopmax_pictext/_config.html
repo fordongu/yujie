@@ -1,0 +1,139 @@
+<style>
+#maxKeys .delete {height:20px;width:16px;cursor:pointer;float:left;	_display:inline;margin-left:5px;background-color:#fff}
+#maxKeys .top-link-item {background-color:#E2E8EB;padding:5px 5px 3px;line-height:22px;	margin:2px 0;}
+#maxKeys ul {clear:both}
+#maxKeys li {float:left;_display:inline;margin-left:5px;}
+.span-auto{}
+button.sbtn,button.nbtn{ border:1px solid #ddd; background:#f9f9f9; padding:0 5px}
+</style>
+<div class="tableform" >
+  <div class="division"> <{t app='content'}>栏目class:<{/t}><{input type='text' name='boxclass' value=$setting.boxclass  size=4 style='width:100px;'}> <em class="note"><{t app='content'}>设计师专用，非设计师请不要修改本项参数。<{/t}></em> </div>
+  
+</div>
+<div id="maxcTitle">标题
+      <input type="text" class="x-input" name="fronttips" style="width:300px" value="<{$setting.fronttips}>">
+    </div>
+<div id="ad_ex_group_widget_configure" class="tableform widgetconfig">
+
+
+<textarea style="display:none;">
+		<input type="hidden" name="ad[{_id}][id]" value="{_id}" />
+		     	<div class="span-auto">
+		  	        <label>图片地址：<input type="text" name="ad[{_id}][pic]" value="" class="inputstyle" style="width:500px"/></label>
+		  	       <button class="btn sbtn" type="button">上传或选择图片</button>
+		   	</div><div class="clear"></div>
+		  	  <div class="span-auto">
+		  	        <label>链接地址：<input type="text" name="ad[{_id}][target_url]" value="" class="inputstyle" style="width:500px" /></label>
+		  	</div><div class="clear"></div>
+			<div class="span-auto">
+		  	        <label>广告说明：<input type="text" name="ad[{_id}][note]" value="" class="inputstyle" style="width:500px"/></label>
+		  	</div><div class="clear"></div>
+           
+			<div class="span-auto">
+		  	        <label>图片宽度：<input type="text" name="ad[{_id}][width]" value="" class="inputstyle" style="width:200px"/>px</label>&nbsp;&nbsp;
+					<label>图片高度：<input type="text" name="ad[{_id}][height]" value="" class="inputstyle" style="width:200px"/>px</label>
+		  	</div>
+
+			
+		  	<div class="span-auto">
+		  	        <span class="goprev-btn lnk">
+		  		[^]&nbsp;向上
+		  	       </span>
+		  	        <span class="gonext-btn lnk">
+		  		[v]&nbsp;向下
+		  	       </span>
+			      <span class="del-btn lnk">
+		  		[-]&nbsp;删除
+		  	       </span>
+		  	</div>
+	</textarea>
+<{if count($setting.ad)>0}>
+<h4>已添加的主图</h4>
+<{foreach from=$setting.ad item=ad}>
+<div class="division clearfix">
+  <input class="x-input"  type="hidden" name="ad[<{$ad.id}>][id]" value="<{$ad.id}>"/>
+  <div class="span-auto" >
+    <label>图片地址：
+      <input class="x-input" type="text" name="ad[<{$ad.id}>][pic]" value="<{$ad.pic}>" style="width:500px"/>
+    </label>
+    <button class="btn sbtn" type="button">上传或选择图片</button>
+  </div>
+  <div class="clear"></div>
+  <div class="span-auto" >
+    <label>链接地址：
+      <input class="x-input" type="text" name="ad[<{$ad.id}>][target_url]" value="<{$ad.target_url}>" style="width:500px"/>
+    </label>
+  </div><div class="clear"></div>
+  <div class="span-auto" >
+    <label>广告说明：
+      <input class="x-input" type="text" name="ad[<{$ad.id}>][note]" value="<{$ad.note}>" style="width:500px"/>
+    </label>
+  </div><div class="clear"></div>
+ 
+  <div class="span-auto">
+		  	        <label>图片宽度：<input type="text" name="ad[<{$ad.id}>][width]" value="<{$ad.width}>" class="x-input" style="width:200px"/>px</label>&nbsp;&nbsp;
+					<label>图片高度：<input type="text" name="ad[<{$ad.id}>][height]" value="<{$ad.height}>" class="x-input" style="width:200px"/>px</label>
+		  	</div>
+			
+  <div class="span-auto"> <span class="goprev-btn lnk"> [^]&nbsp;向上 </span> <span class="gonext-btn lnk"> [v]&nbsp;向下 </span> <span class="del-btn lnk"> [-]&nbsp;删除 </span> </div>
+</div>
+<{/foreach}>
+<{/if}>
+<hr /><button class="lnk btn nbtn" type="button">[+]添加一项</button>
+</div>
+<script>
+(function(){
+	var load_photo_collect = function(target){
+		var url='index.php?app=desktop&act=alertpages&goto='+encodeURIComponent("index.php?app=image&ctl=admin_manage&act=image_broswer&type=big");
+		Ex_Loader('modedialog',function(){
+			return new imgDialog(url,{onCallback:function(image_id,image_src){
+					 target.value=image_src;
+			}})	;
+		});
+	};
+	var panel = $('ad_ex_group_widget_configure');
+	panel.addEvent('click',function(e){
+		var clickTarget = $(e.target);
+		if(clickTarget.hasClass('nbtn')){
+			e.stop();
+			new Element('div.division.clearfix',{
+				html:panel.getElement('textarea').value.replace().substitute({_id:$time()})
+			}).injectBefore(panel.getElement('hr'));
+		}
+		if(clickTarget.hasClass('del-btn')){
+			e.stop();
+			if(confirm('确认删除?'))
+			clickTarget.getParent('.division').dispose();
+		}
+		if(clickTarget.hasClass('sbtn')){
+			e.stop();
+			load_photo_collect(clickTarget.getParent('div.span-auto').getElement('input[type=text]'));
+	}
+		if(clickTarget.hasClass('goprev-btn')){
+			e.stop();
+			var item = clickTarget.getParent('.division'),
+			      itemP = item.getPrevious('.division');
+			     if(itemP){
+			      	item.injectBefore(itemP);
+			      }
+		}
+		if(clickTarget.hasClass('gonext-btn')){
+			e.stop();
+			var item = clickTarget.getParent('.division'),
+			      itemN =item.getNext('.division');
+			      if(itemN){
+			      	item.injectAfter(itemN);
+			      }
+		}
+	});
+	<{if count($setting.ad)<1}>
+		new Element('div.division.clearfix',{
+				html:panel.getElement('textarea').value.replace().substitute({_id:$time()})
+			}).injectBefore(panel.getElement('hr'));
+	<{/if}>
+})();
+
+delLink=function(o){
+	$(o).getParent('.items').remove();
+}
+</script>

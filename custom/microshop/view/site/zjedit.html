@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+        <title><{$title}></title>
+        <{css src="detail.css" app="microshop"}>
+        <{css src="public.css" app="microshop"}>
+        <{if $headers}>
+        <{foreach from=$headers item=arr}>
+        <{$arr}>
+        <{/foreach}>
+        <{/if}>
+    </head>
+    <body>
+        <div class="top-nav-box" style="background: none repeat scroll 0% 0% rgb(253, 105, 45);">
+            <div class="microshop-name"><{$info['special_name']}><a style="float:right;font-size:12px;padding-right:10px;"onclick="history.go(-1)">取消</a></div>
+        </div>
+        <{if $info['shop_open'] == 1}>
+      
+            <div class="member-shop-intro"><{$info['info']}></div>
+            
+        </div>
+        <form action="<{link app=microshop ctl=site_index act=edit }>" method="post">
+          <input type="hidden" name="member_id" value="<{$info['member_id']}>">  
+          <input type="hidden" name="special_id" value="<{$info['special_id']}>"> 
+        <input type="text" value="<{$info['special_name']}>" name="special_name" style="width:90%;height:20px;margin:10px 0;">
+        <input type="submit" value="提交修改" style="position:absolute;margin-top:15px;border:none;right:10%;height:20px;background:white;">
+        </form>
+        <div class="special-goods-box">
+            <{foreach from=$info['products'] item=arr}>
+            <a class="special-goods-item" href="<{$arr['buy_url']}>" style="width:<{$img_size['big_w']}>px;height:<{$img_size['big_h'] + 60}>px">
+                <div class="goods-large-img" style="width:<{$img_size['big_w']}>px;height:<{$img_size['big_h']}>px"><img src="<{$arr['detail']['images']['thisuasm_url']}>" width="<{$img_size['big_w']}>px" height="<{$img_size['big_h']}>px" title="<{$arr['detail']['name']}>"/></div>
+                <div class="goods-title"><{$arr['detail']['name']}></div>
+                <div class="price-fav-box">
+                    <div class="price-box"><{$arr['detail']['price']|cur_odr}></div>
+                    <div class="fav-box"><{$arr['detail']['fav_num']}></div>
+                </div>
+            </a>
+            <{/foreach}>
+            <a class="special-goods-item" href="<{link app=microshop ctl=site_index act=get_all_list arg=$info['special_id']}>" style="width:148px">
+                     <label class="goods-title">新商品</label>
+                     <div class="goods-large-img" style="width:148px"><{img width="100%" app="microshop" src="images/img012.jpg" /}></div>
+                 </a>
+        </div>
+
+        
+        
+        <{script src="microshop.js" app="microshop"}>
+        <{/if}>
+    </body>
+</html>

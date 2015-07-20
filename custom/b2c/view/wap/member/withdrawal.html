@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="/custom/b2c/view/wap/member/public/member.css">
+<div class="full-screen">
+    <header>
+        <div class="a-bar">
+            <a href="javascript:history.back()" class="a-back" style='display:block;'>
+                <i class="arr left"></i>
+                返回
+            </a>
+            <div class="a-name">
+                我要提现
+            </div>
+        </div>
+    </header>
+    <div class="section" style="border:none;">
+        <form action="<{link app=b2c ctl=wap_member act=submit_withdrawal}>" method="post" id="post_withdrawal" class="post_withdrawal action-code-form">
+       
+        <table>
+          <col style="width:35%">
+          <col style="width:65%">
+          <tbody>
+            <tr>
+              <td><{t}>输入提现金额<{/t}>：</td>
+              <td><input style='border:1px solid #cccccc;width:100%' type="text" name="money" id="" class="x-input" size="10" vtype="required&&positive" data-caution="请输入金额&&金额只能是大于0的数字"></td>
+            </tr>
+            <tr>
+              <td><{t}>账户总金额为<{/t}>：</td>
+              <td><b style="color:red;"><{$withdrawals.total|cur}></b></td>
+            </tr>
+            <tr>
+              <td><{t}>选择提现账号<{/t}>：</td>
+              <td>
+                <{if !empty($withdrawals.bank_list)}>
+                  <select name="bank">
+                      <{foreach from=$withdrawals.bank_list item="bank"}>
+                          <option value="<{$bank.bank_num}>"><{$bank.bank_name}>:  <{$bank.bank_num}></option>
+                      <{/foreach}>
+                  </select>
+                <{else}>
+                  <a href="<{link app=b2c ctl=wap_member act=showBank}>" style='background-color: #9ba2aa;
+    display: inline-block;height:25px;line-height:25px;'>去挷定银行卡</a>
+                <{/if}>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div style='margin-top:20px;'>
+          <{button type="submit" class="btn-caution" label="提交"}>
+        </div>
+      </form>
+    </div>
+    
+</div>
+
+<script>
+    var e = $.fn.cookie('S[CART_NUMBER]')?$.fn.cookie('S[CART_NUMBER]'):'';
+    if(e) $("#cartNum").text(e);
+</script>
+
+
+

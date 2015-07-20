@@ -1,0 +1,33 @@
+<div class="tableform ">
+<table>
+<tr>
+
+      <td colspan="2">
+	   <label>
+	                    	挂件标题：
+	                    	<input type="text"   name="title"  value="<{$setting.title}>" />
+		 </label>
+		 <label>&nbsp;&nbsp;</label>
+		 <label>
+		                    	挂件自定义className：
+		                    	<input type="text"   name="widget_custom_class"  value="<{$setting.widget_custom_class}>" /> <em class="note"><{t app='content'}>设计师专用，非设计师请不要修改本项参数。<{/t}></em>
+		</label>
+	</td>
+
+    </tr>
+
+    <tr>
+      <th>显示品牌数：</th>
+      <td><input name="num" value="<{$setting.num|default:10}>" size="8" required="true" type="digits" class="inputstyle"></td>
+    </tr>
+    <tr>
+      <th>LOGO图片大小：</th>
+      <td>长：<input name="brandLogoWidth" value="<{$setting.brandLogoWidth|default:88}>" size="3" required="true" type="digits" class="inputstyle">px&nbsp;&nbsp;&nbsp;高：<input name="brandLogoHeight" value="<{$setting.brandLogoHeight|default:31}>" size="3" required="true" type="digits" class="inputstyle">px</td>
+    </tr>
+    <tr>
+      <th>是否显示更多：</th>
+        <td><input type="radio" name="showMore" value="on" <{if $setting.showMore != 'off'}>checked="checked"<{/if}> >是 <input type="radio" name="showMore" class="inputstyle" value="off" />否</td>
+    </tr>
+</table>
+</div>
+

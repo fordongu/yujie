@@ -1,0 +1,73 @@
+<!--<div style="background:url(http://hatao.com/images/APP.jpg) center top; height:127px;">
+<a href="http://hatao.com/app/new/0yuangou/" style="height:134px; width:1000px; display:block; margin:0 auto;"></a>
+</div>-->
+<div class="maxtopadw"><div class="maxtopad">
+		<{widgets id="maxheadbanner" }><span class="maxtopad-close" onclick="$(this).getParent().hide()">x</span>
+		</div></div>
+
+
+<div class="maxHeadw clearfix">
+	<div class="maxTopw">
+		<div class="maxheadright">
+			<div class="maxHead clearfix">
+				<div class="maxHeadr" style="height:26px">
+					<div class="maxguanzhu"><{widgets id="maxguanzhu"}></div>
+					<div class="maxtel"><{widgets id="maxtel"}></div>
+					<div class="maxService clearfix">
+							<{widgets id="maxService2" }>
+					</div>
+					<div class="maxService clearfix">
+							<{widgets id="maxService1" }>
+					</div>
+					<div class="maxSubMenu">
+							<{widgets id="maxSubMenu" }>
+					</div>
+					<div class="maxLogin">
+							<{widgets id="maxLogin" }>
+					</div>
+				</div>
+			</div>
+			<div class="maxTop">
+				<div class="maxSearchbox">
+					<{widgets id="maxSearchbox" }>
+				</div>
+				<div class="maxTop-right">
+					<div class="maxCart">
+						<{widgets id="maxCart" }>
+					</div>
+					<div class="maxService clearfix">
+						<{widgets id="maxService" }>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="maxheadleft">
+			<div class="maxLogo">
+					<{widgets id="maxLogo" }>
+			</div>
+			<div class="maxLogoad"><{widgets id="topad"}></div>
+		</div>
+	</div>
+</div>
+<div class="maxmenuww">
+	<div class="maxMenuw">
+       <div class="maxMenubox">
+			<div id="maxDropbox">
+				<div class="cat_shadow"></div>
+				<div class="maxTitle">
+					<{widgets id="maxDropMenuTitle" }>
+				</div>
+				<div class="maxContent clearfix"  <{if $env.get.ctl == "admin_theme_widget"}>style="height:40px;overflow:hidden"<{/if}>>
+					<{require file="block/maxcatl.html" }>
+				</div>
+			</div>
+			<div class="maxMenu">
+				<{widgets id="maxMenu" }>
+			</div>
+			<div class="maxClassMenu">
+				<{widgets id="maxClassMenu" }>
+			</div>
+	  </div>
+	</div>
+	<div class="shadow"></div>
+</div>

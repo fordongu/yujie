@@ -1,0 +1,45 @@
+<!-- 会员中心主内容区 -->
+<div class="page-article">
+  <!-- 我的银行卡号 -->
+  <div id="member_deposit" class="member-coupon">
+    <div class="member-title">
+      <h2><{t}>我的银行卡号<{/t}></h2>
+      <div class="member-more" style="margin-right: 22px;"><h3><a style="color: #CF4D4D;" href="<{link app=b2c ctl=site_member act=showBank}>">添加账户</a></h3></div>
+    </div>
+
+    <div class="member-mod">
+     
+          <table class="member-grid">
+             
+              <thead>
+                <tr>
+                  <th><{t}>卡号<{/t}></th>
+                  <th><{t}>持卡人<{/t}></th>
+                  <th><{t}>银行<{/t}></th>
+                  <th><{t}>编辑<{/t}></th>
+                </tr>
+              </thead>
+              <tbody class="first">
+                <{if $bank_list}>
+                    <{foreach from=$bank_list item=bank }>
+                        <tr >
+                          <td><{$bank.bank_num}></td>
+                          <td><{$bank.real_name}></td>
+                          <td><{$bank.bank_name}></td>
+                          <td style="width:100px">
+                                <a style="color: blue;" href="<{link app=b2c ctl=site_member act=showBank arg0=$bank.member_bank_id}>">编辑</a> / 
+                                <a style="color: blue;" href="<{link app=b2c ctl=site_member act=delBank arg0=$bank.member_bank_id}>">删除</a>
+                          </td>
+                        </tr>
+                    <{/foreach}>
+                <{else}>
+                    <tr>
+                        <th colspan="3"><{t}>暂时没有绑定的账户<{/t}></th>
+                    </tr>
+                <{/if}>
+              </tbody>
+            </table>
+        
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+
+
+<form method="POST" id='newmember-edit-form' action="index.php?app=b2c&ctl=admin_ticheng&act=save" class="tableform">
+    <div class="division">
+        <table width="100%" >
+            <input type="hidden" name="tc_id" value="<{$ticheng.tc_id}>" />
+            <tr><th><em class="red">*</em><{t}>系列昵称：<{/t}></th><td><{input type="text" name="ticheng[tc_name]"  size="20" vtype="required" value=$ticheng.tc_name }><span></span></td></tr>
+            <tr><th><em class="red">*</em><{t}>三星代理提成比例：<{/t}></th><td><{input type="text" name="daili[thr]" size="20" vtype="required" value=$daili.thr }></td><td>0 - 1 之间</td></tr>
+            <tr><th><em class="red">*</em><{t}>二星代理提成比例：<{/t}></th><td><{input type="text" name="daili[two]" size="20" vtype="required" value=$daili.two }></td><td>0 - 1 之间</td></tr>
+            <tr><th><em class="red">*</em><{t}>一星代理提成比例：<{/t}></th><td><{input type="text" name="daili[one]" size="20" vtype="required" value=$daili.one }></td><td>0 - 1 之间</td></tr>
+            <tr><th><em class="red">*</em><{t}>三星分销提成比例：<{/t}></th><td><{input type="text" name="fenxiao[thr]" size="20" vtype="required" value=$fenxiao.thr }></td><td>0 - 1 之间</td></tr>
+            <tr><th><em class="red">*</em><{t}>二星分销提成比例：<{/t}></th><td><{input type="text" name="fenxiao[two]" size="20" vtype="required" value=$fenxiao.two }></td><td>0 - 1 之间</td></tr>
+            <tr><th><em class="red">*</em><{t}>一星分销提成比例：<{/t}></th><td><{input type="text" name="fenxiao[one]" size="20" vtype="required" value=$fenxiao.one }></td><td>0 - 1 之间</td></tr>
+           
+            <tr><th><{t}>备注：<{/t}></th><td><{input type="text" name="ticheng[remark]" size="60" value=$ticheng.remark }></td></tr>
+        </table>
+    </div>
+</form>
+<{area inject='.mainFoot'}>
+
+
+<div class="table-action"><{button type="submit"  label=$___b2c="保存"|t:'b2c' id='newmember-edit-form-submit'}></div>
+
+
+<{/area}>
+
+
+<script>
+    (function(){
+        var _form = $('newmember-edit-form');
+        var btn =$('newmember-edit-form-submit');
+        var finder = finderGroup['<{$env.get.finder_id}>'];
+
+        _form.store('target',{
+            onComplete:function(){            
+
+            },
+            onSuccess:function(response){
+                var hash_res_obj = JSON.decode(response);
+                if (hash_res_obj.success != undefined && hash_res_obj.success != "")
+                {
+                    try{
+                        var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+                    }catch(e){}
+
+                    if(_dialogIns)
+                    {
+                        _dialogIns.close();
+                        finder.refresh.delay(400,finder);
+                    }
+                }
+                else
+                {
+                    //alert(hash_res_obj.error);
+                }            
+            }
+        });
+
+        btn.addEvent('click',function(){
+            _form.fireEvent('submit',{stop:$empty});
+
+
+
+        });
+
+    })();
+
+    function nameCheck(input){
+        new Request({
+            url:'<{link app=b2c ctl=admin_member act=namecheck}>',
+            method:'post',
+            data:input.name+'='+encodeURIComponent(input.value=input.value.trim()),
+            onSuccess: function(rs) {
+                rs = JSON.decode(rs);
+                if(rs.error) {
+                    input.getNext().innerHTML = '<span class="error caution notice-inline">' +rs.error + '</span>';
+                }
+                else if(rs.success) {
+                    input.getNext().innerHTML = '<span class="success notice-inline">' +rs.success + '</span>';
+                }
+            }
+        }).send();
+    }
+
+    //function emailCheck(input){
+    //    new Request({
+    //        url:'<{link app=b2c ctl=member_passport act=emailcheck}>',
+    //        method:'post',
+    //        data:input.name+'='+encodeURIComponent(input.value=input.value.trim()),
+    //        onSuccess: function(rs) {
+    //            rs = JSON.decode(rs);
+    //            if(rs.error) {
+    //                input.getNext().innerHTML = '<span class="error caution notice-inline">' +rs.error + '</span>';
+    //            }
+    //            // else if(rs.success) {
+    //            //     input.getNext().innerHTML = '<span class="success notice-inline">' +rs.success + '</span>';
+    //            // }
+    //        }
+    //    }).send();
+    //}
+</script>
+
+

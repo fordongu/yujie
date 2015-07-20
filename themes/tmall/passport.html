@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<head>
+<meta charset="UTF-8">
+<{header}>
+<link href="images/max.css" rel="stylesheet" type="text/css" />
+<link href="images/member.css" rel="stylesheet" type="text/css" />
+</head><body class="max-passport-page">
+<{require file="block/header_single.html" }><{require file="block/maxpath.html" }>
+<div class="maxwIn">
+
+<{widgets id="main_axx"}> 
+<{main}>
+    <{widgets id="main_bxx"}>
+</div>
+<script>
+            (function(){
+                var loginObj =$$('.register-wrap')[0];
+				var loginObjw =$$('.RegisterWrap')[0];
+                var regObj =$$('.PassportWrap')[0];
+				var titlel = new Element('div',{
+                        'class':'login-title',
+                        'html':'<h3>用户登录</h3><span>还没有帐号？<a href="<{link app="b2c" ctl="site_passport" act="signup"}>" class="reg-link">20秒轻松注册</a></span>'
+                    });
+				var titler = new Element('div',{
+                        'class':'login-title',
+                        'html':'<h3>用户注册</h3><span>已经是会员？<a href="<{link app="b2c" ctl="site_passport" act="login"}>" class="reg-link">立即登录</a></span>'
+                    });
+					if (loginObj)titlel.inject(loginObj.getElement('.loginbox'),'top');
+                   if (regObj) titler.inject(regObj.getElement('.loginbox'),'top');
+				   if (loginObj)loginObj.getElement('input[name="uname"]').getNext('a').hide();
+				   if (loginObjw)titlel.inject(loginObjw.getElement('.loginbox'),'top');
+				   if (loginObjw)loginObjw.getElement('input[name="uname"]').getNext('a').hide();
+            })();
+
+        </script>
+<{require file="block/footer.html"}>

@@ -1,0 +1,43 @@
+<!-- 会员中心主内容区 -->
+<div class="page-article">
+<!-- 代金券 -->
+<div id="member_coupon" class="member-coupon">
+<div class="member-title">
+		<h2><{t}>我的代金券<{/t}></h2>
+		</div>
+
+		<div class="member-mod">
+      <table class="member-grid">
+        <thead>
+        <th><{t}>代金券号码<{/t}></th>
+        <th><{t}>名称<{/t}></th>
+	<th><{t}>有效期<{/t}></th>
+	<th><{t}>状态<{/t}></th>
+	</thead>
+	<tbody<{if !($browser.name=="IE" && ($brower.ver == 6 || $browser.ver == 7))}> class="first"<{/if}>>
+	<{if $vouchers}>
+	<!-- 遍历代金券start -->
+	<{foreach from=$vouchers item=item}>
+	<tr>
+	<td><{$item.vou_code}></td>
+	<td><{$item.vou_name}></td>
+	<td><{$item.create_time|cdate:FDATE_STIME}> ~ <{$item.vou_to_time|cdate:FDATE_STIME}></td>
+	<td>
+		<{if !($item.vou_status)}>
+			<span class="text" style="color:#ccc;font-size:12px;"><{$item.vou_status}></span>
+		<{else}>
+			<span class="text" style="color:green;font-size:12px;"><{$item.vou_status}></span>
+		<{/if}>
+	</td>
+	</tr>
+	<{/foreach}>
+	<!-- 遍历代金券end -->
+	<{else}>
+	<tr class="first"><td colspan="4" class="no-information"><{t}>暂无代金券<{/t}></td></tr>
+	<{/if}>
+	</tbody>
+	</table>
+	</div>
+	<{pagers data=$pager}>
+	</div>
+</div>

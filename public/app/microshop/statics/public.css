@@ -1,0 +1,219 @@
+html,body,div,header,footer,li,span,ul,a,img{border:0;margin:0;padding:0;}
+a{text-decoration: none;}
+body{font-size:14px;background-color:#f2f2f4;}
+ul{list-style-type: none;}
+/*header样式*/
+header{background-color:#fb7102;height:50px;line-height:50px;color:#fff;position: relative;}
+.heder_center{font-size:1.5em;margin:auto;text-align:center;width:100%;}
+.header_left,.header_right,.header_right2,.header_left2,.header_right3{position: absolute;height:50px;}
+.header_left{left:10px;width:23px;background:url(http://115.28.41.84/public/app/microshop/statics/images/headerLeft.png) no-repeat left center;background-size:.8em;}
+.header_left2{left:10px;width:33px;color:#fff;}
+.header_right{right:10px;top:0px;width:33px;background:url(http://115.28.41.84/public/app/microshop/statics/images/headerRight.png) no-repeat right center;background-size:1.6em;}
+.header_right2{right:10px;top:0px;width:33px;color:#fff;}
+.header_right3{right:10px;top:0px;width:33px;background:url(http://115.28.41.84/public/app/microshop/statics/images/img085.png) no-repeat right center;background-size:1.6em;}
+/* 中间内容样式    */
+.content{background-color:#fff;margin-top:20px;height:auto; padding:10px;overflow:hidden;}
+.content2{margin-top:10px;height:auto; padding:10px;}
+.content3{background-color:#fff;height:auto; padding:10px;overflow:hidden;}
+.content3 ul{margin:0;padding:0;}
+.content3 ul li{border-bottom:1px solid #e5e5e5;padding:0px 0px 10px 0px;overflow:hidden;margin-top:10px;}
+.content3 ul span.left{float:left;width:25%;}
+.content3 ul span.center{float:left;width:55%;margin-left:3%;}
+.content3 ul span.center label.p{width:100%;overflow:hidden;display:inline-block;margin-bottom:2px;}
+.content3 ul span.right{float:left;width:16%;text-align:right;}
+.content3 ul span.right a{margin-top:20px;display:inline-block;}
+.c73{color:#737373;}
+.cb6{color:#b6b6b6;}
+.ce6{color:#e60012;}
+.font16{font-size:16px;}
+.font18{font-size:18px;}
+.fontw{font-weight:bold;}
+.text-d{text-decoration:line-through;}
+
+.li_item{width:100%;height:40px; line-height:40px; padding:10px 0px; position: relative;display:inline-block;border-bottom:1px solid #e5e5e5;background:url(http://115.28.41.84/public/app/microshop/statics/images/liItem.png)no-repeat right center;background-size:.8em;}
+.li_item .left,.li_item .right{position: absolute;}
+.li_item .left{left:0px;font-size:1.3em; font-weight:bold;}
+.li_item .right{right:30px; color:#676767;width:140px;height:40px;overflow:hidden;text-align:right;}
+.li_item .right .y{width:40px;height:40px;-moz-border-radius: 20px; webkit-border-radius: 20px;border-radius:20px;}
+
+.phone_img{background-color:#fff;padding:20px;}
+.i_btn{width:100%;margin-bottom:20px; display:inline-block;height:45px;line-height:45px; color:red;text-align:center;border:0;background-color:#fff;font-size:1.3em;-moz-border-radius: 4px; webkit-border-radius: 4px;border-radius:4px;}
+.l_btn{width:100%;margin-bottom:10px; display:inline-block;height:45px;line-height:45px; color:#454545;text-align:center;border:1px solid #bec1c5;background-color:#fff;font-size:1.3em;-moz-border-radius: 4px; webkit-border-radius: 4px;border-radius:4px;}
+.y_btn{width:100%;margin-bottom:10px; display:inline-block;height:45px;line-height:45px; color:#fff;text-align:center;border:0;background-color:#868c95;font-size:1.3em;-moz-border-radius: 4px; webkit-border-radius: 4px;border-radius:4px;}
+
+.background{position:absolute;top:0px; width:100%;height:100%;background-color:#000; filter:alpha(opacity=40);-moz-opacity:0.4;opacity:0.4;z-index:9999;}
+.back_menu{position: fixed;left:0px;bottom:0px;width:100%;z-index:99999;display:inline-block;background-color:#ededed}
+.back_menu div{padding:10px;}
+
+.i_input{border:0;width:100%;resize:none;height: 25px;}
+.i_de{position: relative;}
+.de{position: absolute;top:4px;right:0px;background:url(http://115.28.41.84/public/app/microshop/statics/images/de.png) no-repeat;background-size:1.5em;width:20px;height:25px;}
+.su{float:right;color:#bbbbbb;font-size:1.2em;font-weight:bold;}
+
+.d_tabs{padding:0px 10px;line-height:40px;height:40px;background-color:#eeeeee;}
+.d_tabs ul{overflow:hidden;width:100%;margin:0;padding:0;}
+.d_tabs li{float:left;width:25%;text-align:center;}
+.d_tabs li a.sel{border-bottom:2px solid #fb7102;height:38px;display:inline-block;padding:0px 4px;}
+
+.info{padding:0px 10px;background-color:#fff;position: relative;margin:0;}
+.info .br{border-bottom:1px solid #e2e2e2; overflow:hidden;}
+.info div .left{position: absolute; top:-10px;overflow:hidden;}
+.info div .left img{width:80px; height:80px;border:2px solid #fff; -moz-border-radius: 40px; webkit-border-radius: 40px;border-radius:40px;}
+.info div .right{float:left;margin:5px 0px 0px 100px ;height:80px;}
+.info div .right div{padding-bottom:5px;}
+.info div .right img{padding:0;margin:0;vertical-align: middle;}
+.bcg{background-color:#fff;}
+.intrs{padding:10px;line-height:20px;text-indent:2em;}
+
+.dz{padding:20px 10px 0px 10px;}
+.dz_list{overflow:hidden;padding:0;background-color:#fff;margin-top:10px;}
+.dz_list ul{list-style-type:none;overflow:hidden;margin:0;padding:0;}
+.dz_list li{float:left;width:31%;margin:0px 0px 5px 4px;border:1px solid #d1d1d1;-moz-border-radius: 4px; webkit-border-radius: 4px;border-radius:4px;background-color:#fafafa;}
+
+.dz_list .list-r{float: right;}
+.dz_list li label{height:40px;line-height:40px; text-align:center;display:block;}
+.dz_list li div{padding:0px 5px 10px;}
+.dz_list li div img{display:block;}
+.fl{float:left;margin-right:3%}
+.div_line{width:100%;height:90px;}
+
+
+.footer_menu{position: fixed;bottom:0px;width:100%;height:40px;line-height:40px;background-color:#fff;filter:alpha(opacity=90);-moz-opacity:0.9;opacity:0.9;z-index:9999;}
+.footer_menu label{float:Left;margin-left:10px;}
+.footer_menu button{float:right;background-color:#e60012; padding:6px 12px; color:#fff;border:0;margin:5px 10px 0px 0px;-moz-border-radius: 4px; webkit-border-radius: 4px;border-radius:4px;}
+
+
+/* footer样式    */
+footer{width:100%;height:55px;position:fixed;bottom:0px;background-color:#22282a;}
+footer ul{margin:0;overflow:hidden;}
+footer ul li{float:left;width:33%;text-align:center;color:#fff;}
+footer ul li a{display:inline-block;height:55px;line-height:90px;}
+footer .dp{background:url(http://115.28.41.84/public/app/microshop/statics/images/img013.png) no-repeat center 4px; background-size:2.2em;color:#fff;text-decoration: none;}
+footer .dp2{background:url(http://115.28.41.84/public/app/microshop/statics/images/img071.png) no-repeat center 4px; background-size:2.2em;color:#fff;text-decoration: none;}
+footer .sy{background:url(http://115.28.41.84/public/app/microshop/statics/images/img015.png) no-repeat center 4px; background-size:2.2em;color:#fff;text-decoration: none;}
+footer .sy2{background:url(http://115.28.41.84/public/app/microshop/statics/images/img200.png) no-repeat center 4px; background-size:2.2em;color:#fff;text-decoration: none;}
+footer .td{background:url(http://115.28.41.84/public/app/microshop/statics/images/img017.png) no-repeat center 4px; background-size:2.2em;color:#fff;text-decoration: none;}
+footer .cf{background:url(http://115.28.41.84/public/app/microshop/statics/images/img014.png) no-repeat center 4px; background-size:2.2em;color:#fff;text-decoration: none;}
+footer .cf2{background:url(http://115.28.41.84/public/app/microshop/statics/images/img070.png) no-repeat center 4px; background-size:2.2em;color:#fff;text-decoration: none;}
+
+
+.list_item{padding:0px 10px;margin-bottom:10px; overflow:hidden;background-color:#fff;}
+.list_item3{padding:10px;margin-bottom:10px; overflow:hidden;background-color:#fff;}
+.item_d{padding:10px 0px;overflow:hidden;}
+.item_d img{float:left;}
+.item_s{float:left; margin-left:5%; width:68%;overflow:hidden;}
+.item_s label{display:block;margin-top:5px;color:#000;}
+.item_s span{color:#000;}
+.h24{height:20px;line-height:20px;}
+
+.cd5{color:#d5d5d5;}
+.font12{font-size:12px;}
+.border1{border-bottom:1px solid #cdcdcd;}
+.border3{border:1px solid #cdcdcd;}
+.marg10{margin-top:10px;}
+.marg20{margin-top:20px;}
+.bgk23{background-color:#2e3132;}
+.content4{margin:30px 20px;background-color:#fff;-moz-border-radius: 4px; webkit-border-radius: 4px;border-radius:4px;}
+.titles{margin:10px;overlow:hidden;padding:10px 0px}
+.titles img{vertical-align: middle;}
+.titles label{display:inline-block;height:100px;;line-height:100px;font-size:18px;}
+.titles div{margin-top:10px; color:#acadad;}
+.marg100{margin-top:10px;}
+.titles .cen{text-align:center; color:#333}
+.bgff{background-color:#fff; overflow:hidden;}
+.bgff ul{margin:10px 0px;overflow:hidden;padding:10px 0px;}
+.bgff ul li{float:left;width:25%;text-align:center;color:#333;}
+.bgff ul li a{display:inline-block;height:70px;line-height:120px;padding:0px 10px;font-size:12px;}
+.bgff button{width:100%;height:50px;line-height:50px;border:0;}
+.bgff p label{height:30px;line-height:30px;display:block;text-align:center;}
+.bgff p{border-bottom:1px solid #cdcdcd;padding-bottom:10px;}
+
+
+.back_menu2{position: fixed;left:10%;top:30%;width:80%;z-index:99999;display:inline-block;background-color:#fff}
+.back_menu2 div{padding:10px;text-indent:2em;}
+.title2{display:block;height:30px; line-height:30px;background-color:#fe8900}
+.title2 a{float:right;margin-right:10px;color:#fff;cursor:pointer;}
+
+.fx_info{padding:10px;overflow:hidden;}
+.fx_info label{display:block;padding:3px 0px;}
+.lh20{line-height:20px;}
+.c545{color:#545758;}
+.c444{color:#44423f;}
+
+.bg01{background:url(http://115.28.41.84/public/app/microshop/statics/images/img041.png) no-repeat center 5px; background-size:3em;}
+.bg02{background:url(http://115.28.41.84/public/app/microshop/statics/images/img042.png) no-repeat center 5px; background-size:3em;}
+.bg03{background:url(http://115.28.41.84/public/app/microshop/statics/images/img043.png) no-repeat center 5px; background-size:3em;}
+.bg04{background:url(http://115.28.41.84/public/app/microshop/statics/images/img044.png) no-repeat center 5px; background-size:3em;}
+.bg05{background:url(http://115.28.41.84/public/app/microshop/statics/images/img045.png) no-repeat center 5px; background-size:3em;}
+.bg06{background:url(http://115.28.41.84/public/app/microshop/statics/images/img046.png) no-repeat center 5px; background-size:3em;}
+.bg07{background:url(http://115.28.41.84/public/app/microshop/statics/images/img047.png) no-repeat center 5px; background-size:3em;}
+.bg08{background:url(http://115.28.41.84/public/app/microshop/statics/images/img048.png) no-repeat center 5px; background-size:3em;}
+.bg09{background:url(http://115.28.41.84/public/app/microshop/statics/images/img049.png) no-repeat center 5px; background-size:3em;}
+.bg10{background:url(http://115.28.41.84/public/app/microshop/statics/images/img050.png) no-repeat center 5px; background-size:3em;}
+.bg11{background:url(http://115.28.41.84/public/app/microshop/statics/images/img051.png) no-repeat center 5px; background-size:3em;}
+
+.order_div{padding:0px 0px 20px;}
+.order_div input{border:0;border-bottom:1px solid #cdcdcd; width:55% }
+.order_div img{vertical-align: middle;}
+.order_img1{background:url(http://115.28.41.84/public/app/microshop/statics/images/img055.png) no-repeat right center;background-size:1em;}
+.order_img2{background:url(http://115.28.41.84/public/app/microshop/statics/images/img056.png) no-repeat right center;background-size:1em;}
+.order_img3{background:url(http://115.28.41.84/public/app/microshop/statics/images/img088.jpg) no-repeat right center;background-size:1.3em;}
+.order_img4{background:url(http://115.28.41.84/public/app/microshop/statics/images/img089.jpg) no-repeat right center;background-size:1.3em;}
+.order_div select{width:70%;height:24px;}
+.order_div .sf{display:inline-block;padding:5px 10px;border:1px solid #d5d5d5;background-color:#fff;}
+.order_div .sb{background:#ffffff url(http://115.28.41.84/public/app/microshop/statics/images/img061.jpg) no-repeat right bottom;background-size:1em;}
+.order_div .sfs{display:inline-block;padding:5px 0px;width:70%;border:1px solid #d5d5d5;text-align:left; background:#ffffff url(http://115.28.41.84/public/app/microshop/statics/images/img062.png) no-repeat 97% center;background-size:1.2em;}
+.order_list ul{padding:0;margin:0;border:0;overflow:hidden;}
+.order_list ul li{border:0;}
+.order_list ul li.left{float:left;width:27%}
+.order_list ul li.center{float:left;width:44%;margin-left:1%;margin-right:1%;}
+.order_list ul li.center div{padding:3px 0px;position: relative;padding-right:10px;}
+.order_list ul li.center div a{position: absolute;display:inline-block;height:25px;}
+.order_list ul li.center div a.lefts{left:0px;top:3px;}
+.order_list ul li.center div a.rights{right:0px;top:3px;}
+.llb{border-top:1px solid #dadada;border-bottom:1px solid #dadada;width:100%;height:23px;line-height:23px;display:inline-block;background-color:#f2f2f2;text-align:center;}
+.order_list ul li.right{float:left;width:27%; text-align:right;}
+.order_list ul li.right div{padding:0px 0px 6px;margin-right:10px;}
+.order_list ul li.right a{display:inline-block;height:25px;margin-right:10px;}
+.order_btn{width:100%;height:30px;line-height:30px; color:#fff;background-color:#fb7102;border:0;-moz-border-radius: 4px; webkit-border-radius: 4px;border-radius:4px;}
+.ver{text-decoration:line-through;}
+
+.backg1{background:url(http://115.28.41.84/public/app/microshop/statics/images/058.jpg) no-repeat right center;}
+.backg{background:url(http://115.28.41.84/public/app/microshop/statics/images/liItem.png) no-repeat right center; background-size:.8em;}
+.item_s .l,.item_f .l{float:left;}
+.item_s .r,.item_f .r{float:right;}
+.item_s .r,.item_f .r div{text-align:right;}
+.item_f{overflow:hidden;padding:5px 20px 5px 0px;}
+.lh40{line-height:40px;}
+.color_red{color:red;}
+.color_green{color:#449900}
+.list_item2{padding:0px 10px;margin-bottom:10px; overflow:hidden;}
+.pad10{padding:10px;background-color:#fff;margin-bottom:10px;}
+.header_bk{background:url(http://115.28.41.84/public/app/microshop/statics/images/img080.png) no-repeat right center;padding-right:20px;display:inline-block;background-size:0.6em;}
+.top_menu{position: absolute;top:50px;left:0px;width:100%;background-color:#fafafa;z-index:99999}
+.backsel{background:url(http://115.28.41.84/public/app/microshop/statics/images/img084.png) no-repeat right center; background-size:2em;}
+.c8080{color:#808680}
+.pad-bottom10{padding-bottom:10px;}
+.grue_btn{width:100%;height:30px;line-height:30px; color:#d8d8d8;background-color:#ececec;border:0;-moz-border-radius: 4px; webkit-border-radius: 4px;border-radius:4px;}
+.order_div .noBorder,.noBorder{border:0;}
+.border2{border-top:1px solid #cdcdcd;}
+
+.margin10{margin:10px;}
+.m-addr{float:left;padding-left:20px;background:url(http://115.28.41.84/public/app/microshop/statics/images/img092.png) no-repeat left center; background-size:1em;}
+.m-update{float:right;padding-left:20px;background:url(http://115.28.41.84/public/app/microshop/statics/images/img090.png) no-repeat left center; background-size:1em;margin-right:10px;}
+.m-dele{float:right;padding-left:20px;background:url(http://115.28.41.84/public/app/microshop/statics/images/img091.png) no-repeat left center; background-size:1em;}
+
+.list_item4{background-color:#fff;padding:6px 0;}
+.list_item5{padding:6px 0;}
+.list_item6{background-color:#fff;padding:0px 0 6px;}
+.list_item4 ul,.list_item2 ul,.list_item5 ul,.list_item6 ul{margin:0;padding:0;overflow:hidden;}
+.list_item4 ul li,.list_item2 ul li{width:25%;padding:5px 0px;float:left;text-align:center;}
+.list_item5 ul li{width:33%;padding:5px 0px;float:left;text-align:center;}
+.list_item6 ul li{width:49.5%;padding:5px 0px;float:left;text-align:center;border-bottom:1px solid #cdcdcd;}
+.border-right{border-right:1px solid #cdcdcd;}
+.px{padding-right:7px;background:url(http://115.28.41.84/public/app/microshop/statics/images/img093.png) no-repeat right center;background-size:0.5em;}
+.xm{padding-right:10px;background:url(http://115.28.41.84/public/app/microshop/statics/images/img094.png) no-repeat right center;background-size:0.7em;}
+.xms{padding-right:10px;background:url(http://115.28.41.84/public/app/microshop/statics/images/img095.png) no-repeat right center;background-size:1em;}
+.xmf{padding-right:12px;}
+.back-color1{background-color:#f2f2f4;}
+.back-color2{background-color:#fff;}#f2f2f4

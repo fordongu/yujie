@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<meta charset='UTF-8' />
+
+<meta name='generator' content='ecos.b2c' />
+
+<title></title>
+
+ <{css src="public.css" app="microshop"}>
+
+    <{if $headers}>
+
+        <{foreach from=$headers item=arr}>
+
+        <{$arr}>
+
+        <{/foreach}>
+
+        <{/if}>
+
+<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'/>
+
+<link rel="stylesheet" href="../css/public.css" />  <!-- 新增样式   -->
+
+<body>
+
+       <header>
+
+           <a class="header_left2" onclick="history.go(-1)" >取消</a>
+
+           <div class="heder_center">店名</div>
+
+           <a class="header_right2" href="javascript:void(0);">确认</a>
+
+       </header>
+
+       <div class="content">
+
+          <div class="i_de">
+              <form action="<{link app=microshop ctl=site_index act=postname}>"  method="post" name="shop_name">
+             <input class="i_input" type="text" value="<{$info['shop_name']}>" name="shop_name"/>
+             <input class="i_input" type="hidden" value="<{$info['shop_id']}>" name="shop_id"/>
+
+             <a class="de"></a>
+              </form>
+              <div class="notice" style="color:red;font-size: 12px;height: 25px;"></div>
+          </div>
+
+           
+
+       </div>
+
+       
+
+</body>
+
+</html>
+<script src="http://112.124.11.126/public/app/microshop/statics/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".de").click(function(){
+            $("input[name='shop_name']").val('');
+        });
+        $(".header_right2").click(function(){
+            if($("input[name='shop_name']").val()==''){
+                $(".notice").text('*店名不能为空');
+                return false;
+            }
+            $("form").submit();
+        });
+        $("input[name='shop_name']").focus(function(){
+            $('.notice').text('');
+        });
+    });
+    
+</script>
+

@@ -1,0 +1,19 @@
+<app>
+  <name>微店</name>
+
+  <description>会员个人店铺</description>
+
+  <author>
+      <name>eTechv 开发团队</name>
+      <email>iegss@126.com</email>
+      <url>www.etechv.com</url>
+  </author>
+
+  <version>0.1</version>
+  <parent_model_class>dbeav_model</parent_model_class>
+  <license>GPL</license>
+  <depends>
+    <app>b2c</app>
+  </depends>
+
+</app>

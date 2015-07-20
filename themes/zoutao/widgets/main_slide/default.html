@@ -1,0 +1,24 @@
+<div  style="position: relative;" id="ex_slide_174" class="ex-slide1">
+    <ol style="position: absolute; width: 5760px;" class="switchable-content clearfix">
+        <{foreach from=$data.pic item=parent key=parentId}>
+        <li class="slide-item" style="background: url(&quot;<{$parent.link}>&quot;) no-repeat scroll center center rgb(255,255,255); float: left;">
+            <a href="<{$parent.linktarget}>" target="_blank" title="<{$data.linkinfo}>" style=" background:#ffffff url(<{$parent.link}>) no-repeat center; display:block;height:698px; width:1920px; ">&nbsp;</a>
+        </li>
+        <{/foreach}>
+    </ol>
+    <ul class="switchable-triggerBox slide-trigger">
+        <{assign var=countnum value="1"}>
+        <{foreach from=$data.pic item=parent key=parentId}>
+        <li class=""><{$countnum++}></li> 
+        <{/foreach}> 
+    </ul>
+    <div class="triggers-bg"></div>
+</div>
+<script>
+    new Switchable('ex_slide_174',{
+        effect:'scrollx',
+        autoplay:true,
+        haslrbtn:false,
+        interval:4000
+    });
+</script>

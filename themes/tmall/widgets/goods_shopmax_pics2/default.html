@@ -1,0 +1,56 @@
+<{assign var=titleHeight value=$setting.titleHeight|default:'5'}>
+
+<div class="maxProw-index clearfix <{$setting.block_class}>" id="goods_shopmax_pics_<{$widgets_id}>"> <{if $setting.block_name || $setting.keys}>
+  <div class="maxTitle">
+    <h3>
+<{if $setting.title_url}><a href="<{$setting.title_url}>" title="查看更多<{$setting.block_name}>"><{$setting.block_name}></a><{else}>
+	<{$setting.block_name}><{/if}></h3>
+	<{if $setting.keys}>
+    <div class="maxTKey"><{foreach from=$setting.keys item=itemkey key=key}><a href="<{$itemkey.url}>" <{if $itemkey.mcname}>class="<{$itemkey.mcname}>"<{/if}> <{if $itemkey.target=='_blank'}>target="_blank"<{/if}>><{$itemkey.text}></a><{/foreach}></div>
+    <{/if}>
+   </div>
+  <{/if}>
+  <div class="maxContent clearfix">
+	<div class="maxpAD clearfix">
+		<{foreach from=$setting.ad item=ad name=adgroup}><li class="item<{if $env.foreach.adgroup.first}> first<{/if}><{if $env.foreach.adgroup.last}> last<{/if}> item-<{$env.foreach.adgroup.iteration}>"
+			data-adid="<{$ad.id}>"><a  href="<{$ad.target_url}>" ><textarea class="textarea-lazyload-block" style="display:none"><img src="<{$ad.pic}>" alt="<{$ad.note}>" <{if $ad.width}> width="<{$ad.width}>"<{/if}> <{if $ad.height}>  height="<{$ad.height}>"<{/if}>/></textarea></a></li>
+			<{if $env.foreach.adgroup.iteration==1 && $setting.sad}>
+				  <li class="maxpSlid" id="maxpSlid<{$ad.id}>" style="width:<{$setting.sadwidth}>px;height:<{$setting.sadheight}>px;overflow:hidden">
+					  <div class="maxpSlid-content">
+							<{foreach from=$setting.sad item=sad name=sadgroup}>
+							  <a class="maxpSlid-panels" href="<{$sad.target_url}>" title="<{$sad.note}>"><textarea class="textarea-lazyload-block" style="display:none"><img src="<{$sad.pic}>" alt="<{$sad.note}>" width="<{$setting.sadwidth}>" height="<{$setting.sadheight}>"/></textarea></a>
+						   <{/foreach}>
+					 </div>
+					 <div class="maxpSlid-triggers">
+							<{foreach from=$setting.sad item=sad name=sadgroup}>
+							  <em></em>
+						   <{/foreach}>
+					 </div>
+				 </li>
+				 <script type="text/javascript">
+					new Switchable('maxpSlid<{$ad.id}>',{
+							effect:'scrollx',
+							hasTriggers:true,
+							triggers:'em',
+							panels:'a',
+							steps:1,
+							haslrbtn:false,
+							lazyDataType: 'img',
+							autoplay: true,
+							pauseOnHover: true,
+							viewSize:[<{$setting.sadwidth}>,<{$setting.sadheight}>]
+						});
+				</script>
+			<{/if}>
+			<{/foreach}>
+	</div>
+	 <{if $setting.bad}>
+	  <div class="maxpBrand">
+		    <{foreach from=$setting.bad item=bad name=badgroup}>
+		   <a href="<{$bad.target_url}>" class="item-<{$env.foreach.badgroup.iteration}><{if $env.foreach.badgroup.first}> first<{/if}><{if $env.foreach.badgroup.last}> last<{/if}>" data-adid = "<{$bad.id}>" title="<{$bad.note}>"><textarea class="textarea-lazyload-block" style="display:none"><img src="<{$bad.pic}>" alt="<{$bad.note}>" width="100" height="45"/></textarea><span><{$bad.note}></span></a>
+		   <{/foreach}>
+	 </div>
+       <{/if}>
+  </div>
+
+</div>

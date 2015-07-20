@@ -1,0 +1,71 @@
+
+<!-- 会员中心主内容区 -->
+<div class="page-article">
+  <!-- 合伙人 -->
+  <div id="member_coupon" class="member-coupon">
+    <div class="member-title">
+      <h2><{t}>我的合伙人<{/t}></h2>
+    </div>
+
+    <div class="member-mod">
+      <table class="member-grid">
+        
+        <tbody<{if !($browser.name=="IE" && ($brower.ver == 6 || $browser.ver == 7))}> class="first"<{/if}>>
+          <{if $partner}>
+            <tr>
+                <td>
+                    <div style="">
+                        <div style="float: left;margin-left: 20px;">
+                            <{if $partner.details.image !=''}>
+                                <img src="<{$partner.details.image|storager:'s'}>" height="70px" width="70px">
+                            <{else}>
+                                <{img src="sprites/default-avatar.png" alt=""}>
+                            <{/if}>
+                        </div>
+                        <div style="float: left;margin-left: 20px;">
+                            <div style="font-weight: bold;">
+                                <{$partner.details.nickname}>
+                            </div>
+                            <div style="margin-top: 10px;background-color: #ff5800;color: white;height: 22px;line-height: 22px;padding: 0 5px;">
+                                <{$partner.details.levelname}>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" class="no-information">
+                    <div style="height:20px;line-height:20px;text-align:center;background-color:#d4d4d4;">合伙人</div>
+                </td>
+            </tr>
+            <tr>
+                <{foreach from=$partner.list item=val key=key}>
+                        <{if ($key%10) eq 0}>
+                            </tr>
+                            <tr>
+                        <{/if}>
+                        <td>
+                            <div class='partner_img'>
+                                <{if $val.image!=''}>
+                                    <a href="<{link app=b2c ctl='site_member' full='1' act='partner_list' arg=$val.member_id}>"><img src="<{$val.image|storager:'s'}>" height="70px" width="70px"></a>
+                                <{else}>
+                                    <a href="<{link app=b2c ctl='site_member' full='1' act='partner_list' arg=$val.member_id}>"><{img src="sprites/default-avatar.png" alt=""}></a>
+                                <{/if}>
+                            </div>
+                            <div class='partner_name'><{$val.nickname}></div>
+                        </td>
+                    
+                <{/foreach}>
+            </tr>
+                <{if empty($partner['list'])}>
+                    <tr class="first"><td colspan="4" class="no-information"><{t}>暂无合伙人<{/t}></td></tr>
+                <{/if}>
+          <{else}>
+            <tr class="first"><td colspan="4" class="no-information"><{t}>暂无合伙人<{/t}></td></tr>
+          <{/if}>
+        </tbody>
+      </table>
+    </div>
+   
+  </div>
+</div>

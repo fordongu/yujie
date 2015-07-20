@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="/custom/b2c/view/wap/member/public/member.css">
+<div class="full-screen">
+    <header>
+        <div class="a-bar">
+            <a href="javascript:history.back()" class="a-back" style='display:block;'>
+                <i class="arr left"></i>
+                返回
+            </a>
+            <div class="a-name">
+                设置
+            </div>
+        </div>
+    </header>
+    <div class="section" style="border:none;">
+        <div class="mem-info c-fix">
+            <div class="mem-menulist">
+                <ul>
+                    <li style="height:60px;line-height: 60px;padding:10px 15px 15px 0;">
+                        <a style="height:60px;" href="<{link app=b2c ctl='wap_member' full='1' act='avatar'}>">
+                            <span style="display: block;float:left;">头像</span>
+                            <span class="setting-avatar">
+                                
+                                <{if $image_id neq '' }>
+                                    <img src="<{$image_id|storager}>">
+                                <{else}>
+                                    <{img src="sprites/default-avatar.png" alt=""}>
+                                <{/if}>
+                            </span>
+                        </a>
+                    </li> 
+                    <li class=""><a href="<{link app=b2c ctl='wap_member' full='1' act='nickname'}>"><span>昵称</span><span class="setting-nickname"><{$member.nickname}></span></a></li>
+                    <li class=""><a href="<{link app=b2c ctl='wap_member' full='1' act='security'}>"><span>重设密码</span></a></li>
+                     <li class=""><a href="<{link app=b2c ctl='wap_member' full='1' act='message'}>"><span>意见反馈</span></a></li>
+                </ul>
+                <div class="mem-logout"><a class="btn grey" href="<{link app=b2c ctl='wap_passport' full='1' act='logout'}>" style="background:rgb(243,38,88);">退出账号</a></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    var e = $.fn.cookie('S[CART_NUMBER]')?$.fn.cookie('S[CART_NUMBER]'):'';
+    if(e) $("#cartNum").text(e);
+</script>
+

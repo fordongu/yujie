@@ -1,0 +1,127 @@
+
+
+<form method="POST" id='newmember-edit-form' action="index.php?app=microshop&ctl=admin_special&act=toEdit" class="tableform">
+    <div class="division">
+        <table width="100%" >
+            <input type="hidden" name="special_id" value="<{$info.special_id}>" />
+            <input type="hidden" name="finder_id" value="<{$finder_id}>" />
+            <tr><th><em class="red">*</em><{t}>专辑名称：<{/t}></th><td><{input type="text" name="special_name"  size="20" vtype="required" value=$info.special_name }><span></span></td></tr>
+            <tr><th><em class="red">*</em><{t}>会员ID：<{/t}></th><td><{input type="text" name="member_id"  size="20" vtype="required" value=$info.member_id }><span></span></td></tr>
+            <tr>
+                <th><em class="red">*</em><{t}>选择商品：<{/t}></th>
+                <td>
+                    <span>
+                    <!--开始-->
+                        <div>
+
+                            <ul>
+                                <li vposition="0" style="zoom:1;">
+                                    <div style="margin-top:-5px">
+                                        <div id="ipt_3bd001" class='clearfix'>
+                                            <div id="3bd001" class="object-select clearfix" style="display:inline-block;*zoom:1;"  >
+                                                <div class="label" id="" rel="请选择...">请选择...</div>
+                                                <div class="handle">&nbsp;</div>
+                                                <input type="hidden" name="conditions[conditions][0][value]" id="list_datas" vtype="required" value="<{$goods_ids}>" />
+                                            </div>
+                                            <{if $goods_list}>
+                                                <div class="gridlist rows-body" id="handle_3bd001" >
+                                                    <{foreach from=$goods_list item=goods}>
+                                                        <div class="row">
+                                                            <div class="row-line">
+                                                                <div class="span-auto row-h">
+                                                                    <span class="opt">
+                                                                        <img onclick="$('list_datas').value=$('list_datas').value.split(',').erase($(this).getParent('.row').getElement('input[type=hidden]').value).join();$(this).getParent('.row').destroy();" src="<{$smarty.const.WWW_URL}>public/app/desktop/statics/bundle/delecate.gif" app="desktop">
+                                                                    </span>
+                                                                </div>
+                                                                <div class="span-auto row-h">
+                                                                    <input type="hidden" value="<{$goods.goods_id}>" item_id="<{$goods.goods_id}>" name="conditions[conditions][0][value][]">
+                                                                    <{$goods.goods_name}>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <{/foreach}>
+                                            <{else}>
+                                                <div class="gridlist rows-body" id="handle_3bd001" style="display:none;">
+                                            <{/if}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    <!--结束-->
+                </span>
+              </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<{area inject='.mainFoot'}>
+
+
+<div class="table-action"><{button type="submit"  label=$___b2c="保存"|t:'b2c' id='newmember-edit-form-submit'}></div>
+
+
+<{/area}>
+
+<script>
+    (function(){
+        var _form = $('newmember-edit-form');
+        var btn =$('newmember-edit-form-submit');
+        var finder = finderGroup['<{$env.get.finder_id}>'];
+
+        _form.store('target',{
+            onComplete:function(){            
+
+            },
+            onSuccess:function(response){
+                var hash_res_obj = JSON.decode(response);
+                if (hash_res_obj.success != undefined && hash_res_obj.success != "")
+                {
+                    try{
+                        var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+                    }catch(e){}
+
+                    if(_dialogIns)
+                    {
+                        _dialogIns.close();
+                        finder.refresh.delay(400,finder);
+                    }
+                }
+                else
+                {
+                    //alert(hash_res_obj.error);
+                }            
+            }
+        });
+         
+        btn.addEvent('click',function(){
+            _form.fireEvent('submit',{stop:$empty});
+
+
+
+        });
+
+    })();
+
+   
+</script>
+
+<{include file="admin/sales/dialog/js.html" app=b2c}>
+<script>
+    $('3bd001').getElements('.label,.handle').addEvent('click', function(e){
+      Ex_Loader('modedialog',function(){
+        new finderDialog('index.php?app=desktop&act=alertpages&goto=index.php%3Fapp%3Ddesktop%26ctl%3Deditor%26act%3Dfinder_common%26app_id%3Db2c%26name%3Dconditions%255Bconditions%255D%255B0%255D%255Bvalue%255D%26object%3Dgoods', {
+          handle:'handle_3bd001',
+                  onCallback:function(rs){$('handle_3bd001').show();},
+          params:{
+            app:'app=b2c',
+            url:'index.php?app=desktop&ctl=editor&act=object_rows',
+            type:'checkbox',
+            name:'data[]',
+            postdata:'app_id=b2c&type=checkbox&object=goods&mdl_object=object%3Dgoods&return_url=index.php%253Fapp%253Ddesktop%2526ctl%253Deditor%2526act%253Dobject_rows&id=dom_el_d4525c0&cols=name%2Cspec_info&select=checkbox&breakpoint=20&app_id=b2c&domid=3bd001&idcol=goods_id&textcol=name%2Cbn&_textcol%5B0%5D=name&_textcol%5B1%5D=bn&name=conditions%5Bconditions%5D%5B0%5D%5Bvalue%5D&multiple=true&vtype=required&view=b2c%3Aadmin%2Fgoods%2Frows.html'
+          }
+        });
+      });
+    });
+</script>

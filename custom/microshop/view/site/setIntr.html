@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<meta charset='UTF-8' />
+
+<meta name='generator' content='ecos.b2c' />
+
+<title></title>
+
+ <{css src="public.css" app="microshop"}>
+
+    <{if $headers}>
+
+        <{foreach from=$headers item=arr}>
+
+        <{$arr}>
+
+        <{/foreach}>
+
+        <{/if}>
+
+<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'/>
+
+<link rel="stylesheet" href="../css/public.css" />  <!-- 新增样式   -->
+
+<body>
+
+    <form action="<{link app=microshop ctl=site_index act=postdesc}>" method="post" name="subform">
+
+       <header>
+
+           <a class="header_left2" href="javascript:window.history.go(-1);" >取消</a>
+
+           <div class="heder_center">简介</div>
+
+           <a class="header_right2" href="javascript:window.subform.submit();" >确认</a>
+
+           
+
+       </header>
+
+       <div class="content">
+
+          <div class="i_de">
+
+             <textarea class="i_input" rows="5" style="height: 100px;" name="desc"><{$info['desc']}></textarea>
+
+             <input class="i_input" type="hidden" value="<{$info['shop_id']}>" name="shop_id"/>
+
+          </div>
+
+           
+
+       </div>
+
+       </form>
+
+</body>
+
+</html>
+

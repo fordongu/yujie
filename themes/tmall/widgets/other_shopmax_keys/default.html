@@ -1,0 +1,2 @@
+<div class="maxTKey clearfix"><{if $setting.fronttips}><dl class="shopmax-keys"><dt class="maxTitle"> <{if $setting.fronttipsurl}> <a href="<{$setting.fronttipsurl}>"> <{$setting.fronttips}></a> <{else}>
+<{$setting.fronttips}><{/if}></dt><dd><{/if}><{foreach from=$setting.keys item=keys key=key name=settingkeys}> <a href="<{$keys.url}>" class="<{if $keys.mcname}><{$keys.mcname}><{/if}> item-<{$env.foreach.settingkeys.iteration}>" <{if $keys.target=='_blank'}>target="_blank"<{/if}>><{$keys.text}></a> <{/foreach}><{if $setting.fronttips}></dd></dl><{/if}></div>

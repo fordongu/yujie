@@ -1,0 +1,75 @@
+<{*
+<pre class="notice">
+	<{dump var=$setting}>
+</pre>
+*}>
+<div id="cat_shopmax_rela_<{$widgets_id}>" >
+  <ul class="cat-shopmax-rela">
+    <{foreach from=$data.lv1 key=cat_lv1_key item=cat_lv1 name=cat_lv1_name}>
+    <li class="cat-item lv1 <{if $env.foreach.cat_lv1_name.first}>first<{elseif $env.foreach.cat_lv1_name.last}>last<{/if}>"
+			data-catid="<{$cat_lv1.cat_id}>"
+			data-typeid="<{$cat_lv1.type}>"
+			data-typename="<{$cat_lv1.type_name}>"><a href="<{$cat_lv1.url}>" <{if $setting.target_blank}>target="_blank"<{/if}> class="cat-link-lv1"><{$cat_lv1.cat_name}></a>
+			<{if $setting.show_cat_lv2}>
+			<div class="lv2-box">
+
+			</div>
+			<{/if}>
+			</li>
+    <{/foreach}>
+  </ul>
+  <div style="display:none;"><{if $setting.show_cat_lv2}>
+    <{foreach from=$data.lv2 key=cat_lv2_key item=cat_lv2 name=cat_lv2_name}>
+    <dl class="cat-item lv2"
+					        data-catpid="<{$cat_lv2.pid}>"
+					        data-catid="<{$cat_lv2.cat_id}>"
+					        data-typeid="<{$cat_lv2.type}>"
+					        data-typename="<{$cat_lv2.type_name}>">
+      <dt><a  href="<{$cat_lv2.url}>" <{if $setting.target_blank}>target="_blank"<{/if}>><span><{$cat_lv2.cat_name}></span></a></dt>
+      <{if $setting.show_cat_lv3}>
+      <dd style="display:none;"></dd>
+      <{/if}>
+    </dl>
+    <{/foreach}>
+    <{/if}>
+
+    <{if $setting.show_cat_lv3}>
+    <{foreach from=$data.lv3 key=cat_lv3_key item=cat_lv3 name=cat_lv3_name}><a href="<{$cat_lv3.url}>" class="cat-item lv3"
+					        data-catpid="<{$cat_lv3.pid}>"
+					        data-catid="<{$cat_lv3.cat_id}>"
+					        data-typeid="<{$cat_lv3.type}>"
+					        data-typename="<{$cat_lv3.type_name}>" <{if $setting.target_blank}>target="_blank"<{/if}>><span><{$cat_lv3.cat_name}></span></a><{/foreach}>
+    <{/if}></div>
+</div>
+<script type="text/javascript">
+
+
+		
+		//var _t = $time();
+		var container2 = $('cat_shopmax_rela_<{$widgets_id}>');
+		container2.getElements('li.lv1').each(function(item){
+
+			var catLv1ID =item.get('data-catid');
+			var dls = container2.getElements('dl[data-catpid='+catLv1ID+']');
+			dls.inject(item.getElement('.lv2-box'),'bottom');
+			var dls_length = dls.length;
+			if(dls&&dls_length>1){
+				dls[0].addClass('first');
+				dls[dls_length-1].addClass('last');
+			}
+
+		});
+
+		container2.getElements('.lv2').each(function(item){
+			var catLv2ID = item.get('data-catid');
+			var dlsLv3 = container2.getElements('a[data-catpid='+catLv2ID+']');
+			var dlsLv3_length = dlsLv3.length;
+			
+			item.getElement('dd').adopt(container2.getElements('a[data-catpid='+catLv2ID+']'));
+			if(dlsLv3.length<1){
+				item.getElement('dd').destroy();
+			}
+		});
+		//console.info($time()-_t);
+
+</script>

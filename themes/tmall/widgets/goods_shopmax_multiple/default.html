@@ -1,0 +1,98 @@
+<{if $setting.pic_left}>
+        <{assign var=handleh value=$setting.item_pic_maxheight+15}>
+        <{else}>
+        <{assign var=handleh value=$setting.item_pic_maxheight+120}>
+        <{/if}>
+<dl id="goods_shopmax_multiple_<{$widgets_id}>" class="goods-shopmax-multiple <{$setting.boxclass}>">
+  <dt>
+    <ul>
+      <{foreach from=$data item=glist}>
+      <li> <span><{$glist.title}></span> </li>
+      <{/foreach}>
+    </ul>
+  </dt>
+  <{foreach from=$data item=dataItem key=glistKey name=glisteach}> <dd class="goods-shopmax-multiple-body cfix" data-linelimit="<{$dataItem.line_limit}>"  data-id="<{$glistKey}>" <{if !$env.foreach.glisteach.first}>style="display:none;"<{/if}>>
+
+  <{if $env.get.ctl == "admin_theme_widget"}><{*可视化编辑模式*}>
+  <div style="line-height:200px;height:200px;text-align:center;font-size:14px;background:#f9f9f9;color:#333;"> ［GOODS MULTIPLE］ </div>
+  <{continue}>
+  <{/if}>
+
+        <{foreach from=$dataItem.goodsRows item=row key=gid name=goodsrow}>
+        <{if $setting.pic_left}>
+        <{assign var=iw value=$setting.panel_width/$dataItem.line_limit-12}>
+        <{else}>
+        <{assign var=iw value=$setting.panel_width/$dataItem.line_limit-6}>
+        <{/if}>
+        <style>
+		#goods_shopmax_multiple_<{$widgets_id}> #maxContent_<{$glistKey}> .item{width:<{$iw}>px}
+        </style>
+        <div class="item<{if $env.foreach.goodsrow.first}> first<{/if}><{if $env.foreach.goodsrow.last}> last<{/if}><{if $env.foreach.goodsrow.iteration%$dataItem.line_limit == 1}> line-first<{/if}><{if $env.foreach.goodsrow.iteration%$dataItem.line_limit == 0}> line-last<{/if}>"  >
+          <div class="p" align="center"> <{assign var=pickey  value=$dataItem.gpic_size|default:'goodsPicS' }> <a href="<{$row.goodsLink}>" target="_blank"><img src="<{$row[$pickey]}>" alt="<{$row.goodsName}>"/></a> </div>
+          <div class="i" <{if $setting.pic_left}>width-num="<{$iw-10-$setting.item_pic_maxheight}>" style="width:<{$iw-10-$setting.item_pic_maxheight}>px;"<{/if}>>
+            <h6>
+              <a href="<{$row.goodsLink}>" target="_blank"><{$row.goodsName}></a> </h6>
+
+            <ul>
+              <li class="gel-price"><{if $setting.pricetitle}><label><{$setting.pricetitle}></label><{/if}><em><{$row.goodsSalePrice|cur}></em></li>
+            </ul>
+			<{if $row.tags}>
+<{foreach from=$row.tags item=gtag}>
+      <{assign var="tagImage" value=$gtag.params.tag_image}>
+      <{if $tagImage}>
+        <div class="maxgoods-tip">
+          <img src="<{$tagImage|storager}>" style="opacity:<{$gtag.params.tag_opacity/100}>;" pos="<{$gtag.params.pic_loc}>" />
+        </div>
+      <{/if}>
+      <{/foreach}>  <{/if}>
+             <{if $setting.show_buybutton}>
+
+        <a  href="<{link app=b2c ctl=site_cart act=add arg0=goods arg1=$row.goodsId arg2=$item.product_id arg3='1' }>" type="g" buy="<{$row.goodsId}>" class="addcart-btn"   rel="nofollow" ><span>加入购物车</span></a>
+        <{/if}>
+          </div>
+        </div>
+        <{/foreach}>
+
+  </dd>
+  <{/foreach}>
+</dl>
+
+
+
+<style>
+#goods_shopmax_multiple_<{$widgets_id}> .goods-shopmax-multiple-body{width:<{$setting.panel_width}>px;margin:0 auto;}
+#goods_shopmax_multiple_<{$widgets_id}>  .item{ float:left;width:<{$setting.panel_width/$dataItem.line_limit-1}>px;}
+<{if $setting.item_pic_maxheight}>
+#goods_shopmax_multiple_<{$widgets_id}> .item{}
+#goods_shopmax_multiple_<{$widgets_id}> .item .p{ height:<{$setting.item_pic_maxheight}>px;margin: 0 auto;}
+#goods_shopmax_multiple_<{$widgets_id}> .item .p a{height:<{$setting.item_pic_maxheight}>px;width: <{$setting.item_pic_maxheight}>px;}
+	#goods_shopmax_multiple_<{$widgets_id}> .item .p,
+	#goods_shopmax_multiple_<{$widgets_id}> .item .i
+	{
+		width: <{$setting.item_pic_maxheight}>px;
+		overflow:hidden;
+		margin:0 auto;
+	}
+
+#goods_shopmax_multiple_<{$widgets_id}> .item .p img{
+
+		max-width: <{$setting.item_pic_maxheight}>px;
+		max-height: <{$setting.item_pic_maxheight}>px;
+		_width: <{$setting.item_pic_maxheight}>px;
+		_height: <{$setting.item_pic_maxheight}>px;
+	} <{/if}>
+
+<{if $setting.pic_left}>
+#goods_shopmax_multiple_<{$widgets_id}> .item{ padding:3px;}
+	#goods_shopmax_multiple_<{$widgets_id}> .p,
+	#goods_shopmax_multiple_<{$widgets_id}> .i
+	{height: <{$setting.item_pic_maxheight}>px; }
+	#goods_shopmax_multiple_<{$widgets_id}> .p{ float:left}
+	#goods_shopmax_multiple_<{$widgets_id}> .i{ float:right;}
+<{/if}>
+
+ <{if $setting.item_title_lines}>
+#goods_shopmax_multiple_<{$widgets_id}> .item .i h6{ display:block;  white-space:normal;line-height:16px; overflow:hidden; height:<{$setting.item_title_lines*16}>px;}
+	 <{/if}>
+
+</style>

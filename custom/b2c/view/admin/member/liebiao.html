@@ -1,0 +1,23 @@
+<table >
+	<tr>
+		<th>会员ID</th>
+		<th>真实名字</th>
+		
+		<th>申请时间</th>
+		<th>身份证号码</th>
+	</tr>
+	<{$auths|var_dump}>
+	<{$weburl|var_dump}>
+	<{foreach from=$auths.0 item=auth }>
+		<tr>
+			<td><{$auth.auth_id}></td>
+			<td><{$auth.real_name}></td>
+			<td><{$auth.uptime|cdate:FDATE_FTIME}></td>
+			<td><{$auth.identity_num}></td>
+			
+		</tr>
+	<{/foreach}>
+	<tr>
+		<td>123</td>
+	</tr>
+</table>

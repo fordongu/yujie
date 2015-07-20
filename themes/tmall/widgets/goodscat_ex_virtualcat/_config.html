@@ -1,0 +1,45 @@
+<div id="goodscat_ex_virtualcat_widget_configure" class="tableform widgetconfig"> 
+	<div class="division">
+		<h3>请选择虚拟分类节点</h3><br/>
+		<span class="notice-inline-icon"><{t}>系统将根据您选择的虚拟分类节点，展示该虚拟分类及其子类<{/t}></span>
+		<br/>
+			<select multiple=true name="vcid[]" size=15 style="width:300px">
+				<option value="ALL">全部选择</option>
+				<{foreach from=$data item=vc}>
+					<option value="<{$vc.cat_id}>">
+						<{foreach from=$vc.cat_path item=vcp}>
+							<{if $vcp!=""}>　<{/if}>
+						<{/foreach}><{$vc.cat_name}>
+					</option>
+				<{/foreach}>
+			</select>
+			<br/>
+
+			<span class="notice-inline-icon"><{t}>以上选项，可以利用键盘CTRL或SHIFT配合来进行多选<{/t}></span>
+	</div>
+</div>
+<script type="text/javascript">
+	void function() {
+		$$('#goodscat_ex_virtualcat_widget_configure select').setStyles({
+			fontSize:14,
+			lineHeight:18
+		});
+		var opts = $$('#goodscat_ex_virtualcat_widget_configure select[name^=vcid] option');
+		var settingVCID =[<{foreach from=$setting.vcid item=vcid name=vcideach}>'<{$vcid}>',<{/foreach}>];
+
+		opts.each(function(option){
+
+			if(settingVCID.contains(option.value)){
+				option.selected = true;
+			}
+
+		});
+
+		if(settingVCID.length<1||opts[0].selected){
+			opts.set('selected',true);
+		}
+
+		opts[0].addEvent('click',function(){opts.set('selected',true);});
+			
+	}();
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <meta http-equiv="x-ua-compatible" content="ie=7" />
+
+    <head>
+        <meta charset="UTF-8">
+        <{header}>
+            <link href="images/max.css" rel="stylesheet" type="text/css" />
+            <link href="images/product.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body class="max-product-page">
+        <{require file="block/header_single.html" }>
+            <{require file="block/maxpath.html" }>
+                <div class="maxwIn">
+
+                        <{main}>
+
+                   <div class="maxwLeft" style="padding-top:23px">
+                            <{widgets id="left_main" }>
+                    </div>
+                </div>
+
+
+<script>
+$$('.maxwLeft')[0].inject($$('.product-tags')[0],'before');
+
+// 'top','bottom','after',or 'before'.
+</script>
+
+                <{require file="block/footer.html" }>

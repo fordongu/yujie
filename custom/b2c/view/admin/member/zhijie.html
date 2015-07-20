@@ -1,0 +1,30 @@
+<div container='true'>
+    <div class="tableform">
+        <table class="gridlist" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <thead> 
+                <tr>  
+                    <th><{t}>会员昵称<{/t}></th>
+                    <th><{t}>会员ID<{/t}></th>
+                    <th><{t}>级别<{/t}></th>
+                    <th><{t}>手机号码<{/t}></th>
+                    <th><{t}>订单数<{/t}></th>  
+                    <th><{t}>注册时间<{/t}></th> 
+                </tr>
+            </thead>
+            <tbody>
+                <{foreach from=$zhijie item=item key=key}>
+                <tr>                        
+                        <td><{$item.nickname}></td>
+                        <td><{$item.member_id}></td>
+                        <td><{$item.member_lv.name}></td>
+                        <td><{$item.mobile}></td>
+                        <td><{$item.order_num}></td>
+                        <td><{$item.regtime|cdate:'FDATE_FTIME'}></td> 
+                </tr>
+                <{/foreach}>
+
+            </tbody>
+        </table>
+        <{$pager}>
+    </div>
+</div>

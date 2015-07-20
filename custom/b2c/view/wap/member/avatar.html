@@ -1,0 +1,43 @@
+
+<div class="full-screen">
+    <header>
+        <div class="a-bar">
+            <a href="javascript:history.back()" class="a-back" style='display:block;'>
+                <i class="arr left"></i>
+                返回
+            </a>
+            <div class="a-name">
+                修改头像
+            </div>
+        </div>
+    </header>
+    <div class="post-message">
+        <ul>
+          <li style="margin-left: 5%;margin-top: 5%; margin-right: 5%; padding-left: 2%; padding-right: 2%; border-radius: 4px; height: 70px; line-height: 70px;text-align: center;" class="form-item">
+                <{if $image_id!=''}>
+                    <img src="<{$image_id|storager}>" style="height:70px;">
+                <{else}>
+                    <{img src="sprites/default-avatar.png" alt="" style="height:70px;"}>
+                <{/if}>
+            </li>
+            <form data-type="" enctype="multipart/form-data" method="post" action="<{link app=b2c ctl=wap_member act=save_avatar}>">
+                  <li style="height: 45px;line-height: 45px;" class="form-item">
+                    <div style="width:100%;height: 45px;line-height: 45px;margin:0 auto;text-align: center;">
+                        上传头像：<input type="file" style="" value="" name="file">
+                    </div>
+                </li>
+                  <li style="height: 72px; line-height: 72px; margin-left: 7%; margin-right: 7%; padding-top: 5%;" class="form-item"> <span class="form-act">
+                    <button style="background-image: linear-gradient(#fc6b00, #fc6b00);border: 0px solid #9aa1a9;border-radius: 4px; margin-bottom: 2%;margin-top: 10%;background:rgb(243,38,88);" rel="_request" class="btn btn-caution action-sendmsg" type="submit"><span><span style="width: 100%;height: 100%;display: block;">保存</span></span></button>
+                    </span> </li>
+            </form>
+
+        </ul> 
+    </div>
+    
+</div>
+
+<script>
+    var e = $.fn.cookie('S[CART_NUMBER]')?$.fn.cookie('S[CART_NUMBER]'):'';
+    if(e) $("#cartNum").text(e);
+</script>
+

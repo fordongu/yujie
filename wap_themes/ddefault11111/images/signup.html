@@ -1,0 +1,180 @@
+	
+<div class="full-screen">
+  <header>
+    <div class="a-bar">
+      <a href="javascript:history.back()" class="a-back"><i class="arr left"></i>返回</a>
+      <div class="a-name">注册</div>
+      <div class="a-right">
+        <a href="<{link app=b2c ctl=wap_passport act=login}>" class="btn orange">登录</a>
+      </div>
+    </div>
+  </header>
+  <div class="full-padding" style="background:#A00303;font-family: '微软雅黑'; padding:0px 20px; ">
+  	 <!--<div style="text-align:center; font-size:26px; color:#FF0; font-weight:bold; padding-top:20px;">恭喜您获得《哈淘微分销》红包</div>
+   <div style=" text-align:center; color:#ffff8d; font-size:14px;">《哈淘微分销》送了我几个红包，分一个给你，拿去买你喜爱的宝贝吧！（有何炅代言的39.9背包、99元秒杀包邮的拉杆箱......）</div>
+		<div style="font-size:14px; color:#FFF; line-height:30px; text-align:center;"> 哈淘微分销，轻松实现<a target="_blank" href="http://www.hatao.com/app/down.html" style="color:#FF9; text-decoration:underline; font-size:18px; font-weight:bold;">微店创业</a></div>-->  
+        
+        
+        
+ <script src="http://www.hatao.com/app/prototype.debug.js" type="text/javascript"></script>     
+        
+        
+<div class="div-c">
+<h1 style="text-align: center;
+color: #fcff28; line-height:100px;
+font-size: 22px;
+font-family: '微软雅黑';">恭喜您获得《哈淘微分销》红包</h1>
+<!--<h1 class="h1-title1"><span>这个红包你已经领过啦~</span><br>
+自己动手发，可得更大红包~</h1>-->
+<div class="div-bag">
+<img style="width: 100%;vertical-align: top;" src="http://www.hatao.com/app/red_bg.png">
+<div style="width: 100%;
+background: #CB1C1C;
+padding:0 0 6% 0;
+border-bottom-left-radius: 5px;
+border-bottom-right-radius: 10px;">
+<h2 style="color:#FF0; font-size:40px; text-align:center;">10.0元</h2>
+<p style="text-align: center;
+color: #f5e696;
+font-size: 14px; margin:0 20px 0 20px;">快速注册红包就会进入您的会员中心，
+在"会员中心--我的优惠券"中查询</p>
+<div style="width: 90%;
+background: #ffea36;
+border-radius: 5px;
+line-height: 1.6;
+padding: 0.4em 0;
+margin: 0 auto;
+margin-top: 10%;
+box-shadow: 0px 1px 1px #6e031b;">
+<input type="button" value="我也要给小伙伴们发红包" onclick="share_Click()" style="font-family: '微软雅黑';
+font-size: 1.6em;
+line-height: 38px;
+color: #f03c0c;
+text-align: center;
+text-shadow: 0px 1px 1px #FFF;
+background: none;
+width: 100%;
+border: 0 none;">
+</div>
+</div>
+</div>
+
+
+<section id="back" style="position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;display: none;">
+<div style="width: 100%;
+height: 100%;
+background: #000;
+opacity: 0.8;" class="mask_bg"></div>
+<div style="position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+text-align: center;" class="mask_con">
+<img class="guide_line" src="http://www.hatao.com/app/mask.png" alt="">
+<p  class="mask_t1">点击这里可以给好友发红包</p>
+<p class="mask_t2"><span>【发送给朋友】</span>或者<span>【分享朋友圈】</span></p>
+<a id="iKnow" style="display: block;
+font: normal 30px/80px '微软雅黑';
+color: #ff7612;
+width: 60%;
+border: solid 1px #ff7612;
+background: url(about:blank);
+margin: 20px auto auto;
+border-radius: 8px;cursor:pointer;" onclick="iKnow_Click()">我知道了</a>
+</div>
+</section>
+<script type="text/javascript">
+function iKnow_Click() {
+$("back").style.display = "none";
+}
+function share_Click() {
+$("back").style.display = "block";
+}
+</script>
+</div>
+
+
+
+
+
+
+        <div style="height:60px; clear:both; display:block; overflow:hidden;"></div>
+    
+    
+    <div style="background:#FFF; padding:5px 20px 10px 20px;border-radius: 10px; -moz-border-radius: 10px;">
+    <form action="<{link app=b2c ctl=wap_passport act=create args01=$next_url}>" method="post" class="form" data-type="ajax">
+      <input name="forward" type="hidden" value="<{$options.url}>">
+      <input name="mini" type="hidden" value="<{$mini_passport}>">
+      <div class="c-g">
+        <label for="" class="c-l">
+          <em class="f-red">*</em>手机号：
+        </label>
+        <div class="c">
+          <input type="text" name="pam_account[login_name]" class="text a-account" required="required" maxlength="11" pattern="^1[3458]\d{9}$" autofocus data-caution="手机号不能为空"><a href="<{link app=b2c ctl=wap_passport act=send_vcode_sms}>" class="btn btn-send orange ib-btn">发送验证码</a>
+        </div>
+      </div>
+      <div class="notice"></div>
+      <div class="c-g" style="margin-bottom:0px;">
+        <label for="" class="c-l">
+          <em class="f-red">*</em>密码：
+        </label>
+        <div class="c">
+          <input type="password" name="pam_account[login_password]" maxlength="20" placeholder="请输入您收到的短信登录密码" required="required" pattern=".{6,20}" class="text" data-caution="密码不能为空">
+        </div>
+      </div>
+      <div class="notice"></div>
+      <div class="c-g-c" style="margin-top:5px; padding-top:0px; margin-bottom:0px; ">
+        <input type="checkbox" name="license" id="license" checked="checked">
+        <label for="license">
+          <{t}>同意<a href="<{link app=b2c ctl=wap_passport act=license}>" class="license lnk">注册协议</a><{/t}>
+        </label>
+      </div>
+      <div class="btn-bar" style="margin-bottom:10px;">
+        <button type="submit" class="btn orange" rel="_request">免费注册</button>
+      </div>
+    </form>
+    </div>
+    <div style="height:40px; clear:both; display:block; overflow:hidden;"></div>
+  </div>
+</div>
+
+
+
+<script>
+$('.form .btn-send').click(function (e) {
+    e.preventDefault();
+    var el = $('.form .a-account');
+    if($(this).hasClass('disabled')) return false;
+    sendVerify(this, 'uname=' + el.val() + '&type=signup');
+});
+
+function sendVerify(el, data) {
+    var url = el.href;
+    $(el).addClass('disabled');
+    var cd = new countdown(el, {
+        start: 120,
+        secondOnly: true,
+        callback: function(e) {
+            $(el).removeClass('disabled').html('重发密码');
+        }
+    });
+    $.post(url, data, function(rs) {
+        if(rs) {
+            try{
+                rs = $.parseJSON(rs);
+            } catch (e) {}
+            if(rs.error) {
+                $(el).removeClass('disabled').html('重发密码');
+                clearTimeout(cd.timer);
+                if(typeof rs.error === 'string') alert(rs.error);
+            }
+        }
+    });
+}
+document.title="百万红包大派送 + 秒杀3折起 + 0元购【哈淘微分销 亲情奉献】";
+</script>
+

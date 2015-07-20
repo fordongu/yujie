@@ -1,0 +1,51 @@
+<!-- 会员中心主内容区 -->
+<div class="page-article">
+  <!-- 二维码邀请 -->
+  <div id="member_deposit" class="member-coupon">
+    <div class="member-title">
+      <h2><{t}>二维码邀请<{/t}></h2>
+    </div>
+    <div class="member-mod">
+        <table class="member-grid">
+            <thead>
+              <tr>
+                <th><{t}><{/t}></th>
+              </tr>
+            </thead>
+            <tbody class="first">
+                  <tr >
+                      <td><img src="<{$code}>"></td>
+                  </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+
+
+<!-- 百度分享start -->
+<script>
+    var bdshare_url = '<{$code}>';
+    var bdshare_value = '<{$value}>';
+    
+    window._bd_share_config={
+        "common":{
+            "bdSnsKey":{},
+            "bdText":"",
+            "bdMini":"2",
+            "bdMiniList":false,
+            "bdDesc":"",
+            "bdUrl" :bdshare_value,
+            "bdPic":bdshare_url,
+            "bdStyle":"0",
+            "bdSize":"16"
+        },
+        "image":{
+            "viewList":["sqq","qzone","tsina","tqq","renren","weixin"],
+            "viewText":"分享到：",
+            "viewSize":"32"
+        }
+    };
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<!-- 百度分享end -->

@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=utf-8">
+        <title><{$title}></title>
+		<script src="/public/images/jquery.js"></script>
+        <{css src="detail.css" app="microshop"}>
+        <{css src="public.css" app="microshop"}>
+        <{if $headers}>
+        <{foreach from=$headers item=arr}>
+        <{$arr}>
+        <{/foreach}>
+        <{/if}>
+		<script type="text/javascript">
+			function save_special(msg){//定义保存函数
+				$('.bianji').text('编辑');
+				$('#special-name').text(msg);
+				$('#special-name').removeAttr('style');
+				$('#special_name_val').attr('style','display:none;');
+				$('#shanchu-zhuanji').css('display','none');
+				$('.del-product').css('display','none');
+			}
+			function edit_special(id){	 	
+				obj = $('.bianji');
+				if(obj.text() == '编辑'){
+					name = $(':text').val();
+					obj.text('保存');
+					$('#special-name').attr('style','display:none;');
+					$('#special_name_val').removeAttr('style');
+					$('#shanchu-zhuanji').css('display','block');
+					$('.del-product').css('display','inline-block');
+				}else{
+					specialname = $(':text').val();
+					if(name == specialname){save_special(name);return}//防止重复提交
+					$.ajax({//异步处理
+					   type: "POST",
+					   url: "/index.php/microshop-ajax_special.html",
+					   data: 'name='+specialname+'&id='+id,
+					   success: function(msg){
+							if(msg){
+								save_special(msg);
+							}else{
+								alert('修改失败');
+							}
+					   }
+					});
+				}
+			}
+			function delete_special(product_id){
+				special_id = $('input[name="special_id"]').val();
+				//alert(id);
+				if(special_id > 0){				
+					$.ajax({//异步处理
+					   type: "POST",
+					   url: "/index.php/microshop-ajax_del_special.html",
+					   data: 'token='+Math.random()+'&special_id='+special_id+'&product_id='+product_id,
+					   success: function(msg){
+							//alert(msg);
+							if(msg){
+								if(product_id > 0 ){
+									$('#special_product_'+product_id).remove();
+								}else{
+									window.location.href= "<{link app=microshop ctl=site_index act=detail arg=$info['shop_id']}>"; 
+								}
+							}else{
+								alert('删除失败');
+							}
+					   }
+					});
+				}else{
+					alert('建议您刷新下页面');//防止误删
+				}				
+			}
+		</script>
+		<style type="text/css">
+			.del-product{display:none;
+					background:rgb(255, 0, 107);
+					height: 20px;
+					width: 20px;
+					position: absolute;
+					border-radius: 10px;
+					right:0px;}
+			.yihengxian{width: 15px;
+height: 2px;
+background: #fff;
+display: block;
+float: left;
+margin-top: 9px;
+margin-left: 2px;}
+			.zhuanji-list.left{float:left;padding:5px;position:relative;margin:4px;width: 43%;border: 1px solid #d1d1d1;}
+            .zhuanji-list.right{float:left;padding:5px;margin:4px;position:relative;width: 43%;border: 1px solid #d1d1d1;}
+		</style>
+    </head>
+    <body>
+    	
+        <div class="top-nav-box" style="background: none repeat scroll 0% 0% rgb(253, 105, 45);">
+            <div class="microshop-name">
+            	<a class="header_left" onclick="history.go(-1)"></a>
+				<input type="hidden" name="special_id" value="<{$info.special_id}>" />
+				<span id="special-name"><{$info['special_name']}></span>
+				<span style="display:none;" id="special_name_val"><input type="text" name="specialname" value="<{$info['special_name']}>" /></span>
+				<{if $login_member_id == $info['member_id']}>	
+				<a class="bianji" href="javascript:edit_special(<{$info.special_id}>);" style="display:inline;float:right;font-size:12px;padding-right:10px;">编辑</a>
+				<{/if}>
+			</div>
+        </div>
+        <{if $info['shop_open'] == 1}>
+      
+        <div class="member-shop-intro"><{$info['info']}></div>
+            
+ 
+      <div style="margin:0 auto;overflow:hidden;max-width:350px;">
+        <div class="special-goods-box">
+            <{foreach from=$info['products'] item=arr key=k}>
+			<div class="zhuanji-list <{if $k%2==0}>left<{else}>right<{/if}>" id="special_product_<{$arr['product_id']}>">
+				<a href="javascript:delete_special(<{$arr['product_id']}>)" class="del-product">
+					<span class="yihengxian"></span>
+				</a>
+				<a class="special-goods-item" href="<{$arr['buy_url']}>" style="margin:0;width:100%;border:none;height:<{$img_size['big_h'] + 60}>px">
+					
+					<div class="goods-large-img" style="width:135px;height:<{$img_size['big_h']}>px">
+						<img src="<{$arr['detail']['images']['thisuasm_url']}>" width="135px" height="<{$img_size['big_h']}>px" title="<{$arr['detail']['name']}>"/>
+					</div>
+					<div class="goods-title"><{$arr['detail']['name']}></div>
+					<div class="price-fav-box">
+						<div class="price-box"><{$arr['detail']['price']|cur_odr}></div>
+						<div class="fav-box"><{$arr['detail']['fav_num']}></div>
+					</div>
+				</a>
+			</div>
+            <{/foreach}>
+            <{if $login_member_id == $info['member_id']}>
+            <a class="special-goods-item" href="<{link app=microshop ctl=site_index act=get_all_list arg=$info['special_id']}>" style="float:left;padding:5px;position:relative;margin:4px;width: 43%;border: 1px solid #d1d1d1;text-align: center;">
+				 <label class="goods-title">新商品</label>
+				 <div class="goods-large-img" style="width:100%;height:178px;margin:0 auto;"><{img width="100%" app="microshop" src="images/jia.png" /}></div>
+			 </a>
+			 <{/if}>
+        </div>
+    </div>
+        <{script src="microshop.js" app="microshop"}>
+        <{/if}>
+		<div class="top-nav-box" id="shanchu-zhuanji" style="background: none repeat scroll 0% 0% rgb(253, 105, 45);display:none;float:left;margin-top:10px;">
+            <div class="microshop-name">
+				<span ><a href="javascript:delete_special(0)">删除整个专辑</a></span>				
+			</div>
+        </div>
+        <{if $login_member_id == $info['member_id']}>
+     <footer>
+
+          <ul>
+
+             <li><a href="<{link app=microshop ctl=site_index act=index arg=$info['shop_id']}>" class="dp">我的店铺</a></li>
+
+             <li><a href="<{link app=microshop ctl=site_index act=shengyisy arg=$info['shop_id']}>" class="sy">指尖财富</a></li>
+
+<!--              <li><a class="td">团队</a></li> -->
+
+             <li><a href="<{link app=microshop ctl=site_index act=me arg=$info['shop_id']}>" class="cf">我的财富</a></li>
+
+          </ul>
+
+       </footer>
+       <{/if}>
+    </body>
+</html>

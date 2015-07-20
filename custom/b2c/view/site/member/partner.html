@@ -1,0 +1,42 @@
+
+<!-- 会员中心主内容区 -->
+<div class="page-article">
+  <!-- 合伙人 -->
+  <div id="member_coupon" class="member-coupon">
+    <div class="member-title">
+      <h2><{t}>我的合伙人<{/t}></h2>
+    </div>
+
+    <div class="member-mod">
+      <table class="member-grid">
+        
+        <tbody<{if !($browser.name=="IE" && ($brower.ver == 6 || $browser.ver == 7))}> class="first"<{/if}>>
+          <{if $partner}>
+            <tr>
+                <{foreach from=$partner.list item=val key=key}>
+                        <{if ($key%10) eq 0}>
+                            </tr>
+                            <tr>
+                        <{/if}>
+                        <td>
+                            <div class='partner_img'>
+                                <{if $val.image!=''}>
+                                <a href="<{link app=b2c ctl='site_member' full='1' act='partner_list' arg=$val.member_id}>"><img src="<{$val.image|storager:'s'}>" height="70px" width="70px"></a>
+                                <{else}>
+                                    <a href="<{link app=b2c ctl='site_member' full='1' act='partner_list' arg=$val.member_id}>"><{img src="sprites/default-avatar.png" alt=""}></a>
+                                <{/if}>
+                            </div>
+                            <div class='partner_name'><{$val.nickname}></div>
+                        </td>
+                    
+                <{/foreach}>
+            </tr>
+          <{else}>
+            <tr class="first"><td colspan="4" class="no-information"><{t}>暂无合伙人<{/t}></td></tr>
+          <{/if}>
+        </tbody>
+      </table>
+    </div>
+   
+  </div>
+</div>

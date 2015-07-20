@@ -1,0 +1,80 @@
+<!-- 会员中心主内容区 -->
+<div class="page-article">
+  <!-- 我要提现 -->
+  <div id="member_prepaid" class="member-prepaid">
+    <div class="member-title">
+      <h2><{t}>我要提现<{/t}></h2>
+     
+    </div>
+
+    <div class="member-mod">
+      <form action="<{link app=b2c ctl=site_member act=submit_withdrawal}>" method="post" id="post_withdrawal" class="post_withdrawal action-code-form">
+       
+        <table>
+          <tbody>
+            <tr>
+              <td><{t}>输入提现金额<{/t}>：</td>
+              <td><input type="text" name="money" id="" class="x-input" size="10" vtype="required&&positive" data-caution="请输入金额&&金额只能是大于0的数字"></td>
+            </tr>
+            <tr>
+              <td><{t}>您当前的账户总金额为<{/t}>：</td>
+              <td><b style="color:red;"><{$withdrawals.total|cur}></b></td>
+            </tr>
+            <tr>
+              <td><{t}>选择提现账号:<{/t}>：</td>
+              <td>
+                <select name="bank">
+                    <{foreach from=$withdrawals.bank_list item="bank"}>
+                        <option value="<{$bank.bank_num}>"><{$bank.bank_name}>:  <{$bank.bank_num}></option>
+                    <{/foreach}>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button type="submit" class="btn btn-import btn-big"><span><span><{t}>提交<{/t}></span></span></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+        <div class="member-title">
+            <h3><{t}>提现记录<{/t}></h3>
+        </div>
+        <div class="member-mod">
+            <table class="member-grid">
+            
+              <thead>
+                <tr>
+                  <th><{t}>日期<{/t}></th>
+                  <th><{t}>提现金额<{/t}></th>
+                  <th><{t}>状态<{/t}></th>
+                </tr>
+              </thead>
+              <tbody>
+                <{if $withdrawals['witlogs']}>
+                    <{foreach from=$withdrawals['witlogs'] item=logs }>
+                        <tr align="center">
+                          <td><{$logs.create_time|date:'Y-m-d'}></td>
+                          <td><{$logs.amount|cur}></td>
+                          <td>
+                              <{if $logs['has_op'] eq 'true'}>
+                                <{$logs.remark}>
+                              <{else}>
+                                处理中
+                              <{/if}>
+                          </td>
+                        </tr>
+                    <{/foreach}>
+                <{else}>
+                    <tr>
+                        <th colspan="3"><{t}>暂时没有提现记录<{/t}></th>
+                    </tr>
+                <{/if}>
+              </tbody>
+            </table>
+        </div>
+    
+  </div>
+</div>

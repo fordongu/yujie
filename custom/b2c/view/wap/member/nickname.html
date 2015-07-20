@@ -1,0 +1,36 @@
+
+<div class="full-screen">
+    <header>
+        <div class="a-bar">
+            <a href="javascript:history.back()" class="a-back" style='display:block;'>
+                <i class="arr left"></i>
+                返回
+            </a>
+            <div class="a-name">
+                修改昵称
+            </div>
+        </div>
+    </header>
+    <div class="post-message">
+      <form method="post" action="<{link app=b2c ctl=wap_member act=save_setting}>" class="signupin-content">
+        <ul>
+         
+          <li style="margin-left: 5%;margin-top: 5%; margin-right: 5%; padding-left: 2%; padding-right: 2%; background: none repeat scroll 0% 0% rgb(245, 245, 245); border-radius: 4px; height: 40px; line-height: 40px;" class="form-item">
+            <label class="form-label" for="">姓名：</label>
+            <span class="form-act">
+                <{input type="text" name="nickname" value=$mem.nickname style="width: 80%; background: none repeat scroll 0% 0% rgb(245, 245, 245);" vtype="required"}>
+            </span> </li>
+          <li style="height: 72px; line-height: 72px; margin-left: 7%; margin-right: 7%; padding-top: 5%;" class="form-item"> <span class="form-act">
+            <button style="background-image: linear-gradient(#fc6b00, #fc6b00);border: 0px solid #9aa1a9;border-radius: 4px; margin-bottom: 2%;margin-top: 2%;background:rgb(243,38,88);" rel="_request" class="btn btn-caution action-sendmsg" onclick="sumbitf()"><span><span>保存</span></span></button>
+            </span> </li>
+        </ul> 
+      </form>
+    </div>
+    
+</div>
+
+<script>
+    var e = $.fn.cookie('S[CART_NUMBER]')?$.fn.cookie('S[CART_NUMBER]'):'';
+    if(e) $("#cartNum").text(e);
+</script>
+

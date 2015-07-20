@@ -1,0 +1,46 @@
+<!-- 会员中心主内容区 -->
+<div class="page-article">
+  <!-- 绑定银行账号 -->
+  <div id="member_prepaid" class="member-prepaid">
+    <div class="member-title">
+      <h2><{t}>新增银行卡<{/t}></h2>
+     
+    </div>
+
+    <div class="member-mod">
+      <form action="<{link app=b2c ctl=site_member act=submitBank}>" method="post" id="post_withdrawal" class="post_withdrawal action-code-form">
+          <input type="hidden" name="bank_id" value="<{$my_bank.member_bank_id}>">
+        <table>
+          <col style="width:20%">
+          <col style="width:80%">
+          <tbody>
+            <tr>
+              <td><{t}>银行:<{/t}>：</td>
+              <td>
+                <select name="bank_name">
+                    <{foreach from=$bank_list item="bank"}>
+                        <option value="<{$bank}>" <{if $my_bank['bank_name'] eq  $bank}>selected<{/if}> ><{$bank}></option>
+                    <{/foreach}>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><{t}>持卡人<{/t}>：</td>
+              <td><input type="text" name="name" id="" value = "<{$my_bank.real_name}>" class="x-input" size="10" vtype="required" data-caution="请输入持卡人姓名"></td>
+            </tr>
+            <tr>
+              <td><{t}>卡号<{/t}>：</td>
+              <td><input type="text" name="account" id="" value = "<{$my_bank.bank_num}>" class="x-input" size="50" vtype="required" data-caution="请输入提现银行账号"></td>
+            </tr>
+            <tr>
+              <td>
+                <button type="submit" class="btn btn-import btn-big"><span><span><{t}>提交<{/t}></span></span></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+        
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="tabs-wrap">
+  <ul>
+    <li class="tab current"><span><{t}>微店设置<{/t}></span></li>
+  </ul>
+</div>
+<div>
+  <form method="post" action="index.php?app=microshop&ctl=admin_setting&act=save" id="whitelist">
+    <div class="tableform">
+      <div class="division">
+        <p style="margin:20px 0"><{t}>微店收取自营产品提成比例：<{/t}>
+            <input name="hatao_ticheng" value="<{$hatao_ticheng}>" type="text" size="10" /><span>（0-1之间）</span>         
+        </p>
+        
+      </div>
+
+      <div class="table-action">
+        <{button type="submit"  label=$___b2c="保存"|t:'site'}>
+      </div>
+    </div>
+  </form>
+</div>
+

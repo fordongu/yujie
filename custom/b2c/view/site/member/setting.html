@@ -1,0 +1,43 @@
+<!-- 会员中心主内容区 -->
+<div class="page-article">
+  <!-- 个人信息 -->
+  <div id="member_information" class="member-information">
+    <div class="member-title">
+      <h2><{t}>个人信息<{/t}></h2><p> | <{t}>请尽量完整填写您的个人信息，方便店家与您联系<{/t}>。</p>
+    </div>
+
+    <div class="member-mod">
+      <form action="<{link app=b2c ctl=site_member act=save_setting}>" method="post" class="signupin-content">
+        <ul>
+          <!--
+          <li class="form-item">
+            <label for="" class="form-label"><{t}>货币<{/t}>：</label>
+            <span class="form-act">
+              <{input type=select name="currency" options=$currency.options value=$currency.value required=true}>
+            </span>
+          </li>
+          -->
+          <li class="form-item">
+            <label for="" class="form-label"><em class="warn">*</em>昵称：</label>
+            <span class="form-act">
+              <{input type="text" name="nickname" value=$mem.nickname vtype="required"}>
+            </span>
+          </li>
+          <{if $mem.email}>
+          <li class="form-item">
+            <label for="" class="form-label"><em class="warn"></em> E-mail：</label>
+            <{$mem.email}>
+          </li>
+          <{/if}>
+          <{if $mem.contact.phone.mobile}>
+          <li class="form-item">
+            <label for="" class="form-label"><em class="warn"></em> 手机号：</label>
+            <{$mem.contact.phone.mobile}>
+          </li>
+          <{/if}>
+          <li class="form-item-normal"><span class="form-act"><button type="submit" class="btn btn-caution" rel="_request"><span><span><{t}>保 存<{/t}></span></span></button></span></li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</div>

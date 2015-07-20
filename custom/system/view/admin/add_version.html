@@ -1,0 +1,59 @@
+<form method="POST" id='newmember-edit-form' enctype="multipart/form-data" action="index.php?app=system&ctl=admin_fx_version&act=save" class="tableform">
+    <div class="division">
+        <table width="100%" >
+            <tr>
+                <th><em class="red">*</em><{t}>APP名称：<{/t}></th>
+                <td><{input type="text" name="auth[app_name]" size="30" vtype="required"}></td>
+            </tr>
+            <tr>
+                <th><em class="red">*</em><{t}>版本号：<{/t}></th>
+                <td><{input type="text" name="auth[version_num]" size="30" vtype="required"}></td>
+            </tr>
+            <tr>
+                <th><em class="red">*</em><{t}>APP类型：<{/t}></th>
+                <td>
+                    <select name="app_type" >						
+                        <option value="ios" >苹果系统</option>
+                        <option value="android" >安卓系统</option>
+                        <option value="other" >其它系统</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th><em class="red"></em><{t}>安装包上传：<{/t}></th>
+                <td><input type="file" name="file" onchange="upfile(this)" /></td>
+            </tr>
+            <tr>
+                <th><em class="red"></em><{t}>跟新时间：<{/t}></th>
+                <td><{$time|cdate:FDATE_FTIME}></td>
+            </tr>
+            <tr>
+                <th><em class="red"></em><{t}>备注：<{/t}></th>
+                <td><textarea name="remark" cols="55" rows="8" ></textarea></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" name="保存" onclick="save(this)" value="save" /></td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<div class="table-action" id="newmember-edit-form-submit" ></div>
+
+<script>
+    function save() {
+         var btn = $('newmember-edit-form-submit');
+        var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+        _dialogIns.close();
+        finder.refresh.delay(400, finder);
+    }
+    function upfile(obj) {
+        var bb = obj.value;
+        aa = bb.match("/[\/].+?[.]\s+/")
+        //alert(aa);
+    }
+
+</script>
+
+

@@ -1,0 +1,23 @@
+<div id="cat-config" style="display:none;"></div>
+	<div class="tableform widgetconfig">
+	<div class="division">
+  <label> 版块classname： </label>
+  <input type="text" class="x-input" name="block_class" value="<{$setting.block_class}>"/> <em class="note"><{t app='content'}>设计师专用，非设计师请不要修改本项参数。<{/t}></em>
+</div>
+	  <div class="division">
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0" id="showChange">
+			<tr>
+			<th width="10%">显示标题：</th>
+			<td width="90%">
+				<input name="title" class="inputstyle" value="<{$setting.title|default:用户评论}>" />
+			</td>
+		  </tr>
+		  <tr>
+			<th width="10%">显示评论：</th>
+			<td width="90%">
+				<input name="limit" class="inputstyle" value="<{$setting.limit|default:5}>" />&nbsp;&nbsp;条
+			</td>
+		  </tr>
+	  </table>
+	</div>
+</div>

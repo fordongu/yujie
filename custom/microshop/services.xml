@@ -1,0 +1,35 @@
+<services>
+
+	<service id="api.microshop.special">
+        <class>microshop_rpc_special</class>
+    </service>
+
+	<service id="api.microshop.shop">
+        <class>microshop_rpc_shop</class>
+    </service>
+
+    <service id="desktop_finder.microshop_mdl_shop">
+        <class>microshop_finder_shop</class>
+    </service>
+
+    <service id="desktop_finder.microshop_mdl_special">
+        <class>microshop_finder_special</class>
+    </service>
+
+    <service id="desktop_finder.microshop_mdl_special_products">
+        <class>microshop_finder_special_products</class>
+    </service>
+    
+
+    
+
+
+    <!--模板管理-->
+    <service id="site.site_theme_tmpl">
+        <class>microshop_theme_tmpl</class>
+    </service>
+    <service id="desktop_finder.microshop_mdl_shop_lv">
+        <class>microshop_finder_shop_lv</class>
+    </service>
+    
+</services>

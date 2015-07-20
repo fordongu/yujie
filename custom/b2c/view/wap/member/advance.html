@@ -1,0 +1,49 @@
+<link rel="stylesheet" type="text/css" href="/custom/b2c/view/wap/member/public/member.css">
+<div class="full-screen">
+    <header>
+        <div class="a-bar">
+            <a href="javascript:history.back()" class="a-back" style='display:block;'>
+                <i class="arr left"></i>
+                返回
+            </a>
+            <div class="a-name">
+                交易记录
+            </div>
+        </div>
+    </header>
+    <div class="section" style="border:none;">
+        <div class="mem-info c-fix">
+            <div class="mem-menulist" style='padding-top:0px;'>  
+                <ul>
+                    <{foreach from=$advance item=item}>
+                        <li >
+                            <div style='float:left;line-height: 25px;'>
+                                <span><{$item.message}></span><br>
+                                <span><{$item.mtime|cdate:FDATE_STIME}></span>
+                            </div>
+                            <div style='float:right;'>
+                                <{if $item.money==$item.import_money}>
+                                    +<{$item.money}>元
+                                <{else}>
+                                    -<{$item.money}>元
+                                <{/if}>
+                            </div>
+                        </li>
+                    <{foreachelse}>
+                        empty
+                    <{/foreach}>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style='margin-bottom:50px;'>
+        <{wap_pagers data=$pager}>
+    </div>
+    
+</div>
+
+<script>
+    var e = $.fn.cookie('S[CART_NUMBER]')?$.fn.cookie('S[CART_NUMBER]'):'';
+    if(e) $("#cartNum").text(e);
+</script>
+

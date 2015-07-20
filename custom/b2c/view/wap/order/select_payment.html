@@ -1,0 +1,21 @@
+
+<ul id="J_pay_list">
+  <{$payment_html}>
+</ul>
+<script>
+function isWeiXin(){ 
+	var ua = window.navigator.userAgent.toLowerCase(); 
+	if(ua.match(/MicroMessenger/i) == 'micromessenger'){ 
+		return true; 
+	}else{ 
+		return false; 
+	} 
+}
+$(function(){
+	if(isWeiXin()){
+        $('#pay_app_id_malipay').remove();
+    }else{
+        $('#pay_app_id_wxpay').remove();
+    }
+})
+</script>

@@ -1,0 +1,29 @@
+<{if count($data)>0||$env.get.ctl == "admin_theme_widget"}>
+<dl class="basic-ex-breadcrumbs clearfix">
+      <dt>当前位置：</dt>
+      <dd>
+            <{if $env.get.ctl == "admin_theme_widget"}>
+                <span>模板可视化编辑</span>
+            <{else}>
+                  <a class="beb-nav" href="<{link app=site ctl=site_default act=index}>"><span>首页</span></a>
+                  <span class="beb-raquo">&raquo;</span>
+                  <{foreach from=$data item=item name=breadcrumbs}>
+                          <{if $env.foreach.breadcrumbs.last}>
+                                <span class="beb-current"><{$item.title}></span>
+                          <{else}>
+                                <a class='beb-nav' href="<{$item.link}>" >
+                                      <span ><{$item.title}></span>
+                                </a>
+                                <span class="beb-raquo">&raquo;</span>
+                          <{/if}>
+                <{/foreach}>
+              <{/if}>
+      </dd>
+</dl>
+<{/if}>
+<style type="text/css">
+      .basic-ex-breadcrumbs{line-height: 25px;}
+      .basic-ex-breadcrumbs dt,.basic-ex-breadcrumbs dd{float: left;}
+      .basic-ex-breadcrumbs dt{font-weight: bold;}
+</style>
+

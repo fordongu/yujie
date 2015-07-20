@@ -1,0 +1,31 @@
+<link rel="stylesheet" type="text/css" href="/custom/b2c/view/wap/member/public/member.css">
+<div class="full-screen">
+    <header>
+        <div class="a-bar">
+            <a href="javascript:history.back()" class="a-back" style='display:block;'>
+                <i class="arr left"></i>
+                返回
+            </a>
+            <div class="a-name">
+                订单物流
+            </div>
+        </div>
+    </header>
+    <div class="section" style="border:none;">
+        <table>
+            <{foreach from=$logistics.data item=value}>
+                <tr><td><{$value.time}></td><td><{$value.context}></td></tr>
+            <{foreachelse}>
+                <tr><td><{$logistics.msg}></td></tr>
+            <{/foreach}>
+        </table>
+        
+    </div> 
+    
+</div>
+
+<script>
+    var e = $.fn.cookie('S[CART_NUMBER]')?$.fn.cookie('S[CART_NUMBER]'):'';
+    if(e) $("#cartNum").text(e);
+</script>
+

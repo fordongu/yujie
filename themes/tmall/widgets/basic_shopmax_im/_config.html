@@ -1,0 +1,124 @@
+<script>
+var addItem=function(y){
+  var i=$time();
+  var type;
+  var str;
+  switch(y){
+    case 1:
+       type=1;
+       str='QQ:';
+      break;
+    case 2:
+       type=2;
+       str='阿里旺旺:';
+      break;
+  }
+ 
+ 
+ var rowLine=[
+     '<div class="row-line">',
+       '<input type="hidden" value="{type}" name="im[{id}][type]"/>',
+       '<input type="hidden" value="{id}" name="im[{id}][i]"/>',
+      '<div style="text-align: right;" class="span-5">',
+                '<span class="im-info">{str}</span>',
+               ' <input value="" name="im[{id}][link]"/>',
+      '</div>',
+      '<div class="span-5">',
+        '文字说明:<input value="" name="im[{id}][info]"/>',
+      '</div>',
+	  '<div class="span-5">',
+        '在线时间:<input value="" name="im[{id}][time]"/>',
+      '</div>',
+       '<div class="span-5">',
+         
+         '<span style="cursor:pointer;" onclick="imItemMoveTo(-1,this)">[^]&nbsp;向上</span>&nbsp;&nbsp;',
+         '<span style="cursor:pointer;" onclick="imItemMoveTo(1,this)">[v]&nbsp;向下</span>&nbsp;&nbsp;',
+        '<span style="cursor:pointer;" onclick="$(this).getParent(\'.row\').remove();">[-]&nbsp;删除</span>',
+                '</div>',
+      '</div>'].join('');
+      
+ $('im').adopt(new Element('div',{'class':'row'}).setHTML(rowLine.substitute({
+     
+     id:i,
+     type:type,
+     str:str
+ 
+ })));
+  
+ 
+}
+</script>
+
+<div class="tableform widgetconfig">
+
+    <table>
+      <tr>
+        <th>跟随方式</th>
+        <td><select name="alignselect"><option value='left' <{if $setting.alignselect=='left'}>selected<{/if}>>左</option><option value='right' <{if $setting.alignselect=='right'}>selected<{/if}>>右</option></select></td>
+      </tr>
+      <tr>
+        <th>底部提示信息</th>
+        <td><textarea name="titleexp"><{$setting.titleexp|default:'我们营业的时间<br>9:00-18:00'}></textarea> </td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <div class='actionBar'>
+      <span  class="btn lnk " onclick="addItem(1);"><span><span>[+] 添加QQ</span></span></span>
+      <span  class="btn lnk " onclick="addItem(2);"><span><span>[+] 添加阿里旺旺</span></span></span>
+  </div><br>
+<div class="finder">
+ <div class="finder-list" id="im">
+<{foreach from=$setting.im item=data key=key}>
+  <div class='row'>
+    <div class='row-line'>
+       <input type=hidden name=im[<{$data.i}>][type] value="<{$data.type}>">
+       <input type=hidden name=im[<{$data.i}>][i] value="<{$data.i}>">
+      <div class='span-5' style='text-align:right'>
+        <{if $data.type==1}>
+        <span class="im-info">QQ:</span>
+        <{elseif $data.type==2}>
+        <span class="im-info">阿里旺旺:</span>
+        <{/if}>
+        <input name=im[<{$data.i}>][link] value="<{$data.link}>" >
+      </div>
+
+      
+      <div class='span-5'>
+        文字说明:<input name=im[<{$data.i}>][info] value="<{$data.info}>">
+      
+      </div>
+	  <div class='span-5'>
+        在线时间:<input name=im[<{$data.i}>][time] value="<{$data.time}>">
+      </div>
+       <div class='span-5'>
+	   <span style="cursor:pointer;" onclick="imItemMoveTo(-1,this)">[^]&nbsp;向上</span>&nbsp;&nbsp;
+	   <span style="cursor:pointer;" onclick="imItemMoveTo(1,this)">[v]&nbsp;向下</span>&nbsp;&nbsp;<{if $data.type }> 
+	   <span style="cursor:pointer;" onclick="$(this).getParent('.row').remove();">[-]&nbsp;删除</span>
+        <{/if}>
+        </div>   
+      </div>
+  </div>
+  <{/foreach}>
+ </div>
+
+</div>
+
+<script>
+function imItemMoveTo(v,e){
+     var row =$(e).getParent('.row');
+     var pre=row.getPrevious('.row');
+     var next=row.getNext('.row');
+  
+    
+     if(pre&&v<0){
+             row.injectBefore(pre);
+          }
+      if(next&&v>0){
+              row.injectAfter(next);
+          }
+
+}
+
+
+</script>

@@ -1,0 +1,32 @@
+<div class="maxArticle <{$setting.boxclass}>"> <{if $setting.titlename}>
+  <div class="maxTitle">
+    <h3><{$setting.titlename}></h3>
+  </div>
+  <{/if}>
+  <{if $data.__shownode&&$data.node_name}>
+    <div class="maxTitle clearfix">
+      <h3><{if !$data.__stripparenturl}><a href="<{$data.node_url}>" ><span><{$data.node_name}></span></a><{else}>
+        <{$data.node_name}>
+        <{/if}></h3>
+    </div>
+    <{/if}>
+
+<{if $setting.ad_pic}>
+<div class="maxContent clearfix">
+	<div class="p-big">
+		 <a href="<{$setting.ad_pic_link}>" target="_blank">
+		<img src='<{$setting.ad_pic|storager}>' alt="<{$setting.ad_pic_txt}>" <{if $setting.ad_pic_width}>width='<{$setting.ad_pic_width}>'<{/if}> <{if $setting.ad_pic_height}>height='<{$setting.ad_pic_height}>'<{/if}> />
+	</a>
+	</div>
+	<ul class="news-list clearfix">
+	<{$data.__html}></ul>
+</div>
+
+<{else}>
+ <ul class="news-list maxContent clearfix">
+	<{$data.__html}></ul>
+<{/if}>
+
+  <{if !$data.__showmore}>
+  <div class="maxMore"><a href="<{$data.node_url}>" >更多 ></a></div>
+  <{/if}> </div>

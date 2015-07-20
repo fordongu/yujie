@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <meta http-equiv="x-ua-compatible" content="ie=7" />
+    
+    <head>
+        <meta charset="UTF-8">
+        <{header}>
+            <link href="images/max.css" rel="stylesheet" type="text/css" />
+    </head>    
+    <body class="max-group-page">
+        <{require file="block/header_single.html" }>
+            <{require file="block/maxpath.html" }>
+               
+                    <div class="maxwIn">
+                    
+                            <div class="maxPageBanner"<{if $env.get.ctl == "admin_theme_widget"}> style="width:1200px;margin:0 auto"<{/if}>>
+                                <{widgets id="maxPageBanner" }>
+                            </div>
+                            <div class="maxtuan clearfix">
+                                <div class="maxQGTitle">
+                                    <{widgets id="maxQGTitle" }>
+                                </div>
+								<div class="maxQGContent clearfix">
+                                <{widgets id="maxQGContent" }> </div>
+                            </div>
+                    </div>
+             
+                <{require file="block/footer.html" }>

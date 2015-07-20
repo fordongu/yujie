@@ -1,0 +1,219 @@
+<div id="goods_shopmax_multiple_widget_configure" class="tableform widgetconfig">
+<h4>全局设置</h4>
+<div class="division">
+  <div class="span-auto">
+    <label>栏目class：</label>
+    <{input type='text' name='boxclass' value=$setting.boxclass  size=4 style='width:100px;'}> <em class="note"><{t app='content'}>设计师专用，非设计师请不要修改本项参数。<{/t}></em></div>
+  <div class="span-auto">
+    <label>商品容器宽度：<{help}>即单个商品区域父容器宽度<{/help}> </label>
+    <input type="text"  name="panel_width"  value="<{$setting.panel_width}>" />
+    px </div>
+  <div class="span-auto">
+    <label> 商品图片最大高度：</label>
+    <input type="text"  name="item_pic_maxheight" class="inputstyle" value="<{$setting.item_pic_maxheight}>" />
+    px </div>
+  <div class="span-auto ">
+    <label> 每个商品名称显示行数： </label>
+    <input type="text"  name="item_title_lines" value="<{$setting.item_title_lines}>" />
+    留空为全部显示 </div>
+  <div class="span-auto ">
+    <label> 图片居左: </label>
+    <input type="checkbox"   name="pic_left" value="1"   <{if $setting.pic_left}>checked<{/if}> /> </div>
+
+  <div class="span-auto ">
+    <label> 显示购买按钮:</label>
+    <input type="checkbox"   name="show_buybutton" value="1"   <{if $setting.show_buybutton}>checked<{/if}> /> </div>
+  <div class="span-auto ">
+    <label> 价格标题:</label>
+    <input type="text"  name="pricetitle"  value="<{$setting.pricetitle}>" />
+  </div>
+</div>
+<h4>单层商品设置</h4>
+<textarea style="display:none;">
+			<input type="hidden" name="goods_list[{_id}][id]" value="{_id}" />
+		     	  <div class="span-auto">
+		  	        <label>标题：</label><input type="text" name="goods_list[{_id}][title]"  value="" class="inputstyle" style="width:150px;"/>
+		   	  </div>
+			  <div class="span-auto">
+		  	        <label>商品：</label><div class="notice"> 添加挂件后，编辑时可选择商品</div>
+		   	  </div>
+			<div class="span-auto">
+		  	        <label>商品图片尺寸：</label>
+					<select name="goods_list[{_id}][gpic_size]">
+			                    		<option value="goodsPicS" >小尺寸</option>
+			                    		<option value="goodsPicM" >中尺寸</option>
+			                    		<option value="goodsPicL" >大尺寸</option>
+		                    		</select>
+
+		  	</div>
+		  	  <div class="span-auto">
+		  	        <label>排序：</label>
+					<select  name="goods_list[{_id}][order_by]">
+						<{foreach from=$data.goods_order_by item=item}>
+							<option value="<{$item.condition}>"><{$item.label}></option>
+						<{/foreach}>
+					</select>
+
+		  	</div>
+
+			<div class="span-auto">
+		  	        <label>最多展示数量：</label><input type="text" name="goods_list[{_id}][limit]"  value="" class="inputstyle" style="width:20px"/>
+		  	</div>
+			<div class="span-auto">
+		  	        <label>每行最多展示数量：</label><input type="text" name="goods_list[{_id}][line_limit]"  value="" class="inputstyle" style="width:20px"/>
+		  	</div>
+		  	<div class="frt">
+		  	        <span class="goprev-btn lnk">
+		  		[^]&nbsp;向上
+		  	       </span>
+		  	        <span class="gonext-btn lnk">
+		  		[v]&nbsp;向下
+		  	       </span>
+			      <span class="del-btn lnk">
+		  		[-]&nbsp;删除
+		  	       </span>
+		  	</div>
+	</textarea>
+<{if count($setting.goods_list)>0}>
+	  <{foreach from=$setting.goods_list item=glist}>
+      <div class="division clearfix">
+  <input type="hidden" name="goods_list[<{$glist.id}>][id]" value="<{$glist.id}>" />
+  <div class="span-auto">
+          <label>标题：</label>
+          <input type="text" name="goods_list[<{$glist.id}>][title]"  value="<{$glist.title}>" class="inputstyle" style="width:150px;"
+：/>
+        </div>
+  <div class="span-auto"> <{assign var="pdt_name" value="goods_select_{$glist.id}" }>
+          <{assign var="obj_name" value="goods_select_linkobj_{$glist.id}" }>
+          <label>商品：</label>
+
+<{input type="goods_select"
+			  object="goods@b2c"
+			  filter=$goodslink_filter
+			  multiple="true"
+			  return_url="{$related_return_url}"
+			  rowselect="true"
+			  textcol="name"
+			  name="{$pdt_name}"
+			  linkid=$setting.{$pdt_name}
+			  value=$setting.{$pdt_name}
+			  view="b2c:admin/goods/detail/rel_items.html"
+			  }>
+</div>
+  <div class="span-auto">
+          <label>商品图片尺寸： </label>
+          <select name="goods_list[<{$glist.id}>][gpic_size]">
+      <option value="goodsPicS" <{if $glist.gpic_size == 'goodsPicS'}>selected<{/if}>>小尺寸
+
+
+
+
+      </option>
+      <option value="goodsPicM" <{if $glist.gpic_size == 'goodsPicM'}>selected<{/if}>>中尺寸
+
+
+
+
+      </option>
+      <option value="goodsPicL" <{if $glist.gpic_size == 'goodsPicL'}>selected<{/if}>>大尺寸
+
+
+
+
+      </option>
+    </select>
+        </div>
+  <div class="span-auto">
+          <label>排序： </label>
+          <select  name="goods_list[<{$glist.id}>][order_by]">
+      <{foreach from=$data.goods_order_by item=item}> <option value="<{$item.condition}>"  <{if $glist.order_by == $item.condition}>selected<{/if}>><{$item.label}>
+      </option>
+      <{/foreach}>
+    </select>
+        </div>
+  <div class="span-auto">
+          <label>最多展示数量：</label>
+          <input type="text" name="goods_list[<{$glist.id}>][limit]"  value="<{$glist.limit}>" class="inputstyle" style="width:20px"/>
+        </div>
+  <div class="span-auto">
+          <label>每行最多展示数量：</label>
+          <input type="text" name="goods_list[<{$glist.id}>][line_limit]"  value="<{$glist.line_limit}>" class="inputstyle" style="width:20px"/>
+        </div>
+  <div class="frt"> <span class="goprev-btn lnk"> [^]&nbsp;向上 </span> <span class="gonext-btn lnk"> [v]&nbsp;向下 </span> <span class="del-btn lnk"> [-]&nbsp;删除 </span> </div>
+</div>
+<{/foreach}>
+<{/if}>
+<hr />
+<button class="lnk btn new-btn" type="button"><span class="new-btn"><span class="new-btn">[+]添加一项</span></span></button>
+</div>
+<script>
+(function(){
+
+	var panel = $('goods_shopmax_multiple_widget_configure');
+	panel.getElements('label').setStyles({
+		display:'block',
+		lineHeight:25
+	});
+	panel.addEvent('click',function(e){
+
+		var clickTarget = $(e.target);
+
+		if(clickTarget.hasClass('new-btn')){
+			e.stop();
+			var newRow = new Element('div.division.clearfix',{
+				html:panel.getElement('textarea').value.substitute({_id:$time()})
+			}).injectBefore(panel.getElement('hr'));
+
+			newRow.getElements('label').setStyles({
+					display:'block',
+					lineHeight:25
+			});
+		}
+
+		if(clickTarget.hasClass('del-btn')){
+			e.stop();
+			if(confirm('确认删除?'))
+			clickTarget.getParent('.division').dispose();
+		}
+
+
+		if(clickTarget.hasClass('goprev-btn')){
+			e.stop();
+			var item = clickTarget.getParent('.division'),
+			      itemP = item.getPrevious('.division');
+			     if(itemP){
+			      	item.injectBefore(itemP);
+			      }
+
+		}
+
+		if(clickTarget.hasClass('gonext-btn')){
+			e.stop();
+			var item = clickTarget.getParent('.division'),
+			      itemN =item.getNext('.division');
+			      if(itemN){
+			      	item.injectAfter(itemN);
+			      }
+
+
+		}
+
+
+	});
+
+	<{if count($setting.goods_list)<1}>
+		new Element('div.division.clearfix',{
+				html:panel.getElement('textarea').value.replace().substitute({_id:$time()})
+			}).injectBefore(panel.getElement('hr')).getElements('label').setStyles({
+					display:'block',
+					lineHeight:25
+			});
+
+	<{/if}>
+
+
+})();
+
+
+
+</script>

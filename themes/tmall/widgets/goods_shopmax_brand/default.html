@@ -1,0 +1,29 @@
+<dl class="maxbrand <{$setting.widget_custom_class}>">
+<dt class="maxTitle">
+    <h3><{$setting.title}></h3>
+  </dt>
+  <dd class="maxContent clearfix">
+  <ul class="clearfix">
+    <{foreach from=$data item=data key=key name=brandlist}>
+    <{if $smarty.foreach.brandlist.iteration <= $setting.num}>
+    <li> <a style="display:block; width:<{$setting.brandLogoWidth}>px;height:<{$setting.brandLogoHeight}>px; margin-bottom:<{$setting.brandLogoFontSep}>px; overflow:hidden" href="<{link app=b2c ctl=site_brand act=index arg0=$data.brandId}>" title="<{$data.brandName}>"><img src="<{$data.brandLogo|storager}>"></a><span><{$data.brandName}></span></li>
+    <{/if}>
+    <{/foreach}>
+  </ul>
+   <{if $setting.showMore == 'on'}>
+  <div class="maxMore"><a href="<{link app=b2c ctl=site_brand act=showList}>">更多品牌</a></div>
+  <{/if}>
+  </dd>
+  </dl>
+
+
+<script>
+
+
+window.addEvent('load',function(){
+         var BrandListImgs=$$('.maxbrand a img');
+        try{
+         fixProductImageSize($$(BrandListImgs),'a');
+         }catch(e){}
+    });
+</script>

@@ -1,0 +1,16 @@
+
+    
+    <div style='width:100%'>
+        <div class="box_swipe" id="banner_box" style="visibility: visible;">
+            <ul>
+                <{foreach from=$data.pic item=parent key=parentId}>
+                <li>
+                    <a href="<{$parent.linktarget}>">
+                        <img alt="" style="width:100%;" src="<{$parent.link}>" title="<{$data.linkinfo}>">
+                    </a>
+                </li>
+                <{/foreach}>
+            </ul>
+        </div>
+    </div>
+    

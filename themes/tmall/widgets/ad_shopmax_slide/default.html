@@ -1,0 +1,51 @@
+<style>
+    #ex_slide_<{$widgets_id}>{
+        width:<{$data.width}>px;
+        height:<{$data.height}>px;
+        position:relative;
+		margin:0 auto;
+		overflow:hidden;
+    }
+	#ex_slide_<{$widgets_id}> .ex-slide1-box{ width:1920px; margin-left:-<{$range}>px}
+    #ex_slide_<{$widgets_id}> ol li{
+        height:<{$data.height}>px;
+       width:<{$data.width}>px;
+        list-style:none;
+        display:block;
+        overflow:hidden;
+        border:0;
+        margin:0;
+    }
+	#ex_slide_<{$widgets_id}> .slide-trigger{bottom:10px;right:800px; position:absolute;
+        z-index:999;}
+	#ex_slide_<{$widgets_id}> .slide-trigger li{float:left;padding:0;width:<{$setting.bwidth}>px;height:<{$setting.bheight}>px;line-height:<{$setting.bheight}>px;text-align:center;margin-left:4px;cursor:pointer;-webkit-border-radius:20px;
+-moz-border-radius:20px;
+border-radius:20px;
+}
+	#ex_slide_<{$widgets_id}> .slide-trigger li.active{}
+
+</style>
+<div id="ex_slide_<{$widgets_id}>" class="ex-slide1">
+
+    <ol class="switchable-content clearfix">
+		  <{foreach from=$data.pic item=parent key=parentId}>
+			  <li class="switchable-panel" style=" background:<{$parent.bgcolor}> url(<{$parent.link}>) no-repeat center center; " ><{if $parent.linktarget}>
+				  <a href="<{$parent.linktarget}>" <{if $setting.blank=='true'}>target="_blank" <{/if}> title="<{$parent.linkinfo}>" style=" background:<{$parent.bgcolor}> url(<{$parent.link}>) no-repeat center; display:block;height:<{$data.height}>px; width:<{$data.width}>px; " >&nbsp;</a><{else}>&nbsp;<{/if}></li>
+		  <{/foreach}>
+    </ol>
+
+<ul class="switchable-triggerBox slide-trigger">
+		  <{assign var=countnum value="1"}>
+		  <{foreach from=$data.pic item=parent key=parentId}>
+				<li><{$countnum++}><!--&#8226;--></li>
+		  <{/foreach}>
+		</ul>
+</div>
+<script>
+    new Switchable('ex_slide_<{$widgets_id}>',{
+        effect:'<{$setting.switcheffect|default:"scrollx"}>',
+        autoplay:<{$setting.autoplay}>,
+		haslrbtn:<{$setting.handle|default:'false'}>,
+		interval:<{$setting.interval}>
+    });
+</script>

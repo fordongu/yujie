@@ -1,0 +1,81 @@
+<form method="POST" action="index.php?app=b2c&ctl=admin_apply&act=save" class="tableform" id="form_member_lv">
+    <input type="hidden" name="apply_id" value="<{$apply.apply_id}>" />
+    <div class="division">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" >
+            <tr>
+                <th><em class="c-red">*</em><{t}>代申请人昵称,手机号：<{/t}></th>
+                <td><{$apply.dai_nickname}> , <{$apply.dai_mobile}></td>
+            </tr>
+        </table>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0"id='member_level' class="member-set">
+            <tr>
+                <th><em class="c-red">*</em><{t}>申请人昵称：<{/t}></th>
+                <td><{$apply.nickname}></td>
+            </tr
+            <tr>
+                <th><em class="c-red">*</em><{t}>申请手机号码：<{/t}></th>
+                <td><{$apply.mobile}></td>
+            </tr>
+            <tr>
+                <th><em class="c-red">*</em><{t}>申请人会员ID：<{/t}></th>
+                <td><{$apply.member_id}></td>
+            </tr>
+            <tr>
+                <th><em class="c-red">*</em><{t}>处理结果：<{/t}></th>
+                <td><select name="is_check">
+                    <option value="wei" <{if $apply.is_check == 'wei'}> selected <{/if}> >- 未处理 -</option>
+                    <option value="yi" <{if $apply.is_check == 'yi'}> selected <{/if}> >- 已处理 -</option>
+                    <option value="ok" <{if $apply.is_check == 'ok'}> selected <{/if}> >- 申请成功 -</option>
+                    <option value="no" <{if $apply.is_check == 'no'}> selected <{/if}> >- 申请失败 -</option>
+            </select></td>
+            </tr>
+            <tr class="member_retail">
+                <th><em class="c-red">*</em><{t}>备注说明<{/t}>：</th>
+                <td><textarea name="remark" cols="40" rows="10"><{$apply.remark}></textarea></td>
+            </tr>
+
+        </table>
+
+    </div>
+</form>
+<{area inject='.mainFoot'}>
+<div class="table-action">
+    <{button type="button" label=$___b2c="保存"|t:'b2c' id="member_lv-form-submit"}>
+</div>
+<{/area}>
+
+<script>
+    (function() {
+        var _form = $('form_member_lv');
+        var btn = $('member_lv-form-submit');
+        var finder = finderGroup['<{$env.get._finder.finder_id}>'];
+
+        _form.store('target', {
+            onSuccess: function(response) {
+                var hash_res_obj = JSON.decode(response);
+
+                if (hash_res_obj.success != undefined && hash_res_obj.success != "")
+                {
+                    try {
+                        var _dialogIns = btn.getParent('.dialog').retrieve('instance');
+                    } catch (e) {
+                    }
+
+                    if (_dialogIns)
+                    {
+                        _dialogIns.close();
+                        window.finderGroup['<{$env.get._finder.finder_id}>'].refresh();
+                    }
+                }
+
+            }
+        });
+
+        btn.addEvent('click', function() {
+            _form.fireEvent('submit', {stop: $empty});
+        });
+
+    })();
+
+
+</script>

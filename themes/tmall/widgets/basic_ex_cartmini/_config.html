@@ -1,0 +1,52 @@
+<div class="tableform" id="cart_mini_config">
+	<table>
+		<tr>
+			<th>未展开状态：</th>
+			<td>
+				<div class="division">
+					<label>
+						文案：
+						<input type="text" name="title_str" value="<{$setting.title_str}>" style="inputstyle"/>
+					</label>
+				</div>
+				<div class="division">
+				<label>
+						是否展示购物车种类数量：
+				<input type="radio" name="show_cart_count" value=1  <{if $setting.show_cart_count==1}>checked<{/if}>/>是
+
+				<input type="radio" name="show_cart_count" value=0  <{if $setting.show_cart_count==0}>checked<{/if}>/>否
+					</label>
+				</div>
+
+				<div class="division">
+				<label>
+						是否展示购物车商品数量：
+				<input type="radio" name="show_cart_num" value=1  <{if $setting.show_cart_num==1}>checked<{/if}>/>是
+
+				<input type="radio" name="show_cart_num" value=0  <{if $setting.show_cart_num==0}>checked<{/if}>/>否
+					</label>
+				</div>
+				<div class="division">
+				<label>
+						是否展示购物总金额：
+				<input type="radio" name="show_cart_total" value=1  <{if $setting.show_cart_total==1}>checked<{/if}>/>是
+
+				<input type="radio" name="show_cart_total" value=0  <{if $setting.show_cart_total==0}>checked<{/if}>/>否
+				</label>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th>展开状态</th>
+			<td>
+				<div class="division">
+					<label>
+						迷你购物车宽度：
+						<input type="text" name="mini_container_width" value="<{$setting.mini_container_width}>" style="inputstyle"/>px
+					</label>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+</div>

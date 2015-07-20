@@ -1,0 +1,37 @@
+<div class="tableform">
+    <form method="post" action="index.php?app=system&ctl=admin_fx_version&act=clean">
+	<input type="hidden" name="leixing" value="clean" />
+    <{button type="submit" id="btn_data_dobackup" class="btn-primary" label=$___desktop="清除缓存(memcache)"|t:'system'}>
+</form>
+
+</div>
+<script>
+    function setmatrix(el){
+        if(el.value == 'public') {
+            $('private_set').hide().getElements('input').set('value', '');
+        }else {
+            $('private_set').show();
+            new Request({
+                url: 'index.php?app=system&ctl=admin_shopmatrix&act=getmatrix',
+                data: '',
+                method: 'post',
+                onSuccess: function(rs){
+                    rs = JSON.decode(rs);
+                    if(rs.error){
+                        return MessageBox.error(rs.error);
+                    }
+                    
+                    var inputs = $('private_set').getElements('input');
+                    Object.each(rs, function(v, k){
+                        var i = inputs.get('class').indexOf(k);
+                        if(i > -1){
+                            inputs[i].value = v;
+                        }
+                    });
+                }
+            }).send();
+        }
+    }
+    setmatrix($$('input[name=matrixtype]:checked')[0]);
+    $$('input[name=matrixtype]').addEvent('click', function(){setmatrix(this)});
+</script>

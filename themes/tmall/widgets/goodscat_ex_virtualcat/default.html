@@ -1,0 +1,15 @@
+<{if count($data)>0}>
+	<ul id="goodscat_ex_virtualcat_<{$widgets_id}>" class="goodscat-ex-virtualcat">
+		<{foreach from=$data item=cat}>
+			<li class="step-<{$cat.step}>">
+				<a href="<{$cat.url}>">
+					<span><{$cat.cat_name}></span>
+				</a>
+			</li>
+		<{/foreach}>
+	</ul>
+<{else}>
+<div class="note">
+	暂无虚拟分类数据
+</div>
+<{/if}>

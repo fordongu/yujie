@@ -1,0 +1,78 @@
+header{
+	height:46px;
+}
+.a-bar{
+	padding:0px;
+}
+.a-bar,.a-back{
+	line-height: 46px;
+}
+.img_list {
+    background-color: #f2f2f4;
+    height: auto;
+    margin: 0 auto 70px;
+    max-width: 720px;
+    padding: 10px;
+}
+.img_list ul li {
+    height: auto;
+    margin-bottom: 13px;
+    overflow: hidden;
+    padding-bottom: 10%;
+    position: relative;
+    width: 100%;
+}
+.img_list li .pic {
+    height: 80%;
+    overflow: hidden;
+    width: 100%;
+}
+.img_list li .pic img {
+    display: block;
+    height: auto;
+    width: 100%;
+}
+.img_name {
+    background-color: #e5e4e2;
+    border-bottom: 1px solid #cccccc;
+    bottom: 0;
+    font-size: 14px;
+    position: absolute;
+    width: 100%;
+}
+.img_name .l {
+    float: left;
+    margin: 5px 0 0 10px;
+    width: 60%;
+}
+.img_name .r {
+    background: none repeat scroll 0 0 #f32658;
+    float: right;
+    width: 42px;
+}
+.img_name .r a {
+    display: block;
+    height: 100%;
+}
+.img_name .r a {
+    color: #fff;
+    display: block;
+    font-size: 12px;
+    padding: 8px;
+    text-align: center;
+}
+/*------------*/
+
+.bdsharebuttonbox{
+    margin-right: 10px;
+    float: right;
+    height:52px;
+    background: #f32658 none repeat scroll 0 0;
+     width: 42px;
+}
+.bdsharebuttonbox a{
+    background-image: url();
+}
+.bdshare-slide-button-box{
+    display: none;
+}

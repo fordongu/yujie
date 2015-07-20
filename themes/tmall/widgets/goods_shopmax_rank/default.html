@@ -1,0 +1,151 @@
+<{if $setting.item_margin_line_fix}>
+		<{assign var=range value=$setting.panel_width-$setting.item_margin_lr*$setting.lline_limit*2+$setting.item_margin_lr*2}>
+		<{else}>
+		<{assign var=range value=$setting.panel_width-$setting.item_margin_lr*$setting.lline_limit*2}>
+		<{/if}>
+		<{assign var=ibw value=$setting.item_border_width|default:0}>
+		<{assign var=pbw value=$setting.item_pic_border_width|default:0}>
+        <{if $setting.pic_left}>
+        <{assign var=handleh value=$setting.item_pic_maxheight+30}>
+        <{else}>
+        <{assign var=handleh value=$setting.item_pic_maxheight+95}>
+        <{/if}>
+<dl id="goods_shopmax_rank_<{$widgets_id}>" class="goods-shopmax-rank <{$setting.widget_custom_class}>">
+  <{if $setting.widget_title!=""||$setting.show_more_link}>
+  <dt class="maxTitle clearfix"><{if $setting.widget_title!=""}>
+   <h3><{$setting.widget_title}></h3>
+    <{/if}>
+    <{if $setting.show_more_link}><a href="<{$data.goodsMoreLink}>" target="_blank"><span>更多...</span></a> <{/if}></dt>
+  <{/if}>
+
+
+  <dd class="goods-shopmax-rank-body maxContent clearfix">
+   <{foreach from=$data.goodsRows item=row key=gid name=goodsrow}>
+      <div class="item<{if $env.foreach.goodsrow.first}> first<{/if}><{if $env.foreach.goodsrow.last}> last<{/if}><{if $env.foreach.goodsrow.iteration%$setting.lline_limit == 1}> line-first<{/if}><{if $env.foreach.goodsrow.iteration%$setting.lline_limit == 0}> line-last<{/if}>">
+      <div class="i" <{if $setting.pic_left}>width-num="<{$range/$setting.lline_limit - $ibw*2 - $setting.item_pic_maxheight-10}>"<{/if}>>
+<h6> <{if $setting.show_goods_cat}> <strong>[<{$row.goodsCategory}>]</strong> <{/if}> <a href="<{$row.goodsLink}>" target="_blank"> <{$row.goodsName}></a> </h6>
+
+          <ul>
+
+
+            <{if $setting.show_mktprice}>
+            <li class="gel-mktprice">
+              <label><{$setting.market_price_title}></label><del><{$row.goodsMarketPrice|cur}></del></li>
+            <{/if}>
+
+            <{if $setting.show_price}>
+            <li class="gel-price">
+              <label><{$setting.price_title}></label><em><{$row.goodsSalePrice|cur}></em></li>
+            <{/if}>
+
+          </ul>
+         </div>
+        <div class="p"> <{assign var=pickey  value=$setting.gpic_size|default:'goodsPicS' }> <a href="<{$row.goodsLink}>" target="_blank"><img src="<{$row[$pickey]}>" /></a></div>
+        <span class="num r<{$env.foreach.goodsrow.iteration}>"><{$env.foreach.goodsrow.iteration}></span>
+      </div>
+      <{/foreach}>
+  </dd>
+</dl>
+
+
+<style type="text/css" >
+	#goods_shopmax_rank_<{$widgets_id}> .goods-shopmax-rank-body{width: <{$setting.panel_width}>px;}
+	#goods_shopmax_rank_<{$widgets_id}> .item{
+		float: left;
+		padding:<{$setting.item_margin_tb}>px <{$setting.item_margin_lr}>px <{$setting.item_margin_tb}>px <{$setting.item_margin_lr}>px;
+		border-width:<{$ibw}>px;
+		width:<{$range/$setting.lline_limit - $ibw*2}>px;
+	}
+<{if $setting.item_margin_line_fix}>
+	#goods_shopmax_rank_<{$widgets_id}> .item.line-first{padding-left:0}
+	#goods_shopmax_rank_<{$widgets_id}> .item.line-last{padding-right:0;}
+<{/if}>
+    #goods_shopmax_rank_<{$widgets_id}> .p{ height:<{$setting.item_pic_maxheight}>px;line-height:<{$setting.item_pic_maxheight}>px;text-align:center;}
+	#goods_shopmax_rank_<{$widgets_id}> .item .p a{height:<{$setting.item_pic_maxheight}>px;width: <{$setting.item_pic_maxheight}>px;display:table-cell;vertical-align:middle;}
+	#goods_shopmax_rank_<{$widgets_id}> .p,
+	#goods_shopmax_rank_<{$widgets_id}> .i
+	{
+		border-width:<{$pbw}>px;
+		width: <{$setting.item_pic_maxheight}>px;
+		overflow:hidden;
+		margin:0 auto;
+	}
+	#goods_shopmax_rank_<{$widgets_id}> .p img{
+		border:none;
+		margin:0 auto;
+		line-height:<{$setting.item_pic_maxheight}>px;
+		vertical-align:middle;
+		max-width: <{$setting.item_pic_maxheight}>px;
+		max-height: <{$setting.item_pic_maxheight}>px;
+		_width: <{$setting.item_pic_maxheight}>px;
+		_height: <{$setting.item_pic_maxheight}>px;
+	}
+<{if $setting.pic_left}>
+	#goods_shopmax_rank_<{$widgets_id}> .p,
+	#goods_shopmax_rank_<{$widgets_id}> .i
+	{height: <{$setting.item_pic_maxheight}>px; }
+	#goods_shopmax_rank_<{$widgets_id}> .p{ float:left}
+	#goods_shopmax_rank_<{$widgets_id}> .i{ float:right;width:<{$range/$setting.lline_limit - $ibw*2 - $setting.item_pic_maxheight-10}>px;}
+<{/if}>
+<{if $setting.item_title_lines}>
+	 #goods_shopmax_rank_<{$widgets_id}>  h6{ display:block; line-height:16px; overflow:hidden; max-height:<{$setting.item_title_lines*16}>px;_height:<{$setting.item_title_lines*16}>px;}
+<{/if}>
+
+
+</style>
+<script type="text/javascript">
+
+		var AutoSize = AutoSize||(new Class({
+			    initialize: function(elements, hw) {
+			        this.elements = $$(elements);
+			        this.doAuto(hw);
+			    },
+			    doAuto: function(hw) {
+			        if (!hw) {
+			            hw = 'height';
+			        }
+			        var max = 0,
+			            prop = (!Browser.ie6 ? 'min-': '') + hw, //ie6 ftl
+			            offset = 'offset' + hw.capitalize();
+			        this.elements.each(function(element, i) {
+			            var calc = element[offset];
+			            if (calc > max) {
+			                max = calc;
+			            }
+			        }, this);
+			        this.elements.each(function(element, i) {
+			            element.setStyle(prop, max - (element[offset] - element.getStyle(hw).toInt()));
+			        });
+			        return max;
+			    }
+		}));
+	addEvent('domready',function() {
+		var lineLimit = <{$setting.lline_limit}>;
+		var container = $('goods_shopmax_rank_<{$widgets_id}>');
+		var mouseTimer = 0;
+		var items = container.getElements('.item').addEvents({
+			'mouseenter':function(){
+				mouseTimer = this.addClass.delay(200,this,['enter']);
+			},
+			'mouseleave':function(){
+				clearTimeout(mouseTimer);
+				this.removeClass('enter');
+			}
+		});
+		var loop = 0;
+		var do_items = items.slice(loop,loop = (loop+lineLimit));
+		while(do_items.length){
+			<{if $setting.show_goods_intro}>
+				new AutoSize($$(do_items).getElement('.gel-intro'),'height');
+			<{/if}>
+			<{if $setting.show_goods_spec}>
+				new AutoSize($$(do_items).getElement('.gel-spec'),'height');
+			<{/if}>
+			<{if !$setting.item_title_lines}>
+			new AutoSize($$(do_items).getElement('h6'),'height');
+			<{/if}>
+			do_items = items.slice(loop,loop = (loop+lineLimit));
+		}
+	});
+
+</script>

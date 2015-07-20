@@ -1,0 +1,46 @@
+
+<dl class="basic-shopmax-comment <{$setting.block_class}>" id="basic_shopmax_comment_<{$widgets_id}>">
+		<dt class="maxTitle">
+<h3><{$setting.title}></h3>
+		</dt>
+		<dd class="maxContent clearfix">
+
+				<{foreach from=$data item=item key=key name=commentitem}>
+				<{if $env.foreach.commentitem.iteration%2==1 }>
+        <ul class="clearfix"><{/if}>
+					<li class="clearfix item item<{$env.foreach.commentitem.iteration}><{if $env.foreach.commentitem.first}> first<{/if}><{if $env.foreach.commentitem.last}> last<{/if}>">
+						<div class="p"> <a href="<{$item.goodsLink}>" target="_blank" title="<{$item.goodsName}>"><img src="<{$item.goodsPic}>" width="60" height="60" alt="<{$item.goodsName}>" /></a><i></i></div>
+						<div class="i">
+							<h6 class="clearfix"><a href="<{$item.goodsLink}>" target="_blank" title="<{$item.goodsName}>"><{$item.goodsName}></a></h6>
+                            <div class="gel-intro">
+								<{$item.comment}>
+					</div>
+					<div class="riqi"><{$item.commentTime|date:'Y-m-d H:i'}>
+					</div>
+					</li>
+					 <{if $env.foreach.commentitem.iteration%2==0 }></ul>
+        <{/if}>
+        <{counter assign="result" print=false }>
+				<{/foreach}>
+		</dd>
+</dl>
+	<script type="text/javascript">
+
+window.addEvent('domready',
+function() {
+	var Mcommtr = $$('#basic_shopmax_comment_<{$widgets_id}> ul');
+	if(Mcommtr.length<1)return;
+	var i = Mcommtr.length - 1;
+	var Mslidecomm = function() {
+		Mcommtr[i].setStyles({
+			'height': 0 + 'px'
+		});
+		Mcommtr[i].inject($$('#basic_shopmax_comment_<{$widgets_id}> .maxContent')[0],'top');
+		Mcommtr[i].tween('height', 90);
+		i--;
+		if (i == -1) i = Mcommtr.length - 1;
+	}
+	setInterval(Mslidecomm, 4000);
+})
+
+	</script>

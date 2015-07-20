@@ -1,0 +1,55 @@
+<style>
+  #maxKeys .delete{height:20px;width:16px;cursor:pointer;float:left;_display:inline;margin-left:5px;background-color:#fff}
+  #maxKeys .top-link-item{background-color:#E2E8EB;padding:5px 5px 3px;line-height:22px;margin:2px 0;}
+  #maxKeys ul{clear:both}
+  #maxKeys li {float:left;_display:inline;margin-left:5px;}
+</style>
+<div class="tableform" >
+<h4>搜索框默认文字设置：</h4>
+<input type="text"  class="x-input" name="defaulttext" style="width:300px" value="<{$setting.defaulttext}>">
+<h4>热门关键词设置：</h4>
+  <div class="division" id="maxKeys"><br />
+<button  onclick="maxAddKeys(0);" type="button" class="lnk btn" ><span><span>添加链接到前面</span></span></button>
+&nbsp;&nbsp;&nbsp;<button  onclick="maxAddKeys(-1);" type="button" class="lnk btn" ><span><span>添加链接到后面</span></span></button><br /><br />
+
+<div id="maxcTitle">关键词描述：<input type="text" class="x-input" name="fronttips" style="width:300px" value="<{$setting.fronttips}>"></div>
+ 
+    <{if $setting.keys}>
+    <{foreach from=$setting.keys item=keys key=key}>
+    <ul class="items">
+          <li >栏目标题<input class="x-input" type="text" name="keys[<{$key}>][text]" style="width:100px" value="<{$keys.text}>"></li>
+          <li >链接<input class="x-input" type="text" name="keys[<{$key}>][url]" value="<{$keys.url}>" style="width:100px"></li>
+          <li >样式名<input class="x-input" type="text" name="keys[<{$key}>][classname]" style="width:100px" value="<{$keys.classname}>"></li>
+          <li >新窗口<input  type="checkbox" name="keys[<{$key}>][target]" value="_blank" <{if $keys.target=='_blank'}> checked<{/if}>></li>
+          <li ><button class="btn" type="button" onclick="maxAddKeys(this);"><span><span>在此项后填加</span></span></button></li>
+          <li ><span class="delete" title="删除" onclick="delLink(this)" style="cursor:pointer;"></span></li>
+</ul>
+    <{/foreach}>
+    <{/if}> </div>
+</div>
+<script>
+function maxAddKeys(n){
+	var content,
+	i = new Date().getTime();
+	content='\
+	<ul class="items">\
+		<li>栏目标题<input class="x-input" type="text" name="keys['+i+'][text]" style="width:100px"></li>\
+		<li>链接<input class="x-input" type="text" name="keys['+i+'][url]" style="width:100px"></li>\
+		<li>样式名<input class="x-input" type="text" name="keys['+i+'][classname]" style="width:100px"></li>\
+		<li>新窗口<input type="checkbox" name="keys['+i+'][target]" value="_blank"></li>\
+		<li><button class="btn" type="button" onclick="maxAddKeys(this);"><span><span>在此项后填加</span></span></button></li>\
+		<li><span class="delete" title="删除" onclick="delLink(this)" style="cursor:pointer;"}></span></li>\
+	</ul>\
+	';
+	var newconfig=new Element('ul').set('html',content).getFirst();
+	if(n==-1){
+		newconfig.injectBottom($('maxKeys'));
+	}else{
+		newconfig.injectAfter(typeof n=='object' ? n.getParent('.items') : $('maxcTitle'));
+	}
+}
+
+delLink=function(o){
+	$(o).getParent('.items').remove();
+}
+</script>

@@ -1,0 +1,149 @@
+<form action="<{link app=b2c ctl='site_passport' act='create' args01=$next_url}>" method="post">
+    <input name="forward" type="hidden" value="<{$options.url}>">
+    <input name="mini" type="hidden" value="<{$mini_passport}>">
+    <input name="inivte_id" type="hidden" value="<{$inivte_id}>">
+    <ul>
+        <li class="form-item">
+            <label for="" class="form-label"><em class="warn">*</em>手机号码：</label><span class="form-act"><{input type="text" name="pam_account[login_name]" id="" class="action-account-check" placeholder="请输入手机号" vtype="required" required="required" maxlength="11" pattern="^1[34578]\d{9}$" autofocus data-caution="手机号不能为空"}><span class="validation-messagebox"></span></span>
+
+        </li>
+        <li class="form-item action-need-verify" style="">
+            <label for="" class="form-label"><em class="warn">*</em><{t}>昵称：<{/t}></label>
+            <span class="form-act">
+                <{input type="text" name="pam_account[nickname]"  placeholder="请输入昵称" maxlength="6" id='rand_nickname' class="rand_nickname verify-input" data-caution="不能为空" vtype="required"}> 
+                <a href="javascript:get_randnickname(this)" class="btn btn-caution action-get-randnickname">
+                    <span><span>随机获取昵称</span></span>
+                </a>
+            </span>
+        </li>
+        <li class="form-item">
+            <label for="" class="form-label">
+                <em class="warn">*</em>密码：
+            </label>
+            <span class="form-act">
+                <{input type="password" name="pam_account[login_password]" maxlength="20" placeholder="6-20个字符" vtype="required&&minLength:6&&maxLength:20" data-caution="请填写密码，6-20个字符&&输入不正确，最少6个字符&&输入不正确，最多20个字符" check='true'}>
+
+            </span>
+        </li>
+        <{foreach from=$attr item=item name="item" key='row'}>
+        <li class="form-item">
+            <label for="" class="form-label"><{if $item.attr_required eq 'true'}><em class="warn">*</em><{/if}><{$item.attr_name}>：</label>
+            <span class="form-act">
+                <{if $item.attr_type =='date'}>
+                <{if $item.attr_value != '0-0-0'}>
+                <{assign var=value value=$item.attr_value}>
+                <{/if}>
+                <{if $item.attr_required eq 'true'}>
+                <{assign var=vtype value="required"}>
+                <{/if}>
+                <!-- datepicker滚动定位问题 -->
+                <{if $mini_passport == true}>
+                <{assign var=options value="{inject:'mini_signup'}"}>
+                <{/if}>
+                <{input type="datepicker" data-calendar-options=$options vtype=$vtype name=$item.attr_column value=$value}>
+                <{/if}>
+
+                <{if $item.attr_type =='region'}>
+                <{if $item.attr_required eq 'true'}>
+                <{input app=ectools type="region" name=$item.attr_column value=$item.attr_value vtype="area"}>
+                <{else}>
+                <{input app=ectools type="region" name=$item.attr_column value=$item.attr_value}>
+                <{/if}>
+                <{/if}>
+
+                <{if $item.attr_type =='gender'}>
+                <{input type='gender' name=$item.attr_column value=$item.attr_value}>
+                <{/if}>
+
+                <{if $item.attr_type =='select'}>
+                <select name="<{$item.attr_column}>" class="x-select" <{if $item.attr_required eq 'true'}>vtype="required"<{/if}>>
+                        <option value="" <{if $item.attr_value == ''}>selected="selected"<{/if}>><{t}>请选择<{/t}></option>
+                    <{foreach from=$item.attr_option item=option name="option"}>
+                    <option value="<{$option}>" <{if $item.attr_value == $option}>selected="selected"<{/if}>><{$option}></option>
+                    <{/foreach}>
+                </select>
+                <{/if}>
+
+                <{if $item.attr_type =='checkbox'}>
+                <{foreach from=$item.attr_option item=checkbox name="checkbox" }>
+                <input type="checkbox" name="box:<{$item.attr_column}>[]" value="<{$checkbox}>"<{if $item.attr_required eq 'true' && $smarty.foreach.checkbox.iteration==1}> vtype="onerequired"<{/if}> <{foreach from=$item.attr_value item=checkboxvalue name="checkboxvalue" }><{if $checkboxvalue==$checkbox}>checked="checked"<{/if}><{/foreach}>>
+                       <label><{$checkbox}></label>
+                <{/foreach}>
+                <input type="hidden" name="<{$item.attr_column}>[]" value="%no%">
+                <{/if}>
+
+                <{if $item.attr_type == 'text' || $item.attr_type == 'number' || $item.attr_type == 'alpha'}>
+                <input type="text" class="x-input" name="<{$item.attr_column}>" value="<{$item.attr_value}>" vtype="<{if $item.attr_required eq 'true'}>required<{/if}><{if $item.attr_valtype}><{if $item.attr_required eq 'true'}>&&<{/if}><{$item.attr_valtype}><{/if}>" />
+                <{/if}>
+            </span>
+        </li>
+        <{/foreach}>
+        <{if $valideCode == 'true'}>
+            <li class="form-item action-verifycode">
+              <label for="" class="form-label"><em class="warn">*</em>验证码：</label>
+              <span class="form-act">
+                <{input type="vcode" name="signupverifycode" class="verify-input" placeholder="填写验证码" data-caution="请正确填写验证码" key='LOGINVCODE' a_class="lnklike"}>
+              </span>
+            </li>
+        <{/if}>
+        <li class="form-item action-need-verify" style="">
+            <label for="" class="form-label"><em class="warn">*</em><{t}>验证码：<{/t}></label>
+            <span class="form-act">
+                <{input type="text" name="vcode" id="" class="verify-input" vtype="required" data-caution="短信验证码不能为空"}> 
+                <a href="<{link app=b2c ctl=site_passport act=send_vcode_sms}>" class="btn btn-caution action-get-verifycode" >
+                    <span><span>获取短信验证码</span></span>
+                </a>
+            </span>
+        </li>
+        <{if  $inivte_id <= 0 }>
+        <li class="form-item" style="">
+            <label for="" class="form-label"><em class="warn">*</em><{t}>邀请码：<{/t}></label>
+            <span class="form-act">
+                <input type="text" id='invitecode' class="invitecode" name="invitation_code" required="required" maxlength="20" placeholder="请输入邀请码"  pattern=".{6,20}" data-caution="邀请码不能为空" vtype="required"/>
+                <a href="javascript:get_randinvitecode(this)" class="btn btn-caution action-get-randnickname">
+                    <span><span>随机获取邀请码</span></span>
+                </a>
+            </span>
+        </li>
+        <{/if}>
+        <li class="form-item">
+            <label for="" class="form-label"></label>
+            <span class="form-act">
+                <input type="checkbox" name="license" id="" class="x-check" vtype="onerequired" data-caution="<{t}>请选择同意<{/t}>">
+                <label for="" class="form-sub-label"> <{t}>我已阅读并同意<{/t}> <a href="<{link app=b2c ctl=site_passport act=license }>" class="lnklike" target="_blank"><{t}>会员注册协议<{/t}></a> <{t}>和<{/t}> <a href="<{link app=b2c ctl=site_passport act=privacy }>" class="lnklike" target="_blank"><{t}>隐私保护政策<{/t}></a></label>
+                <span class="validation-messagebox"></span>
+            </span>
+        </li>
+        <li class="form-item-normal">
+            <label for="" class="form-label"></label>
+            <span class="form-act">
+                <{assign var='label' value='注　册'}>
+                <{button type="submit" class="btn-major btn-big" label=$__b2c=$label|t:'b2c' rel="_request"}>
+            </span>
+        </li>
+    </ul>
+</form>
+<script type="text/javascript">
+        //昵称随机
+        function get_randnickname(el) {
+            var url = '<{link app=b2c ctl=site_rand act=nickname}>';
+            Query.send(url, el, 'data', function(rs) {
+                if(!rs.error){
+                    nickname = document.getElementById('rand_nickname');
+                    nickname.value = rs;   
+                }
+            });
+        }
+        //随机获取邀请码
+        function get_randinvitecode(el) {
+            var url = '<{link app=b2c ctl=site_rand act=invitecode}>';
+            Query.send(url, el, 'data', function(rs) {
+                //alert(rs);
+                if(!rs.error){
+                    nickname = document.getElementById('invitecode');
+                    nickname.value = rs;   
+                }
+            });
+        }
+    
+</script>

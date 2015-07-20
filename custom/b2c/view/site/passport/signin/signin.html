@@ -1,0 +1,15 @@
+<div id="page_signin" class="signupin-content signin">
+
+  <{include file='site/passport/signin/member-signin.html'}>
+
+</div>
+<div class="need-signup clearfix" style='text-align:center;'>
+    <h3 style='display:inline-block;'>还不是会员？</h3>
+    <a href="<{link app=b2c ctl=site_passport act=signup}>" class="btn btn-simple"><span><span>免费注册</span></span></a>
+  </div>
+</div>
+<script>
+Module = new Module('page', ['signin']);
+var modname = 'page.signin';
+var showVcode = <{$show_varycode}>;
+</script>

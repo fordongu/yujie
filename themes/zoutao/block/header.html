@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="/themes/zoutao/index.css" />
+<div class="maxwtop">
+    <div class="maxtop-index maxAllwrap">
+        <div class="maxtl-menu">
+            <ul class="MenuList MenuList_161 clearfix">
+                <li class="menu_index"><a href="/index.php/index.html">首页</a></li>
+                <li><a href="/index.php/gallery-1.html">产品中心</a></li>
+                <li><a href="/index.php/member.html">会员中心</a></li>
+                <li><a href="/index.php/brand-showlist.html">品牌中心</a></li>
+                <li class="wgt-menu-more" id="161_menu_base"><a class="wgt-menu-view-more" href="javascript:void(0);"></a>
+                    <div class="v-m-page" style="display:none;position:absolute; top:25px; left:0;" id="161_showMore">
+                        <div><a href="/index.php/article-help-l-1.html">帮助中心</a></div>
+                        <div><a href="/index.php/article-cominfo_about-l-17.html">关于我们</a></div>
+                    </div>
+                </li>
+            </ul>
+ 
+    <script>
+    window.addEvent('domready',function(){
+        var hrf=location.href.split('/').getLast(),
+            menulist=$$('.MenuList_161 li,.news-list li'),menulista=$$('.maxSRSubTitle,.maxTVLeft01');
+
+        
+        if(!hrf.trim().length) hrf='index.html';
+
+        var reg=new RegExp('\/'+hrf,'i');
+        menulist.each(function(el){
+            var link=el.getElement('a');
+            if(link&&link.href.test(reg))
+            el.addClass('menu_index');
+
+        });
+        menulista.each(function(el){
+            var link=el.getElements('a');
+            link.each(function(el2){
+            if(el2&&el2.href.test(reg))
+            el2.addClass('active');
+    })
+        });
+
+        var showMore = $('161_showMore');
+        if(showMore){
+            var menuBase = $('161_menu_base');
+            menuBase.addEvent('click', function(){
+                if(showMore.style.display=='none'){
+                    showMore.style.display='';
+                }else{
+                    showMore.style.display='none';
+                }
+            });
+        }
+    });
+
+    </script>
+            </div>
+            <div class="maxtc-logo">
+                <a href="/index.php/"><img alt="请填写logo文字描述" src="/themes/zoutao/images/ok2.png" border="0"></a>          </div>
+        <div class="maxtr-link">
+            <div class="maxlogin">
+                
+            </div>
+            <div class="maxCart">
+                
+            </div>
+            <div class="maxnews">
+                 <a href="" class=" item-1"></a> 
+                  <a href="/index.php/article-help-l-1.html">帮助中心</a>
+                  <a href="/index.php/article-cominfo_about-60.html">关于我们</a>
+                  <{widgets id="login_bar"}>
+                  <!-- <a href="/index.php/article-zhuanlizhuanyan-154.html" class=" item-4">专利研究</a>                -->
+             </div> 
+        </div>
+    </div>
+</div>

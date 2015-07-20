@@ -1,0 +1,25 @@
+<{if count($data)>0}>
+<ul id="basic_shopmax_friendlinks_<{$widgets_id}>"  class="basic-shopmax-friendlinks clearfix">
+<li class="maxLinkTitle">友情链接：</li>
+  <{foreach from=$data item=link name=friendlinks}>
+  <li> <a href="<{$link.href}>" title="<{$link.link_name}>"><{if $setting.showpic}><img src="<{$link.image_url|storager}>" alt="<{$link.link_name}>"/><{/if}><span><{$link.link_name}></span> </a> |</li>
+  <{/foreach}>
+</ul>
+<{else}>
+暂无友情连接
+<{/if}>
+<script>
+function moreLink(target){
+		target.getParent('ul').setStyle('height','auto');
+		target.hide();
+	};
+
+window.addEvent('domready', function() {
+var LinkFold = $('basic_shopmax_friendlinks_<{$widgets_id}>'),moreLink = $$('.moreLink')[0],foldLink = $$('.foldLink')[0];
+try{
+	moreLink.injectBottom(LinkFold);
+	if(LinkFold.getSize().y>36){LinkFold.setStyle('height',36+'px');moreLink.show()}
+	}catch(e){}
+})
+</script>
+<div style="display:none"><a href="javascript:void(null)" class="moreLink" onclick="moreLink(this)" style="display:none">更多</a></div>
